@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="96" height="48" viewBox="0 0 96 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon/96x48">
+<g id="Program">
+<path d="M96 48H0V42H4V35H12V42H36V35H44V42H84V28H92V42H96V48Z" fill="black"/>
+<path d="M60 35H52V20H60V35Z" fill="black"/>
+<path d="M76 35H68V13H76V35Z" fill="black"/>
+<path d="M92 13H84V6H60V13H52V6H44V28H36V6H28V13H20V6H12V20H4V6H0V0H96V6H92V13Z" fill="black"/>
+</g>
+</g>
+</svg>

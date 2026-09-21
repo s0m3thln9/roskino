@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="96" height="48" viewBox="0 0 96 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon/96x48">
+<g id="Venue">
+<path d="M24 25C27.866 25 31 28.134 31 32C31 35.866 27.866 39 24 39C20.134 39 17 35.866 17 32C17 28.134 20.134 25 24 25Z" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M96 20V48H0V20L24 0L48 20L72 0L96 20ZM24 22C12 22 6 32 6 32C6 32 12 42 24 42C36 42 42 32 42 32C42 32 36 22 24 22Z" fill="black"/>
+</g>
+</g>
+</svg>

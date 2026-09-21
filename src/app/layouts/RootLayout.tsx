@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
 import { AppProviders } from '../providers';
+import { fontVariables } from '../styles/fonts';
 import '../styles/globals.css';
 
 type RootLayoutProps = {
@@ -27,7 +28,7 @@ export async function RootLayout({ children, params }: RootLayoutProps) {
   const locale = await resolveLocale(params);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={fontVariables}>
       <body className="flex min-h-dvh flex-col antialiased">
         <AppProviders>{children}</AppProviders>
       </body>
