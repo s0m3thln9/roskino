@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
+import '../mocks';
 import { AppProviders } from '../providers';
 import { fontVariables } from '../styles/fonts';
 import '../styles/globals.css';

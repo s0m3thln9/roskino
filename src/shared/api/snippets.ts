@@ -1,0 +1,25 @@
+export const SNIPPETS = [
+  'getSiteSettings',
+  'getEvent',
+  'getBanners',
+  'getMedia',
+  'getProgramSummary',
+  'getNews',
+  'getNewsItem',
+  'getPartners',
+  'getArchive',
+  'login',
+  'logout',
+  'getMe',
+  'recoverAccess',
+  'getFilters',
+  'getParticipants',
+  'getParticipant',
+  'getProjects',
+  'getProject',
+  'addToFavorites',
+  'getProgram',
+  'getProgramEvent',
+] as const;
+
+export type SnippetName = (typeof SNIPPETS)[number];
