@@ -1,0 +1,20 @@
+{
+  "Metadata": {
+    "title": "Московский кинорынок",
+    "description": "Russian Content Worldwide — Московский кинорынок РОСКИНО"
+  },
+  "Navigation": {
+    "about": "О рынке",
+    "news": "Новости",
+    "partners": "Партнёры",
+    "archive": "Архив",
+    "market": "My market",
+    "participants": "Participants",
+    "projects": "Projects",
+    "program": "Program"
+  },
+  "NotFound": {
+    "title": "Страница не найдена",
+    "backHome": "На главную"
+  }
+}

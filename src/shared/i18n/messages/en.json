@@ -1,0 +1,20 @@
+{
+  "Metadata": {
+    "title": "Moscow Content Market",
+    "description": "Russian Content Worldwide — Moscow Content Market by ROSKINO"
+  },
+  "Navigation": {
+    "about": "About",
+    "news": "News",
+    "partners": "Partners",
+    "archive": "Archive",
+    "market": "My market",
+    "participants": "Participants",
+    "projects": "Projects",
+    "program": "Program"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "backHome": "Back to home"
+  }
+}
