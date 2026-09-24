@@ -8,3 +8,5 @@ export {
   type NewsList,
   type NewsPreview,
 } from './model/schema';
+export { NewsArticle } from './ui/NewsArticle';
+export { NewsCard } from './ui/NewsCard';

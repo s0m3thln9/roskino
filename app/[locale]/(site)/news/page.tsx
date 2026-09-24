@@ -1,1 +1,1 @@
-export { NewsPage as default } from '@/views/news';
+export { NewsPage as default, generateNewsMetadata as generateMetadata } from '@/views/news';

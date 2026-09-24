@@ -33,5 +33,15 @@
     "play": "Play video",
     "bannerSlide": "Banner",
     "galleryEmpty": "No media yet"
+  },
+  "News": {
+    "listTitle": "News",
+    "allNews": "All news",
+    "photo": "Photo",
+    "video": "Video",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "paginationNav": "News pagination"
   }
 }

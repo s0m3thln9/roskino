@@ -1,1 +1,1 @@
-export { NewsPage } from './ui/NewsPage';
+export { NewsPage, generateNewsMetadata } from './ui/NewsPage';
