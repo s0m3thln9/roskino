@@ -22,5 +22,16 @@
   "NotFound": {
     "title": "Page not found",
     "backHome": "Back to home"
+  },
+  "About": {
+    "programTitle": "Program",
+    "galleryTitle": "Gallery",
+    "photo": "Photo",
+    "video": "Video",
+    "previous": "Previous",
+    "next": "Next",
+    "play": "Play video",
+    "bannerSlide": "Banner",
+    "galleryEmpty": "No media yet"
   }
 }

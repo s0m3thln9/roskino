@@ -6,3 +6,6 @@ export {
   type MarketEvent,
   type RichTextSegment,
 } from './model/schema';
+export { EventAbout } from './ui/EventAbout';
+export { EventDetailCard } from './ui/EventDetailCard';
+export { EventHighlightCard } from './ui/EventHighlightCard';

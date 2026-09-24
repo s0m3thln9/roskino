@@ -11,6 +11,11 @@
   --color-white: #ffffff;
   --color-grey: #cad0ce;
   --color-violet: #5d34da;
+  --color-program-plenary: #febb00;
+  --color-program-presentation: #0084fe;
+  --color-program-screening: #0084fe;
+  --color-program-business: #f26350;
+  --color-program-break: #cad0ce;
   --color-transparent: transparent;
   --color-current: currentColor;
 
@@ -37,9 +42,10 @@
 @utility typo-headline-1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 2rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   text-transform: uppercase;
+  hyphens: auto;
 
   @variant md {
     font-size: 3rem;
@@ -55,9 +61,10 @@
 @utility typo-headline-2 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 2rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   text-transform: uppercase;
+  hyphens: auto;
 
   @variant md {
     font-size: 3rem;

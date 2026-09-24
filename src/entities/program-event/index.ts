@@ -21,3 +21,4 @@ export {
   type ProgramSummary,
   type ProgramSummaryEvent,
 } from './model/schema';
+export { PROGRAM_CATEGORY_BORDER } from './ui/programColors';

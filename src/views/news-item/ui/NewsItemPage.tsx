@@ -13,7 +13,7 @@ export async function NewsItemPage({ params }: NewsItemPageProps) {
   return (
     <>
       <Header tone="light" />
-      <main className="page-gutter flex-1 pt-25">
+      <main className="flex-1 page-gutter pt-25">
         <h1>{t('news')}</h1>
       </main>
     </>

@@ -22,5 +22,16 @@
   "NotFound": {
     "title": "Страница не найдена",
     "backHome": "На главную"
+  },
+  "About": {
+    "programTitle": "Программа",
+    "galleryTitle": "Галерея",
+    "photo": "Фото",
+    "video": "Видео",
+    "previous": "Назад",
+    "next": "Вперёд",
+    "play": "Смотреть видео",
+    "bannerSlide": "Баннер",
+    "galleryEmpty": "Материалов пока нет"
   }
 }

@@ -52,7 +52,7 @@ export async function UiKitPage({ params }: UiKitPageProps) {
   return (
     <>
       <Header tone="dark" />
-      <main className="page-gutter flex-1 pt-25">
+      <main className="flex-1 page-gutter pt-25">
         <Section title="Fonts">
           <div className="flex flex-col gap-4">
             <p className="typo-headline-1">H</p>

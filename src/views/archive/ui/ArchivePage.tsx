@@ -16,7 +16,7 @@ export async function ArchivePage({ params }: ArchivePageProps) {
   return (
     <>
       <Header tone="dark" />
-      <main className="page-gutter flex-1 pt-25">
+      <main className="flex-1 page-gutter pt-25">
         <h1>{t('archive')}</h1>
       </main>
     </>
