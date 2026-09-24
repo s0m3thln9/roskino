@@ -1,34 +1,44 @@
-import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import { cn } from '@/shared/lib';
-import ricmLogo from '../../assets/logos/ricm.svg';
-import roskinoLogo from '../../assets/logos/roskino.svg';
 
 const LOGOS = {
   ricm: {
-    src: ricmLogo,
+    file: 'ricm',
     width: 115,
     height: 32,
-    alt: 'RICM — Russian International Content Market',
+    label: 'RICM — Russian International Content Market',
   },
-  roskino: { src: roskinoLogo, width: 129, height: 28, alt: 'ROSKINO' },
+  roskino: { file: 'roskino', width: 129, height: 28, label: 'ROSKINO' },
 } as const;
 
 type LogoProps = {
   variant: keyof typeof LOGOS;
   className?: string;
-  priority?: boolean;
 };
 
-export function Logo({ variant, className, priority }: LogoProps) {
+export function Logo({ variant, className }: LogoProps) {
   const logo = LOGOS[variant];
+  const url = `url(/logos/${logo.file}.svg)`;
+  const style = {
+    '--logo-width': `${logo.width}px`,
+    '--logo-height': `${logo.height}px`,
+    maskImage: url,
+    WebkitMaskImage: url,
+    maskSize: '100% 100%',
+    WebkitMaskSize: '100% 100%',
+    maskRepeat: 'no-repeat',
+    WebkitMaskRepeat: 'no-repeat',
+  } as CSSProperties;
+
   return (
-    <Image
-      src={logo.src}
-      alt={logo.alt}
-      width={logo.width}
-      height={logo.height}
-      priority={priority}
-      className={cn('h-auto', className)}
+    <span
+      role="img"
+      aria-label={logo.label}
+      style={style}
+      className={cn(
+        'inline-block h-(--logo-height) w-(--logo-width) shrink-0 bg-current',
+        className,
+      )}
     />
   );
 }

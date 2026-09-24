@@ -10,7 +10,7 @@ export async function ProjectPage({ params }: ProjectPageProps) {
   const t = await getTranslations({ locale, namespace: 'Navigation' });
 
   return (
-    <main className="flex-1">
+    <main className="page-gutter flex-1 pt-25">
       <h1>{t('projects')}</h1>
     </main>
   );

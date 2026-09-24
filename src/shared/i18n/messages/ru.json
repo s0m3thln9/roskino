@@ -11,7 +11,13 @@
     "market": "My market",
     "participants": "Participants",
     "projects": "Projects",
-    "program": "Program"
+    "program": "Program",
+    "home": "На главную",
+    "menu": "Меню",
+    "switchLocale": "Switch to English",
+    "ogrn": "ОГРН",
+    "welcome": "Добро пожаловать",
+    "signOut": "Выйти"
   },
   "NotFound": {
     "title": "Страница не найдена",

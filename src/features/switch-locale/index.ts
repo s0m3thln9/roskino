@@ -1,1 +1,1 @@
-export {};
+export { LocaleSwitch } from './ui/LocaleSwitch';

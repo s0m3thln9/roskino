@@ -11,7 +11,13 @@
     "market": "My market",
     "participants": "Participants",
     "projects": "Projects",
-    "program": "Program"
+    "program": "Program",
+    "home": "Home",
+    "menu": "Menu",
+    "switchLocale": "Перейти на русский",
+    "ogrn": "OGRN",
+    "welcome": "Welcome",
+    "signOut": "Sign out"
   },
   "NotFound": {
     "title": "Page not found",

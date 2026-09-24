@@ -10,7 +10,7 @@ export async function ParticipantsPage({ params }: ParticipantsPageProps) {
   const t = await getTranslations({ locale, namespace: 'Navigation' });
 
   return (
-    <main className="flex-1">
+    <main className="page-gutter flex-1 pt-25">
       <h1>{t('participants')}</h1>
     </main>
   );

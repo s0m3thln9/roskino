@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { Header } from '@/widgets/header';
 import { notFound } from 'next/navigation';
 import { featureFlags } from '@/shared/config/server';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
@@ -13,8 +14,11 @@ export async function ArchivePage({ params }: ArchivePageProps) {
   const t = await getTranslations({ locale, namespace: 'Navigation' });
 
   return (
-    <main className="flex-1">
-      <h1>{t('archive')}</h1>
-    </main>
+    <>
+      <Header tone="dark" />
+      <main className="page-gutter flex-1 pt-25">
+        <h1>{t('archive')}</h1>
+      </main>
+    </>
   );
 }

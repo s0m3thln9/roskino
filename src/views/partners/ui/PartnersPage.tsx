@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { Header } from '@/widgets/header';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
 
 type PartnersPageProps = {
@@ -10,8 +11,11 @@ export async function PartnersPage({ params }: PartnersPageProps) {
   const t = await getTranslations({ locale, namespace: 'Navigation' });
 
   return (
-    <main className="flex-1">
-      <h1>{t('partners')}</h1>
-    </main>
+    <>
+      <Header tone="dark" />
+      <main className="page-gutter flex-1 pt-25">
+        <h1>{t('partners')}</h1>
+      </main>
+    </>
   );
 }
