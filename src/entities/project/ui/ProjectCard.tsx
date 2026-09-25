@@ -8,6 +8,7 @@ import { ScreeningFlag } from './ScreeningFlag';
 
 type ProjectCardProps = {
   project: ProjectPreview;
+  href?: string;
   contentTypeLabel: string;
   genreLabels: string[];
   className?: string;
@@ -15,6 +16,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({
   project,
+  href,
   contentTypeLabel,
   genreLabels,
   className,
@@ -41,7 +43,10 @@ export function ProjectCard({
 
       <div className="mt-6 flex flex-col gap-1">
         <h3 className="typo-title uppercase">
-          <Link href={ROUTES.project(project.id)} className="before:absolute before:inset-0">
+          <Link
+            href={href ?? ROUTES.project(project.id)}
+            className="before:absolute before:inset-0"
+          >
             {project.title}
           </Link>
         </h3>

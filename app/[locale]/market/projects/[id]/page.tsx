@@ -1,1 +1,4 @@
-export { ProjectPage as default } from '@/views/project';
+export {
+  ProjectsPage as default,
+  generateProjectsMetadata as generateMetadata,
+} from '@/views/projects';

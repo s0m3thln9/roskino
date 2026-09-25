@@ -27,5 +27,6 @@ export {
   type Screening,
 } from './model/schema';
 export { ProjectCard } from './ui/ProjectCard';
+export { ProjectDetails } from './ui/ProjectDetails';
 export { ProjectPosterCard } from './ui/ProjectPosterCard';
 export { ScreeningFlag } from './ui/ScreeningFlag';

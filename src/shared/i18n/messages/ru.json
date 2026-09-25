@@ -70,6 +70,19 @@
     "mainTrailer": "Main trailer",
     "otherProjects": "Other Participant Projects",
     "participants": "Participants",
-    "moderators": "Facilitators"
+    "moderators": "Facilitators",
+    "ageRating": "Age Rating",
+    "length": "Length",
+    "type": "Type",
+    "genreLabel": "Genre",
+    "releaseInRussia": "Release In Russia",
+    "status": "Current Status",
+    "productionCompanies": "Production Companies",
+    "directors": "Directors",
+    "producers": "Producers",
+    "writers": "Writers",
+    "minutes": "min",
+    "play": "Play trailer",
+    "favoritesError": "Could not add to favorites"
   }
 }
