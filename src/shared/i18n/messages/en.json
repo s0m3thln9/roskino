@@ -88,5 +88,24 @@
     "filterLocation": "Filter by Location:",
     "filterRoom": "Filter by room:",
     "expandEvent": "Show event details"
+  },
+  "Auth": {
+    "title": "Authorisation",
+    "login": "Fill in your login",
+    "password": "Fill in your password",
+    "submit": "Sign in",
+    "forgot": "Forgot Login or Password?",
+    "error": "Wrong login or password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "recoverTitle": "Recover your Login information",
+    "recoverDescription": "Please, provide following contact details",
+    "fullName": "Full Name",
+    "companyName": "Company Name",
+    "email": "Email address",
+    "cancel": "Cancel",
+    "send": "Send",
+    "sent": "Request sent. We will contact you by email.",
+    "recoverError": "Could not send the request"
   }
 }

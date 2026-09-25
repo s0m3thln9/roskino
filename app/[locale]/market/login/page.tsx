@@ -1,1 +1,1 @@
-export { LoginPage as default } from '@/views/login';
+export { LoginPage as default, generateLoginMetadata as generateMetadata } from '@/views/login';
