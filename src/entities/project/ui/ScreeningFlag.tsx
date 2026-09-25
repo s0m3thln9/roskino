@@ -16,6 +16,7 @@ export function ScreeningFlag({ screening, variant = 'flag', className }: Screen
   const time = format.dateTime(date, {
     hour: '2-digit',
     minute: '2-digit',
+    hour12: false,
     timeZone: 'Europe/Moscow',
   });
   const day = format.dateTime(date, { day: 'numeric', month: 'long', timeZone: 'Europe/Moscow' });

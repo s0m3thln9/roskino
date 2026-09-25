@@ -83,6 +83,10 @@
     "writers": "Writers",
     "minutes": "min",
     "play": "Play trailer",
-    "favoritesError": "Could not add to favorites"
+    "favoritesError": "Could not add to favorites",
+    "filterDate": "Filter by date:",
+    "filterLocation": "Filter by Location:",
+    "filterRoom": "Filter by room:",
+    "expandEvent": "Show event details"
   }
 }

@@ -22,3 +22,6 @@ export {
   type ProgramSummaryEvent,
 } from './model/schema';
 export { PROGRAM_CATEGORY_BORDER } from './ui/programColors';
+export { ProgramEventDetails } from './ui/ProgramEventDetails';
+export { ProgramProjectCard } from './ui/ProgramProjectCard';
+export { ProgramRow } from './ui/ProgramRow';

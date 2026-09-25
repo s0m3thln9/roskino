@@ -1,1 +1,1 @@
-export { ProgramPage } from './ui/ProgramPage';
+export { ProgramPage, generateProgramMetadata } from './ui/ProgramPage';

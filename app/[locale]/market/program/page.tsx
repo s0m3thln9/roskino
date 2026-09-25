@@ -1,1 +1,4 @@
-export { ProgramPage as default } from '@/views/program';
+export {
+  ProgramPage as default,
+  generateProgramMetadata as generateMetadata,
+} from '@/views/program';
