@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
 import { MarketNav } from '@/widgets/market-nav';
 import { ProjectsCatalog, type ProjectsCatalogLabels } from '@/widgets/projects-catalog';
@@ -60,15 +61,19 @@ export async function ProjectsPage({ params }: ProjectsPageProps) {
 
   return (
     <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20">
-      <MarketNav
-        labels={{
-          participants: nav('participants'),
-          projects: nav('projects'),
-          program: nav('program'),
-        }}
-      />
+      <Suspense>
+        <MarketNav
+          labels={{
+            participants: nav('participants'),
+            projects: nav('projects'),
+            program: nav('program'),
+          }}
+        />
+      </Suspense>
       <h1 className="mt-6 mb-10 typo-headline-1">{nav('projects')}</h1>
-      <ProjectsCatalog labels={labels} selectedId={id} />
+      <Suspense fallback={<p className="typo-text-3">{labels.loading}</p>}>
+        <ProjectsCatalog labels={labels} selectedId={id} />
+      </Suspense>
     </main>
   );
 }
