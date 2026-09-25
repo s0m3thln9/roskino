@@ -1,1 +1,4 @@
-export { ParticipantsPage as default } from '@/views/participants';
+export {
+  ParticipantsPage as default,
+  generateParticipantsMetadata as generateMetadata,
+} from '@/views/participants';

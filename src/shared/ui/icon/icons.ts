@@ -39,6 +39,7 @@ export const ICONS = {
   'play-hover': [80, 80],
   'avatar-default': [80, 80],
   'company-logo-default': [40, 40],
+  'company-logo-placeholder': [140, 140],
   'carousel-dot': [12, 8],
   'carousel-dot-hover': [12, 8],
   'carousel-bar': [100, 8],

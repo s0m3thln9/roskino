@@ -43,5 +43,33 @@
     "next": "Вперёд",
     "page": "Страница",
     "paginationNav": "Навигация по страницам новостей"
+  },
+  "Market": {
+    "filterOrigin": "Filter by category:",
+    "filterContentType": "Filter by content type:",
+    "filterGenre": "Filter by genre:",
+    "reset": "Reset filters",
+    "clear": "Clear",
+    "loading": "Loading…",
+    "empty": "Nothing found",
+    "error": "Failed to load data",
+    "close": "Close",
+    "contentTypes": "Content types:",
+    "achievements": "Achievements",
+    "projects": "Projects:",
+    "country": "Country",
+    "territory": "Distribution territory",
+    "paginationNav": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "addToFavorites": "Add to favorites",
+    "addedToFavorites": "Added to favorites",
+    "description": "Description",
+    "stills": "Feature stills",
+    "mainTrailer": "Main trailer",
+    "otherProjects": "Other Participant Projects",
+    "participants": "Participants",
+    "moderators": "Facilitators"
   }
 }

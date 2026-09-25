@@ -15,3 +15,9 @@ export const ROUTES = {
 } as const;
 
 export const MARKET_PREFIX = ROUTES.market;
+
+export const MARKET_NAV_ITEMS = [
+  { key: 'participants', href: ROUTES.participants },
+  { key: 'projects', href: ROUTES.projects },
+  { key: 'program', href: ROUTES.program },
+] as const;

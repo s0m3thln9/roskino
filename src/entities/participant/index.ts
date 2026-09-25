@@ -17,3 +17,5 @@ export {
   type ParticipantList,
   type ParticipantPreview,
 } from './model/schema';
+export { ParticipantCard } from './ui/ParticipantCard';
+export { ParticipantDetails } from './ui/ParticipantDetails';

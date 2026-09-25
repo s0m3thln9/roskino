@@ -1,1 +1,5 @@
-export { ParticipantsPage } from './ui/ParticipantsPage';
+export {
+  ParticipantsPage,
+  buildCatalogLabels,
+  generateParticipantsMetadata,
+} from './ui/ParticipantsPage';
