@@ -1,1 +1,1 @@
-export { PartnersPage } from './ui/PartnersPage';
+export { PartnersPage, generatePartnersMetadata } from './ui/PartnersPage';

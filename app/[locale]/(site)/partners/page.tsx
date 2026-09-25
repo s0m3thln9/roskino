@@ -1,1 +1,4 @@
-export { PartnersPage as default } from '@/views/partners';
+export {
+  PartnersPage as default,
+  generatePartnersMetadata as generateMetadata,
+} from '@/views/partners';
