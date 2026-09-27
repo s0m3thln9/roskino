@@ -22,8 +22,10 @@ export function MarketNav({ labels, className }: MarketNavProps) {
             href={item.href}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'typo-title transition-opacity',
-              active ? '' : 'opacity-50 hover:opacity-80',
+              'typo-text-3 transition-colors',
+              active
+                ? 'text-black underline decoration-from-font'
+                : 'text-black/50 hover:text-black',
             )}
           >
             {labels[item.key]}

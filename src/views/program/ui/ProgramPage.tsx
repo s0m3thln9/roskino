@@ -51,7 +51,7 @@ export async function ProgramPage({ params }: ProgramPageProps) {
           }}
         />
       </Suspense>
-      <h1 className="mt-6 mb-10 typo-headline-1">{nav('program')}</h1>
+      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25">{nav('program')}</h1>
       <Suspense fallback={<p className="typo-text-3">{labels.loading}</p>}>
         <ProgramBoard labels={labels} />
       </Suspense>

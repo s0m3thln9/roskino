@@ -70,7 +70,7 @@ export async function ProjectsPage({ params }: ProjectsPageProps) {
           }}
         />
       </Suspense>
-      <h1 className="mt-6 mb-10 typo-headline-1">{nav('projects')}</h1>
+      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25">{nav('projects')}</h1>
       <Suspense fallback={<p className="typo-text-3">{labels.loading}</p>}>
         <ProjectsCatalog labels={labels} selectedId={id} />
       </Suspense>

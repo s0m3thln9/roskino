@@ -14,7 +14,7 @@ export async function MarketLayout({ children, params }: MarketLayoutProps) {
   return (
     <>
       <MarketHeader />
-      <div className="flex flex-1 flex-col pt-25">{children}</div>
+      <div className="flex flex-1 flex-col pt-25 lg:pt-50">{children}</div>
       <Footer locale={locale} />
     </>
   );

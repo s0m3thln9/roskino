@@ -1,1 +1,4 @@
-export { ArchivePage as default } from '@/views/archive';
+export {
+  ArchivePage as default,
+  generateArchiveMetadata as generateMetadata,
+} from '@/views/archive';
