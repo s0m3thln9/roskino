@@ -38,7 +38,14 @@ export function NewsCard({ news, dateLabel, className }: NewsCardProps) {
             {news.title}
           </Link>
         </h3>
-        <p className="line-clamp-5 flex-1 typo-text-3 text-black">{news.excerpt}</p>
+        <p
+          className={cn(
+            'flex-1 typo-text-3 text-black',
+            news.cover ? 'line-clamp-5' : 'line-clamp-10',
+          )}
+        >
+          {news.excerpt}
+        </p>
         <div className="flex items-center justify-between gap-4">
           <span className="typo-text-3 text-black/50">{dateLabel}</span>
           <Icon

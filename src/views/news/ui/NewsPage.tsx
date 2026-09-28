@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 import { NewsArticle, NewsCard } from '@/entities/news';
 import { getNews, getNewsItem } from '@/entities/news/server';
 import { ROUTES } from '@/shared/config';
@@ -33,9 +34,10 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
     getFormatter({ locale }),
   ]);
 
+  if (page > list.totalPages) notFound();
+
   const featured =
     page === 1 && list.items[0] ? await getNewsItem(locale, list.items[0].slug) : null;
-  const cards = featured ? list.items.slice(1) : list.items;
   const formatDate = (iso: string) => format.dateTime(new Date(iso), 'short');
 
   return (
@@ -68,31 +70,34 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
 
         <section className="bg-black py-15 md:py-25">
           <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter">
-            <div className="flex items-center justify-between gap-4 text-white">
-              <h2 className="typo-title uppercase">{t('listTitle')}</h2>
-              <Icon name="search" aria-hidden />
+            <div className="mx-auto flex w-full max-w-text flex-col gap-10">
+              <div className="flex items-center justify-between gap-4 text-white">
+                <h2 className="typo-title uppercase">{t('listTitle')}</h2>
+                <Icon name="search" aria-hidden />
+              </div>
+
+              <ul className="grid gap-5 md:grid-cols-2">
+                {list.items.map((item) => (
+                  <li key={item.id} className="contents">
+                    <NewsCard news={item} dateLabel={formatDate(item.publishedAt)} />
+                  </li>
+                ))}
+              </ul>
+
+              <Pagination
+                page={list.page}
+                totalPages={list.totalPages}
+                buildHref={(value) => (value === 1 ? ROUTES.news : `${ROUTES.news}?page=${value}`)}
+                labels={{
+                  nav: t('paginationNav'),
+                  previous: t('previous'),
+                  next: t('next'),
+                  page: (value) => `${t('page')} ${value}`,
+                }}
+                tone="dark"
+                className="self-center"
+              />
             </div>
-
-            <ul className="grid gap-5 md:grid-cols-2">
-              {cards.map((item) => (
-                <li key={item.id} className="contents">
-                  <NewsCard news={item} dateLabel={formatDate(item.publishedAt)} />
-                </li>
-              ))}
-            </ul>
-
-            <Pagination
-              page={list.page}
-              totalPages={list.totalPages}
-              buildHref={(value) => (value === 1 ? ROUTES.news : `${ROUTES.news}?page=${value}`)}
-              labels={{
-                nav: t('paginationNav'),
-                previous: t('previous'),
-                next: t('next'),
-                page: (value) => `${t('page')} ${value}`,
-              }}
-              className="self-center text-white [&_a]:text-white/50 [&_a[aria-current]]:text-white"
-            />
           </div>
         </section>
       </main>

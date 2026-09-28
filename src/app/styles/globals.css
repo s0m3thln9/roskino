@@ -176,6 +176,13 @@
   text-decoration-skip-ink: none;
 }
 
+@utility perforated-edge {
+  mask-image: radial-gradient(circle at 0 24px, transparent 10px, #000 10.5px);
+  mask-size: 100% 48px;
+  mask-position: 0 6px;
+  mask-repeat: repeat-y;
+}
+
 @utility page-gutter {
   padding-inline: 1rem;
 

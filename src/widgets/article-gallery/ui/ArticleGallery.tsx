@@ -51,35 +51,39 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
         )}
       </div>
 
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
-        {tab === 'photo' && photo && (
-          <Image
-            src={photo.url}
-            alt={photo.alt}
-            fill
-            sizes="(max-width: 768px) 100vw, 886px"
-            className="object-cover"
-          />
-        )}
-        {tab === 'video' && video && (
-          <video src={video.url} poster={video.poster?.url} controls className="size-full" />
-        )}
+      <div className="relative">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+          {tab === 'photo' && photo && (
+            <Image
+              src={photo.url}
+              alt={photo.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, 886px"
+              className="object-cover"
+            />
+          )}
+          {tab === 'video' && video && (
+            <video src={video.url} poster={video.poster?.url} controls className="size-full" />
+          )}
+        </div>
 
         {total > 1 && (
           <>
             <RoundButton
               label={labels.previous}
               variant="glass"
+              disabled={index === 0}
               onClick={() => setIndex((value) => Math.max(0, value - 1))}
-              className="absolute top-1/2 left-4 -translate-y-1/2"
+              className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2"
             >
               <Icon name="arrow-back" />
             </RoundButton>
             <RoundButton
               label={labels.next}
               variant="glass"
+              disabled={index === total - 1}
               onClick={() => setIndex((value) => Math.min(total - 1, value + 1))}
-              className="absolute top-1/2 right-4 -translate-y-1/2"
+              className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2"
             >
               <Icon name="arrow-forward" />
             </RoundButton>

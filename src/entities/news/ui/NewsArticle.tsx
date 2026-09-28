@@ -39,21 +39,22 @@ export function NewsArticle({
 
       <div
         className={cn(
-          'mx-auto flex w-full max-w-page flex-col gap-10 page-gutter',
+          'mx-auto flex w-full max-w-page flex-col gap-10 page-gutter lg:grid lg:grid-cols-[1fr_minmax(0,55.375rem)_1fr] lg:gap-x-0',
           news.cover ? 'pt-10 md:pt-20' : 'pt-30 md:pt-40',
         )}
       >
-        <div className="flex items-start justify-between gap-6">
-          <span className="typo-text-3 text-black/50">{dateLabel}</span>
+        <div className="flex items-start justify-between gap-6 lg:col-start-2">
+          <span className="typo-text-3">{dateLabel}</span>
           {allNewsSlot}
         </div>
 
-        <div className="flex gap-6">
-          {backSlot}
-          <Heading className="max-w-text typo-headline-1">{news.title}</Heading>
-        </div>
+        {backSlot && (
+          <div className="flex lg:col-start-1 lg:row-start-2 lg:mt-5 lg:self-start">{backSlot}</div>
+        )}
 
-        <div className="flex max-w-text flex-col gap-10">
+        <Heading className="typo-headline-1 lg:col-start-2">{news.title}</Heading>
+
+        <div className="flex flex-col gap-10 lg:col-start-2">
           {news.blocks.map((block, index) => {
             if (block.type === 'paragraph') {
               return (
@@ -66,32 +67,33 @@ export function NewsArticle({
               return (
                 <p
                   key={index}
-                  className="bg-linear-to-r from-grey/50 to-transparent px-5 py-5 typo-text-5 md:px-10"
+                  className="bg-linear-to-r from-grey/50 to-transparent perforated-edge px-5 py-7.5 typo-text-5 md:pr-10 md:pl-12.5"
                 >
                   {block.text}
                 </p>
               );
             }
             return (
-              <figure key={index} className="relative flex flex-col gap-5">
-                <Icon name="quote" className="h-8 w-12 text-grey md:h-16 md:w-24" />
-                <blockquote className="typo-text-5 font-medium">{block.text}</blockquote>
-                <figcaption className="flex flex-col">
-                  <span className="typo-text-5">{block.author}</span>
-                  {block.position && (
-                    <span className="typo-text-3 opacity-50">{block.position}</span>
-                  )}
-                </figcaption>
+              <figure key={index} className="relative flex gap-4 md:gap-5">
+                <Icon
+                  name="quote"
+                  className="h-8 w-12 shrink-0 text-grey md:h-16 md:w-24 lg:absolute lg:top-0 lg:right-[calc(100%+1.25rem)]"
+                />
+                <div className="flex flex-col gap-5">
+                  <blockquote className="typo-text-5 font-medium">{block.text}</blockquote>
+                  <figcaption className="flex flex-col">
+                    <span className="typo-text-5">{block.author}</span>
+                    {block.position && (
+                      <span className="typo-text-3 opacity-50">{block.position}</span>
+                    )}
+                  </figcaption>
+                </div>
               </figure>
             );
           })}
         </div>
 
-        {gallerySlot}
-
-        {news.credits.length > 0 && (
-          <p className="typo-text-3 text-black/50">{news.credits.join(' · ')}</p>
-        )}
+        {gallerySlot && <div className="lg:col-start-2">{gallerySlot}</div>}
       </div>
     </article>
   );
