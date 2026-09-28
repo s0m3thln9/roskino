@@ -19,16 +19,16 @@ export function PartnerCard({ partner, className }: { partner: Partner; classNam
             width={partner.logo.width ?? 150}
             height={partner.logo.height ?? 150}
             unoptimized={partner.logo.url.endsWith('.svg')}
-            className="h-auto max-h-[150px] w-auto max-w-[200px] object-contain"
+            className="h-auto max-h-[220px] w-full max-w-[257px] object-contain"
           />
         ) : (
-          <Icon name="company-logo-default" className="size-25 text-black md:size-[150px]" />
+          <Icon name="company-logo-placeholder" className="size-25 text-black md:size-[150px]" />
         )}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-5 text-black">
+      <div className="flex min-w-0 flex-1 flex-col gap-5 text-black md:gap-7.5">
         <div className="flex flex-col gap-2">
-          <h3 className="typo-title uppercase">{partner.name}</h3>
+          <h3 className="max-w-[32rem] typo-title uppercase">{partner.name}</h3>
           <a
             href={partner.website}
             target="_blank"
