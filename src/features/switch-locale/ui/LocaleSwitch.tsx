@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
 import { routing, usePathname, useRouter } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { roundButtonVariants } from '@/shared/ui';
 
 type LocaleSwitchProps = {
   label: string;
@@ -36,8 +35,7 @@ export function LocaleSwitch({ label, className }: LocaleSwitchProps) {
       aria-label={label}
       lang={nextLocale}
       className={cn(
-        roundButtonVariants({ variant: 'ghost' }),
-        'typo-filter uppercase backdrop-blur-soft',
+        'inline-flex size-10 shrink-0 items-center justify-center typo-filter text-current uppercase opacity-50 transition-opacity hover:opacity-100 disabled:pointer-events-none disabled:opacity-30',
         className,
       )}
     >

@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   PROGRAM_CATEGORY_BORDER,
   type ProgramSummary as ProgramSummaryData,
@@ -30,20 +31,26 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
   );
   const formatTime = (iso: string) => timeFormatter.format(new Date(iso));
   const [activeDay, setActiveDay] = useState(0);
-  const scrollerRef = useRef<HTMLDivElement>(null);
 
   const day = summary.days[activeDay] ?? summary.days[0];
   if (!day) return null;
 
-  const scrollBy = (direction: 1 | -1) => {
-    scrollerRef.current?.scrollBy({ left: direction * 454, behavior: 'smooth' });
-  };
+  const lastDay = summary.days.length - 1;
 
   return (
-    <section className={cn('flex min-w-0 flex-col gap-10 text-white', className)}>
-      <h2 className="typo-headline-2">{title}</h2>
+    <section className={cn('relative flex min-w-0 flex-col gap-10 text-white', className)}>
+      <Image
+        src="/images/program-stripes.svg"
+        alt=""
+        aria-hidden
+        width={373}
+        height={489}
+        className="pointer-events-none absolute top-[93px] right-[calc((100%-100vw)/2)] hidden lg:block"
+      />
 
-      <div className="flex items-center justify-between gap-6">
+      <h2 className="relative typo-headline-2">{title}</h2>
+
+      <div className="relative flex items-center justify-between gap-6">
         <ul className="flex items-center gap-5 md:gap-8">
           {summary.days.map((item, index) => (
             <li key={item.date}>
@@ -61,20 +68,27 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-2.5">
-          <RoundButton label={labels.previous} variant="glass" onClick={() => scrollBy(-1)}>
+        <div className="z-10 flex items-center gap-2.5 lg:absolute lg:top-[calc(100%+60px)] lg:right-[111px]">
+          <RoundButton
+            label={labels.previous}
+            variant="glass"
+            disabled={activeDay === 0}
+            onClick={() => setActiveDay((index) => Math.max(0, index - 1))}
+          >
             <Icon name="arrow-back" />
           </RoundButton>
-          <RoundButton label={labels.next} variant="glass" onClick={() => scrollBy(1)}>
+          <RoundButton
+            label={labels.next}
+            variant="glass"
+            disabled={activeDay === lastDay}
+            onClick={() => setActiveDay((index) => Math.min(lastDay, index + 1))}
+          >
             <Icon name="arrow-forward" />
           </RoundButton>
         </div>
       </div>
 
-      <div
-        ref={scrollerRef}
-        className="flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-8"
-      >
+      <div className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-8">
         {day.rooms.map((room) => (
           <div
             key={room.name}

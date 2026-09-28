@@ -1,25 +1,14 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { getSiteSettings } from '@/entities/site-settings/server';
-import { ROUTES } from '@/shared/config';
-import { featureFlags } from '@/shared/config/server';
-import { Link, type Locale } from '@/shared/i18n';
+import type { Locale } from '@/shared/i18n';
 import { ContactLink, Icon, Logo, roundButtonVariants } from '@/shared/ui';
 
 const SOCIAL_ICONS = { telegram: 'social-telegram', max: 'social-max' } as const;
 
-const FOOTER_LINKS = [
-  { key: 'about', href: ROUTES.about },
-  { key: 'news', href: ROUTES.news },
-  { key: 'partners', href: ROUTES.partners },
-  { key: 'archive', href: ROUTES.archive },
-  { key: 'market', href: ROUTES.participants },
-] as const;
-
 export async function Footer({ locale }: { locale: Locale }) {
   const [settings, t] = await Promise.all([getSiteSettings(locale), getTranslations('Navigation')]);
   const { organization, socials, map } = settings;
-  const links = FOOTER_LINKS.filter((link) => link.key !== 'archive' || featureFlags.archive);
 
   return (
     <footer className="bg-black page-gutter py-10 text-white md:py-25">
@@ -69,18 +58,6 @@ export async function Footer({ locale }: { locale: Locale }) {
               <p className="typo-text-1 text-xl">{organization.copyright}</p>
             </div>
           </div>
-
-          <nav aria-label={t('menu')} className="lg:order-first">
-            <ul className="flex flex-col gap-2">
-              {links.map((link) => (
-                <li key={link.key}>
-                  <Link href={link.href} className="typo-link-1 hover:opacity-70">
-                    {t(link.key)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
 
           <div className="relative w-full overflow-hidden rounded-md lg:max-w-[954px]">
             <Image

@@ -21,19 +21,14 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
   const isExternal = banner.href.startsWith('http');
 
   const content = (
-    <>
-      <Image
-        src={banner.image.url}
-        alt={banner.image.alt || banner.title}
-        fill
-        sizes="100vw"
-        priority={active === 0}
-        className="object-cover"
-      />
-      <span className="absolute right-0 bottom-10 left-0 page-gutter typo-title text-white uppercase drop-shadow-lg md:bottom-15">
-        {banner.title}
-      </span>
-    </>
+    <Image
+      src={banner.image.url}
+      alt={banner.image.alt || banner.title}
+      fill
+      sizes="100vw"
+      priority={active === 0}
+      className="object-cover"
+    />
   );
 
   return (
@@ -44,11 +39,17 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
       )}
     >
       {isExternal ? (
-        <a href={banner.href} target="_blank" rel="noreferrer" className="absolute inset-0 block">
+        <a
+          href={banner.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={banner.title}
+          className="absolute inset-0 block"
+        >
           {content}
         </a>
       ) : (
-        <Link href={banner.href} className="absolute inset-0 block">
+        <Link href={banner.href} aria-label={banner.title} className="absolute inset-0 block">
           {content}
         </Link>
       )}

@@ -71,7 +71,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
 
         <BannerCarousel banners={banners} slideLabelPrefix={t('bannerSlide')} />
 
-        <section className="bg-black py-20 lg:py-30">
+        <section className="overflow-hidden bg-black py-20 lg:py-30">
           <div className="mx-auto flex max-w-page flex-col gap-25 page-gutter lg:gap-40">
             <ProgramSummary
               summary={program}

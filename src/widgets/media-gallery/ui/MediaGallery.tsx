@@ -130,15 +130,17 @@ export function MediaGallery({
           </div>
 
           {items.length > 1 && (
-            <div className="flex items-center gap-4">
+            <div className="mx-auto flex w-fit max-w-full items-center">
               <RoundButton
                 label={labels.previous}
                 variant="glass"
+                disabled={activeIndex === 0}
                 onClick={() => setActiveIndex((index) => Math.max(0, index - 1))}
+                className="relative z-10 -mr-5"
               >
                 <Icon name="arrow-back" />
               </RoundButton>
-              <ul className="flex flex-1 [scrollbar-width:none] gap-1 overflow-x-auto">
+              <ul className="flex min-w-0 [scrollbar-width:none] gap-1 overflow-x-auto">
                 {items.map((item, index) => (
                   <li key={item.id}>
                     <button
@@ -169,7 +171,9 @@ export function MediaGallery({
               <RoundButton
                 label={labels.next}
                 variant="glass"
+                disabled={activeIndex === items.length - 1}
                 onClick={() => setActiveIndex((index) => Math.min(items.length - 1, index + 1))}
+                className="relative z-10 -ml-5"
               >
                 <Icon name="arrow-forward" />
               </RoundButton>

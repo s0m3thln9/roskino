@@ -21,7 +21,7 @@ export function SlideIndicator({
   return (
     <div
       className={cn(
-        'flex text-white',
+        'z-10 flex text-white',
         orientation === 'vertical' ? 'flex-col items-end justify-between' : 'items-center gap-3',
         className,
       )}
@@ -36,7 +36,10 @@ export function SlideIndicator({
             aria-label={getLabel(index)}
             aria-current={isActive ? 'true' : undefined}
             onClick={() => onSelect(index)}
-            className="group flex py-2"
+            className={cn(
+              'group flex',
+              orientation === 'vertical' ? 'w-25 justify-end py-3' : 'px-1 py-3',
+            )}
           >
             <Icon name={base} className="group-hover:hidden" />
             <Icon name={`${base}-hover`} className="hidden group-hover:inline-block" />
