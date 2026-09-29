@@ -47,8 +47,8 @@
   },
   "Market": {
     "filterOrigin": "Filter by category:",
-    "filterContentType": "Filter by content type:",
-    "filterGenre": "Filter by genre:",
+    "filterContentType": "Filter by project type:",
+    "filterGenre": "Filter by content type:",
     "reset": "Reset filters",
     "clear": "Clear",
     "loading": "Loading…",

@@ -1,1 +1,5 @@
-export { ParticipantsCatalog, type CatalogLabels } from './ui/ParticipantsCatalog';
+export {
+  ParticipantsCatalog,
+  ParticipantsCatalogSkeleton,
+  type CatalogLabels,
+} from './ui/ParticipantsCatalog';

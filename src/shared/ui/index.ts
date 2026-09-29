@@ -1,4 +1,5 @@
 export { Button, buttonVariants, type ButtonVariants } from './button';
+export { catalogLayout, FiltersSkeleton } from './catalog-layout';
 export { ContactLink } from './contact-link';
 export { fieldVariants, PasswordField, SearchField, TextField, type FieldVariants } from './field';
 export { FilterGroup } from './filter-group';
@@ -11,5 +12,6 @@ export { Pagination, type PaginationLabels } from './pagination';
 export { Person } from './person';
 export { PlayButton } from './play-button';
 export { RoundButton, roundButtonVariants, type RoundButtonVariants } from './round-button';
+export { Skeleton, SkeletonGrid } from './skeleton';
 export { SlideIndicator } from './slide-indicator';
 export { Tag } from './tag';

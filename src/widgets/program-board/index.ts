@@ -1,1 +1,1 @@
-export { ProgramBoard, type ProgramLabels } from './ui/ProgramBoard';
+export { ProgramBoard, ProgramBoardSkeleton, type ProgramLabels } from './ui/ProgramBoard';

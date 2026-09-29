@@ -2,8 +2,11 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
-import { MarketNav } from '@/widgets/market-nav';
-import { ParticipantsCatalog, type CatalogLabels } from '@/widgets/participants-catalog';
+import {
+  ParticipantsCatalog,
+  ParticipantsCatalogSkeleton,
+  type CatalogLabels,
+} from '@/widgets/participants-catalog';
 
 type ParticipantsPageProps = {
   params: Promise<LocaleParams & { id?: string }>;
@@ -48,17 +51,10 @@ export async function ParticipantsPage({ params }: ParticipantsPageProps) {
 
   return (
     <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20">
-      <Suspense>
-        <MarketNav
-          labels={{
-            participants: nav('participants'),
-            projects: nav('projects'),
-            program: nav('program'),
-          }}
-        />
-      </Suspense>
-      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25">{nav('participants')}</h1>
-      <Suspense fallback={<p className="typo-text-3">{labels.loading}</p>}>
+      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25 lg:pl-[14.125rem]">
+        {nav('participants')}
+      </h1>
+      <Suspense fallback={<ParticipantsCatalogSkeleton />}>
         <ParticipantsCatalog labels={labels} selectedId={id} />
       </Suspense>
     </main>

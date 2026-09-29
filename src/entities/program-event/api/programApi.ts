@@ -22,3 +22,15 @@ export const programApi = baseApi.injectEndpoints({
 });
 
 export const { useGetProgramQuery, useGetProgramEventQuery } = programApi;
+
+export function toProgramParams({
+  date,
+  location,
+  room,
+}: {
+  date?: string;
+  location?: string;
+  room?: string;
+}): GetProgramParams {
+  return { date, location, room };
+}

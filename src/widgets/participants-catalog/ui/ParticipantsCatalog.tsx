@@ -1,8 +1,10 @@
 'use client';
 
 import {
+  participantApi,
   ParticipantCard,
   ParticipantDetails,
+  toParticipantsParams,
   useGetParticipantQuery,
   useGetParticipantsQuery,
 } from '@/entities/participant';
@@ -13,7 +15,9 @@ import { ROUTES } from '@/shared/config';
 import { useRouter } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { useUrlFilters } from '@/shared/model';
-import { Modal, Pagination } from '@/shared/ui';
+import { catalogLayout, FiltersSkeleton, Modal, Pagination, Skeleton } from '@/shared/ui';
+import { ParticipantDetailsSkeleton } from './ParticipantDetailsSkeleton';
+import { ProjectsCarousel } from './ProjectsCarousel';
 
 export type CatalogLabels = {
   origin: string;
@@ -37,9 +41,27 @@ export type CatalogLabels = {
 };
 
 const FILTER_KEYS = ['origin', 'contentType', 'genre'] as const;
+const CONTENT_CLASS = cn(catalogLayout.content, 'lg:max-w-content');
+const GRID_CLASS = 'grid gap-5 sm:grid-cols-2 lg:grid-cols-3';
+const SKELETON_COUNT = 9;
 
 function toLabelMap(options: CatalogFilters['contentTypes']) {
   return Object.fromEntries(options.map((option) => [option.value, option.label]));
+}
+
+export function ParticipantsCatalogSkeleton() {
+  return (
+    <div className={catalogLayout.root}>
+      <FiltersSkeleton />
+      <div className={CONTENT_CLASS}>
+        <div className={GRID_CLASS}>
+          {Array.from({ length: SKELETON_COUNT }, (_, index) => (
+            <Skeleton key={index} className="aspect-square" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function ParticipantsCatalog({
@@ -57,48 +79,64 @@ export function ParticipantsCatalog({
   const query = searchParams.toString();
   const withQuery = (path: string) => (query ? `${path}?${query}` : path);
   const filtersQuery = useGetFiltersQuery();
+  const prefetchParticipant = participantApi.usePrefetch('getParticipant');
 
-  const listQuery = useGetParticipantsQuery({
-    origin: url.values('origin') as never,
-    contentType: url.values('contentType') as never,
-    genre: url.values('genre') as never,
-    page: url.page,
-  });
+  const listQuery = useGetParticipantsQuery(
+    toParticipantsParams({
+      origin: url.values('origin'),
+      contentType: url.values('contentType'),
+      genre: url.values('genre'),
+      page: url.page,
+    }),
+  );
 
   const detailsQuery = useGetParticipantQuery(selectedId ?? '', { skip: !selectedId });
   const contentTypeLabels = toLabelMap(filtersQuery.data?.contentTypes ?? []);
   const genreLabels = toLabelMap(filtersQuery.data?.genres ?? []);
+  const isRefreshing = listQuery.isFetching && !listQuery.isLoading;
 
   return (
-    <div className={cn('flex flex-col gap-10 lg:flex-row lg:gap-10', className)}>
-      {filtersQuery.data && (
+    <div className={cn(catalogLayout.root, className)}>
+      {filtersQuery.data ? (
         <ParticipantsFilter
           filters={filtersQuery.data}
           labels={labels}
-          className="lg:w-[162px] lg:shrink-0"
+          className={catalogLayout.filters}
         />
+      ) : (
+        <FiltersSkeleton />
       )}
 
-      <div className="flex min-w-0 flex-1 flex-col gap-10">
+      <div className={CONTENT_CLASS}>
         {listQuery.isError && <p className="typo-text-3">{labels.error}</p>}
-        {listQuery.isLoading && <p className="typo-text-3">{labels.loading}</p>}
         {listQuery.data?.items.length === 0 && <p className="typo-text-3">{labels.empty}</p>}
 
-        <ul
-          className={cn(
-            'sm:grid-cols-2 grid gap-5 lg:grid-cols-3',
-            url.isPending && 'opacity-60 transition-opacity',
-          )}
-        >
-          {listQuery.data?.items.map((participant) => (
-            <li key={participant.id} className="contents">
-              <ParticipantCard
-                participant={participant}
-                href={withQuery(ROUTES.participant(participant.id))}
-              />
-            </li>
-          ))}
-        </ul>
+        {listQuery.isLoading ? (
+          <div className={GRID_CLASS}>
+            {Array.from({ length: SKELETON_COUNT }, (_, index) => (
+              <Skeleton key={index} className="aspect-square" />
+            ))}
+          </div>
+        ) : (
+          <ul
+            aria-busy={isRefreshing}
+            className={cn(GRID_CLASS, 'transition-opacity', isRefreshing && 'opacity-50')}
+          >
+            {listQuery.data?.items.map((participant) => (
+              <li
+                key={participant.id}
+                className="contents"
+                onMouseEnter={() => prefetchParticipant(participant.id)}
+                onFocus={() => prefetchParticipant(participant.id)}
+              >
+                <ParticipantCard
+                  participant={participant}
+                  href={withQuery(ROUTES.participant(participant.id))}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
 
         {listQuery.data && (
           <Pagination
@@ -121,7 +159,7 @@ export function ParticipantsCatalog({
         onClose={() => router.push(withQuery(ROUTES.participants))}
         closeLabel={labels.close}
       >
-        {detailsQuery.isLoading && <p className="typo-text-3">{labels.loading}</p>}
+        {detailsQuery.isLoading && <ParticipantDetailsSkeleton />}
         {detailsQuery.data && (
           <ParticipantDetails
             participant={detailsQuery.data}
@@ -129,9 +167,9 @@ export function ParticipantsCatalog({
             contentTypeLabels={contentTypeLabels}
             projectsSlot={
               detailsQuery.data.projects.length > 0 ? (
-                <ul className="flex [scrollbar-width:none] gap-5 overflow-x-auto pb-2">
+                <ProjectsCarousel labels={{ previous: labels.previous, next: labels.next }}>
                   {detailsQuery.data.projects.map((project) => (
-                    <li key={project.id} className="contents">
+                    <li key={project.id} className="snap-start">
                       <ProjectPosterCard
                         project={project}
                         contentTypeLabel={contentTypeLabels[project.contentType] ?? ''}
@@ -139,7 +177,7 @@ export function ParticipantsCatalog({
                       />
                     </li>
                   ))}
-                </ul>
+                </ProjectsCarousel>
               ) : null
             }
           />

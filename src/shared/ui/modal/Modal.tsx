@@ -45,6 +45,7 @@ export function Modal({
 }: ModalProps) {
   const styles = variantClassNames[variant];
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -52,6 +53,7 @@ export function Modal({
 
     if (open && !dialog.open) {
       dialog.showModal();
+      panelRef.current?.focus({ preventScroll: true });
       document.documentElement.style.overflow = 'hidden';
     }
     if (!open && dialog.open) dialog.close();
@@ -83,7 +85,11 @@ export function Modal({
         className={cn('flex min-h-full justify-center', styles.wrapper)}
         onClick={handleBackdropClick}
       >
-        <div className={cn('relative w-full', styles.panel, className)}>
+        <div
+          ref={panelRef}
+          tabIndex={-1}
+          className={cn('relative w-full outline-none', styles.panel, className)}
+        >
           <button
             type="button"
             onClick={onClose}

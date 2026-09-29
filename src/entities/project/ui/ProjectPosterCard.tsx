@@ -36,13 +36,13 @@ export function ProjectPosterCard({
         )}
       </div>
       <div className="flex flex-col gap-1">
-        <h4 className="typo-title uppercase">
+        <h4 className="typo-title">
           <Link href={ROUTES.project(project.id)} className="before:absolute before:inset-0">
             {project.title}
           </Link>
         </h4>
-        <p className="typo-text-1">{meta}</p>
-        <p className="typo-text-1">
+        <p className="typo-text-7">{meta}</p>
+        <p className="typo-text-7">
           {project.country} ({project.year})
         </p>
       </div>

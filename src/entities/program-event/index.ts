@@ -3,7 +3,12 @@ export {
   getProgramEventContract,
   getProgramSummaryContract,
 } from './api/contracts';
-export { programApi, useGetProgramEventQuery, useGetProgramQuery } from './api/programApi';
+export {
+  programApi,
+  toProgramParams,
+  useGetProgramEventQuery,
+  useGetProgramQuery,
+} from './api/programApi';
 export {
   PROGRAM_CATEGORIES,
   getProgramParamsSchema,

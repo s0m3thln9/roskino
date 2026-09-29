@@ -27,3 +27,19 @@ export const projectApi = baseApi.injectEndpoints({
 });
 
 export const { useGetProjectsQuery, useGetProjectQuery, useGetFiltersQuery } = projectApi;
+
+export function toProjectsParams({
+  contentType = [],
+  genre = [],
+  page = 1,
+}: {
+  contentType?: string[];
+  genre?: string[];
+  page?: number;
+}): GetProjectsParams {
+  return {
+    contentType: contentType as GetProjectsParams['contentType'],
+    genre: genre as GetProjectsParams['genre'],
+    page,
+  };
+}

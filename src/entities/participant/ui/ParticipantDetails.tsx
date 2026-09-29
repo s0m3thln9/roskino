@@ -28,7 +28,7 @@ export function ParticipantDetails({
   return (
     <div className={cn('flex flex-col gap-10', className)}>
       <div className="flex flex-col gap-10 lg:flex-row lg:gap-15">
-        <div className="flex max-w-[392px] flex-col gap-10">
+        <div className="flex flex-col gap-10 lg:w-88 lg:shrink-0">
           <div className="flex h-[140px] items-center">
             {participant.logo ? (
               <Image

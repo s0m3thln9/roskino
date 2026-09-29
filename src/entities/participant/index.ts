@@ -1,6 +1,7 @@
 export { getParticipantContract, getParticipantsContract } from './api/contracts';
 export {
   participantApi,
+  toParticipantsParams,
   useGetParticipantQuery,
   useGetParticipantsQuery,
 } from './api/participantApi';

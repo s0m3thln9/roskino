@@ -1,6 +1,7 @@
 export { getFiltersContract, getProjectContract, getProjectsContract } from './api/contracts';
 export {
   projectApi,
+  toProjectsParams,
   useGetFiltersQuery,
   useGetProjectQuery,
   useGetProjectsQuery,

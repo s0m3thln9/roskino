@@ -28,3 +28,22 @@ export const participantApi = baseApi.injectEndpoints({
 });
 
 export const { useGetParticipantsQuery, useGetParticipantQuery } = participantApi;
+
+export function toParticipantsParams({
+  origin = [],
+  contentType = [],
+  genre = [],
+  page = 1,
+}: {
+  origin?: string[];
+  contentType?: string[];
+  genre?: string[];
+  page?: number;
+}): GetParticipantsParams {
+  return {
+    origin: origin as GetParticipantsParams['origin'],
+    contentType: contentType as GetParticipantsParams['contentType'],
+    genre: genre as GetParticipantsParams['genre'],
+    page,
+  };
+}
