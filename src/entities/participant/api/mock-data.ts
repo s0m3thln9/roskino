@@ -1,3 +1,4 @@
+import { MOCK_STUDIOS } from '@/entities/project/@x/participant.server';
 import type { Participant } from '../model/schema';
 
 export type ParticipantSeed = Omit<Participant, 'projects'>;
@@ -145,3 +146,89 @@ export const participantsSeed: ParticipantSeed[] = [
     contact: contact('Claire Dubois', 'claire@fcompany.com'),
   },
 ];
+
+type ContentTypes = Participant['contentTypes'];
+type Genres = Participant['genres'];
+
+const CONTENT_ROTATION: ContentTypes[] = [
+  ['animation'],
+  ['feature-film', 'series'],
+  ['documentary'],
+  ['series', 'animation'],
+  ['feature-film'],
+];
+const GENRE_ROTATION: Genres[] = [
+  ['adventure', 'comedy'],
+  ['drama', 'romance'],
+  ['fantasy', 'musical'],
+  ['sci-fi', 'action'],
+  ['comedy', 'drama'],
+];
+const RUSSIAN_ADDRESSES = [
+  ['7, Arbat str.,', 'Moscow, 119019, Russia'],
+  ['15, Liteyny prospect,', 'Saint Petersburg, 191028, Russia'],
+  ['3, Baumana str.,', 'Kazan, 420111, Russia'],
+  ['40, Lenina str.,', 'Yekaterinburg, 620014, Russia'],
+];
+const INTERNATIONAL = [
+  { name: 'Lumen Pictures', country: 'Germany', territory: 'EU', city: 'Berlin, 10115' },
+  { name: 'Atlas Films', country: 'Spain', territory: 'EU, Latin America', city: 'Madrid, 28013' },
+  { name: 'Harbor Media', country: 'USA', territory: 'North America', city: 'New York, 10001' },
+  { name: 'Kite Animation', country: 'Japan', territory: 'Asia', city: 'Tokyo, 150-0001' },
+  { name: 'Nile Studios', country: 'Egypt', territory: 'MENA', city: 'Cairo, 11511' },
+  {
+    name: 'Pampa Films',
+    country: 'Argentina',
+    territory: 'Latin America',
+    city: 'Buenos Aires, C1001',
+  },
+  { name: 'Lotus Media', country: 'India', territory: 'South Asia', city: 'Mumbai, 400001' },
+  { name: 'Aegean Pictures', country: 'Greece', territory: 'EU', city: 'Athens, 105 57' },
+  { name: 'Bosphorus Film', country: 'Turkey', territory: 'EU, MENA', city: 'Istanbul, 34000' },
+  { name: 'Silk Road Media', country: 'Uzbekistan', territory: 'CIS', city: 'Tashkent, 100000' },
+  { name: 'Dragon Gate', country: 'China', territory: 'Asia', city: 'Beijing, 100000' },
+  { name: 'Samba Studio', country: 'Brazil', territory: 'Latin America', city: 'Sao Paulo, 01000' },
+  { name: 'Cedar Films', country: 'Lebanon', territory: 'MENA', city: 'Beirut, 1100' },
+  { name: 'Baltic Frame', country: 'Serbia', territory: 'Balkans', city: 'Belgrade, 11000' },
+  { name: 'Savanna Media', country: 'Kenya', territory: 'Africa', city: 'Nairobi, 00100' },
+  { name: 'Maple Pictures', country: 'Canada', territory: 'North America', city: 'Toronto, M5H' },
+];
+
+const slug = (name: string) => name.toLowerCase().replace(/\s+/g, '-');
+const domain = (name: string) => `www.${name.toLowerCase().replace(/\s+/g, '')}.com`;
+
+const generatedRussian: ParticipantSeed[] = MOCK_STUDIOS.map(({ id, name }, index) => ({
+  id,
+  name,
+  website: `https://${domain(name)}`,
+  websiteLabel: domain(name),
+  logo: null,
+  origin: 'russian',
+  contentTypes: CONTENT_ROTATION[index % CONTENT_ROTATION.length]!,
+  genres: GENRE_ROTATION[index % GENRE_ROTATION.length]!,
+  addressLines: RUSSIAN_ADDRESSES[index % RUSSIAN_ADDRESSES.length]!,
+  country: null,
+  distributionTerritory: null,
+  about,
+  achievements: index % 3 === 2 ? null : achievements,
+  contact: contact('Maria Savinykh', `info@${domain(name).slice(4)}`),
+}));
+
+const generatedInternational: ParticipantSeed[] = INTERNATIONAL.map((company, index) => ({
+  id: slug(company.name),
+  name: company.name,
+  website: `https://${domain(company.name)}`,
+  websiteLabel: domain(company.name),
+  logo: null,
+  origin: 'international',
+  contentTypes: CONTENT_ROTATION[(index + 2) % CONTENT_ROTATION.length]!,
+  genres: GENRE_ROTATION[(index + 1) % GENRE_ROTATION.length]!,
+  addressLines: [`${10 + index} Main Street`, `${company.city}, ${company.country}`],
+  country: company.country,
+  distributionTerritory: company.territory,
+  about,
+  achievements: null,
+  contact: contact('Regina J.B. Buyer', `sales@${domain(company.name).slice(4)}`),
+}));
+
+participantsSeed.push(...generatedRussian, ...generatedInternational);

@@ -9,6 +9,9 @@ const stills = [
   { url: '/mocks/media/news-1.jpg', alt: '', width: 853, height: 1280 },
   { url: '/mocks/media/gallery-1.jpg', alt: '', width: 862, height: 1280 },
 ];
+const sixStills = [...stills, ...stills.slice(0, 2)];
+const STILL_SETS = [sixStills, [], stills.slice(0, 2), stills.slice(0, 3), stills];
+
 const trailer = {
   url: 'https://www.w3schools.com/html/mov_bbb.mp4',
   poster: stills[0] ?? null,
@@ -135,6 +138,101 @@ export const projectsSeed: ProjectSeed[] = [
   }),
 ];
 
+export const MOCK_STUDIOS = [
+  'Aurora Film',
+  'Belka Studio',
+  'Volga Pictures',
+  'Gorod Media',
+  'Dom Kino Lab',
+  'Zima Animation',
+  'Iskra Production',
+  'Kometa Film',
+  'Luch Studio',
+  'Mayak Pictures',
+  'Nord Media',
+  'Oblako Animation',
+  'Parus Film',
+  'Raduga Studio',
+  'Sever Pictures',
+  'Tundra Film',
+  'Ural Media',
+  'Fenix Animation',
+  'Khronika Studio',
+  'Tsvet Film',
+].map((name) => ({ id: name.toLowerCase().replace(/\s+/g, '-'), name }));
+
+const GENERATED_TITLES = [
+  'Winter Tales',
+  'The Last Lighthouse',
+  'Paper Planes',
+  'Silent Harbor',
+  'Moonlit Garden',
+  'The Iron Bridge',
+  'Wild Rivers',
+  'Glass Town',
+  'Echoes of Summer',
+  'The Red Balloon',
+  'Northern Wind',
+  'Clockwork Fox',
+  'Hidden Valley',
+  'The Long Road',
+  'Starfall',
+  'Little Captain',
+  'Snow Leopard',
+  'The Quiet Hour',
+  'Distant Shores',
+  'Golden Field',
+  'The Secret Map',
+  'Night Train',
+  'Blue Mountains',
+  'Stone Garden',
+  'The Painter',
+  'Forest Friends',
+  'City Lights',
+  'The Ninth Wave',
+  'Sky Riders',
+  'Old Stories',
+];
+
+const CONTENT_ROTATION: ContentType[] = ['animation', 'feature-film', 'series', 'documentary'];
+const GENRE_ROTATION: Genre[][] = [
+  ['adventure', 'comedy'],
+  ['drama'],
+  ['fantasy', 'adventure'],
+  ['sci-fi', 'action'],
+  ['musical', 'romance'],
+  ['comedy', 'drama'],
+];
+const AGE_ROTATION = ['0+', '6+', '12+', '16+'];
+const SCREENING_SLOTS = [
+  { startsAt: '2026-12-01T13:30:00+03:00', location: 'Moskva Cinema', room: 'Room 2' },
+  { startsAt: '2026-12-02T16:00:00+03:00', location: 'Rossiya National Center', room: 'Room 1' },
+  { startsAt: '2026-12-03T10:30:00+03:00', location: 'Moskva Cinema', room: 'Room 4' },
+];
+
+const generatedProjects: ProjectSeed[] = GENERATED_TITLES.map((title, index) => {
+  const studio = MOCK_STUDIOS[index < 5 ? 0 : index % MOCK_STUDIOS.length]!;
+  const slot = SCREENING_SLOTS[index % SCREENING_SLOTS.length]!;
+  return seed(
+    `${title.toLowerCase().replace(/\s+/g, '-')}`,
+    studio.id,
+    title,
+    CONTENT_ROTATION[index % CONTENT_ROTATION.length]!,
+    GENRE_ROTATION[index % GENRE_ROTATION.length]!,
+    {
+      ageRating: AGE_ROTATION[index % AGE_ROTATION.length]!,
+      lengthMinutes: 20 + ((index * 17) % 100),
+      year: 2026 + (index % 2),
+      productionCompanies: [studio.name],
+      trailer: index % 3 === 0 ? trailer : null,
+      stills: STILL_SETS[index % STILL_SETS.length]!,
+      screening: index % 6 === 0 ? { ...slot, section: 'Screenings' } : null,
+    },
+  );
+});
+
+projectsSeed.push(...generatedProjects);
+
 const FAVORITES_KEY = Symbol.for('roskino.mock-favorites');
 
 type FavoritesHolder = { [FAVORITES_KEY]?: Map<string, Set<string>> };
@@ -164,4 +262,5 @@ export const participantRefsSeed: Record<string, { name: string }> = {
   'av-company': { name: 'Av Company' },
   'b-company': { name: 'B Company' },
   'c-company': { name: 'C Company' },
+  ...Object.fromEntries(MOCK_STUDIOS.map(({ id, name }) => [id, { name }])),
 };
