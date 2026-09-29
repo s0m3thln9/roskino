@@ -46,20 +46,20 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
       <Header tone="light" />
       <main className="flex-1">
         <section className="bg-linear-to-b from-[#143744] to-grey pt-30 pb-20 md:pt-40 lg:min-h-[860px] lg:pt-65">
-          <div className="mx-auto max-w-page page-gutter">
+          <div className="mx-auto max-w-page page-gutter lg:max-w-[calc(var(--container-wide)+6.25rem)]">
             <h1 className="max-w-[833px] typo-headline-2 text-white">{event.title}</h1>
           </div>
         </section>
 
-        <section className="bg-grey pb-20 lg:pb-40">
-          <div className="mx-auto flex max-w-page flex-col gap-15 page-gutter lg:gap-25">
+        <section className="bg-grey pb-20 lg:pt-20 lg:pb-40">
+          <div className="mx-auto flex max-w-page flex-col gap-15 page-gutter lg:max-w-[calc(var(--container-wide)+6.25rem)] lg:gap-30">
             <div className="grid gap-5 md:grid-cols-3">
               {event.details.map((detail) => (
                 <EventDetailCard key={detail.label} detail={detail} />
               ))}
             </div>
 
-            <EventAbout about={event.about} />
+            <EventAbout about={event.about} className="lg:mb-7.5" />
 
             <div className="grid gap-5 md:grid-cols-3">
               {event.highlights.map((highlight) => (
@@ -71,8 +71,8 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
 
         <BannerCarousel banners={banners} slideLabelPrefix={t('bannerSlide')} />
 
-        <section className="overflow-hidden bg-black py-20 lg:py-30">
-          <div className="mx-auto flex max-w-page flex-col gap-25 page-gutter lg:gap-40">
+        <section className="overflow-hidden bg-black py-20 lg:pt-40 lg:pb-35">
+          <div className="mx-auto flex max-w-page flex-col gap-25 page-gutter lg:max-w-[calc(var(--container-wide)+6.25rem)] lg:gap-56">
             <ProgramSummary
               summary={program}
               title={t('programTitle')}

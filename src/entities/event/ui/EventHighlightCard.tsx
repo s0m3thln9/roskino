@@ -12,7 +12,7 @@ export function EventHighlightCard({
   return (
     <div
       className={cn(
-        'flex flex-col justify-between gap-5 border-l-2 border-black pt-3.5 pb-5 pl-5 text-black md:pb-10 md:pl-10',
+        'flex flex-col justify-between gap-5 border-l-2 border-black pt-3.5 pb-5 pl-5 text-black md:pt-6 md:pb-10 md:pl-10',
         className,
       )}
     >
@@ -22,7 +22,7 @@ export function EventHighlightCard({
         ) : (
           <Icon name={highlight.icon} className="mb-2.5 h-9 w-18 md:h-12 md:w-24" />
         )}
-        <span className="typo-title uppercase">{highlight.caption}</span>
+        <span className="typo-title uppercase md:w-min">{highlight.caption}</span>
       </div>
       <p className="typo-text-2">{highlight.text}</p>
     </div>

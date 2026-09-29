@@ -12,7 +12,7 @@ export function EventDetailCard({
   return (
     <div
       className={cn(
-        'flex flex-col gap-2.5 border-l-2 border-black pt-1.5 pl-5 md:pl-10',
+        'flex flex-col gap-2.5 border-l-2 border-black pt-1.5 pl-5 md:gap-5 md:pb-7.5 md:pl-10',
         className,
       )}
     >

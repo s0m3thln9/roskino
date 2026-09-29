@@ -9,8 +9,8 @@ export function EventAbout({
   className?: string;
 }) {
   return (
-    <section className={cn('flex max-w-text flex-col gap-6 text-black', className)}>
-      <h2 className="typo-title uppercase">{about.title}</h2>
+    <section className={cn('flex max-w-[48rem] flex-col gap-6 text-black', className)}>
+      <h2 className="max-w-[17rem] typo-title uppercase">{about.title}</h2>
       <p className="typo-text-4">
         {about.body.map((segment, index) =>
           segment.href ? (

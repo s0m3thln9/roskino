@@ -68,7 +68,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
             </li>
           ))}
         </ul>
-        <div className="z-10 flex items-center gap-2.5 lg:absolute lg:top-[calc(100%+60px)] lg:right-[111px]">
+        <div className="z-10 flex items-center gap-2.5 lg:absolute lg:top-[calc(100%+60px)] lg:right-0">
           <RoundButton
             label={labels.previous}
             variant="glass"
@@ -88,11 +88,11 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
         </div>
       </div>
 
-      <div className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-8">
+      <div className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-[8.375rem]">
         {day.rooms.map((room) => (
           <div
             key={room.name}
-            className="flex w-[300px] shrink-0 snap-start flex-col gap-6 md:w-[434px]"
+            className="flex w-[300px] shrink-0 snap-start flex-col gap-6 md:w-80"
           >
             <h3 className="flex h-20 items-center border-t-2 border-white typo-title uppercase">
               {room.name}
