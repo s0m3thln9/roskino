@@ -3,17 +3,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, usePathname } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Icon, roundButtonVariants } from '@/shared/ui';
+import { Icon } from '@/shared/ui';
 import type { NavItem } from '../model/nav';
+import { barButtonClassName } from './styles';
 
-type MainNavProps = {
+type MenuButtonProps = {
   items: NavItem[];
   labels: Record<string, string>;
+  buttonLabel: string;
   menuLabel: string;
-  className?: string;
 };
 
-export function MainNav({ items, labels, menuLabel, className }: MainNavProps) {
+export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButtonProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -40,25 +41,23 @@ export function MainNav({ items, labels, menuLabel, className }: MainNavProps) {
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <div ref={containerRef} className={cn('relative', className)}>
+    <div ref={containerRef} className="relative">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-haspopup="menu"
         aria-label={menuLabel}
-        className={cn(
-          roundButtonVariants({ variant: 'ghost', active: open }),
-          'backdrop-blur-soft',
-        )}
+        className={cn(barButtonClassName, 'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass')}
       >
         <Icon name="menu" className="size-6" />
+        <span className="typo-menu">{buttonLabel}</span>
       </button>
 
       <nav
         hidden={!open}
         aria-label={menuLabel}
-        className="absolute top-12 left-0 z-50 w-72 rounded-md bg-[rgba(48,51,70,0.25)] py-1 backdrop-blur-glass"
+        className="absolute right-0 bottom-full mb-2.5 w-72 rounded-md bg-[rgba(48,51,70,0.25)] py-1 backdrop-blur-glass"
       >
         <ul>
           {items.map((item) => {
@@ -72,7 +71,6 @@ export function MainNav({ items, labels, menuLabel, className }: MainNavProps) {
                   className={cn(
                     'flex h-15 items-center gap-5 px-7 text-white transition-opacity hover:opacity-100',
                     active ? 'opacity-100' : 'opacity-50',
-                    item.highlighted && 'text-violet opacity-100',
                   )}
                 >
                   <Icon name={item.icon} className="size-6" />

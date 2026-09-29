@@ -11,7 +11,7 @@ export async function Footer({ locale }: { locale: Locale }) {
   const { organization, socials, map } = settings;
 
   return (
-    <footer className="bg-black page-gutter py-10 text-white md:py-25">
+    <footer className="bg-black page-gutter pt-10 pb-35 text-white md:pt-25 md:pb-40">
       <div className="mx-auto flex max-w-page flex-col gap-10">
         <div className="flex items-start justify-between gap-6">
           <Logo variant="roskino" className="h-6 w-[110px] md:h-7 md:w-[129px]" />

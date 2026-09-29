@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
+import { BottomBar } from '@/widgets/bottom-bar';
 import { Footer } from '@/widgets/footer';
 import { MarketHeader } from '@/widgets/header';
 
@@ -16,6 +17,9 @@ export async function MarketLayout({ children, params }: MarketLayoutProps) {
       <MarketHeader />
       <div className="flex flex-1 flex-col pt-25 lg:pt-50">{children}</div>
       <Footer locale={locale} />
+      <Suspense fallback={null}>
+        <BottomBar />
+      </Suspense>
     </>
   );
 }

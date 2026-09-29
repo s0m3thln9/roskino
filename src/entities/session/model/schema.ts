@@ -1,10 +1,12 @@
 import { z } from 'zod';
+import { imageSchema } from '@/shared/api';
 
 export const userSchema = z.object({
   id: z.string(),
   name: z.string(),
   email: z.email(),
   company: z.string(),
+  avatar: imageSchema.nullable().default(null),
 });
 
 export const loginParamsSchema = z.object({

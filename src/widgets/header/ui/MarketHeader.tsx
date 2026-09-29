@@ -1,9 +1,7 @@
 import { getTranslations } from 'next-intl/server';
-import { Suspense } from 'react';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { Logo } from '@/shared/ui';
-import { MarketUser } from './MarketUser';
 
 export async function MarketHeader() {
   const t = await getTranslations('Navigation');
@@ -13,9 +11,6 @@ export async function MarketHeader() {
       <Link href={ROUTES.about} aria-label={t('home')}>
         <Logo variant="ricm" className="h-6 w-[86px] md:h-8 md:w-[115px]" />
       </Link>
-      <Suspense fallback={null}>
-        <MarketUser />
-      </Suspense>
     </header>
   );
 }

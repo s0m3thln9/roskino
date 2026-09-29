@@ -4,9 +4,9 @@
     "description": "Russian Content Worldwide — Московский кинорынок РОСКИНО"
   },
   "Navigation": {
-    "about": "О рынке",
+    "about": "О кинорынке",
     "news": "Новости",
-    "partners": "Партнёры",
+    "partners": "Партнеры",
     "archive": "Архив",
     "market": "My market",
     "participants": "Participants",
@@ -17,7 +17,8 @@
     "switchLocale": "Switch to English",
     "ogrn": "ОГРН",
     "welcome": "Добро пожаловать",
-    "signOut": "Выйти"
+    "signOut": "Выйти",
+    "menuButton": "Menu"
   },
   "NotFound": {
     "title": "Страница не найдена",

@@ -17,7 +17,8 @@
     "switchLocale": "Перейти на русский",
     "ogrn": "OGRN",
     "welcome": "Welcome",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "menuButton": "Menu"
   },
   "NotFound": {
     "title": "Page not found",

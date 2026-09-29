@@ -35,6 +35,7 @@ export const sessionMockHandlers = [
       name: toDisplayName(login) || 'Guest',
       email: login.includes('@') ? login : `${login}@example.com`,
       company: 'Demo Distribution LLC',
+      avatar: null,
     };
   }),
   defineMockHandler(recoverAccessContract, () => ({ ok: true as const })),
