@@ -25,6 +25,8 @@ export function ParticipantDetails({
   projectsSlot,
   className,
 }: ParticipantDetailsProps) {
+  const isRussian = participant.origin === 'russian';
+
   return (
     <div className={cn('flex flex-col gap-10', className)}>
       <div className="flex flex-col gap-10 lg:flex-row lg:gap-15">
@@ -65,7 +67,7 @@ export function ParticipantDetails({
               ))}
             </address>
 
-            {(participant.country || participant.distributionTerritory) && (
+            {!isRussian && (participant.country || participant.distributionTerritory) && (
               <div className="flex flex-col typo-text-7">
                 {participant.country && (
                   <span>
@@ -93,7 +95,7 @@ export function ParticipantDetails({
 
       <p className="max-w-[920px] typo-text-6">{participant.about}</p>
 
-      {participant.achievements && (
+      {isRussian && participant.achievements && (
         <section className="flex max-w-[920px] flex-col gap-2">
           <h3 className="typo-button">{labels.achievements}</h3>
           <p className="typo-text-6">{participant.achievements}</p>
@@ -111,7 +113,7 @@ export function ParticipantDetails({
         </ul>
       </section>
 
-      {projectsSlot && (
+      {isRussian && projectsSlot && (
         <section className="flex flex-col gap-5">
           <h3 className="typo-button">{labels.projects}</h3>
           {projectsSlot}
