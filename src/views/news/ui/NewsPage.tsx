@@ -60,7 +60,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
                 }}
               />
             }
-            className="pb-20"
+            className="pb-20 lg:pb-37.5"
           />
         ) : (
           <div className="mx-auto w-full max-w-page page-gutter pt-30">
@@ -68,7 +68,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           </div>
         )}
 
-        <section className="bg-black py-15 md:py-25">
+        <section className="bg-black py-15 md:py-25 lg:pb-35">
           <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter">
             <div className="mx-auto flex w-full max-w-text flex-col gap-10">
               <div className="flex items-center justify-between gap-4 text-white">

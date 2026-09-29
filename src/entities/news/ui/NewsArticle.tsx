@@ -43,7 +43,7 @@ export function NewsArticle({
           news.cover ? 'pt-10 md:pt-20' : 'pt-30 md:pt-40',
         )}
       >
-        <div className="flex items-start justify-between gap-6 lg:col-start-2">
+        <div className="-mb-5 flex items-start justify-between gap-6 lg:col-start-2">
           <span className="typo-text-3">{dateLabel}</span>
           {allNewsSlot}
         </div>
