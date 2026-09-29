@@ -25,9 +25,9 @@ const ROW_SKELETON_COUNT = 6;
 
 function RowsSkeleton() {
   return (
-    <div aria-hidden className="flex flex-col gap-3">
+    <div aria-hidden className="flex flex-col gap-10">
       {Array.from({ length: ROW_SKELETON_COUNT }, (_, index) => (
-        <Skeleton key={index} className="h-15" />
+        <Skeleton key={index} className="h-24" />
       ))}
     </div>
   );
@@ -79,7 +79,7 @@ function ProgramRowDetails({
 }) {
   const { data, isLoading } = useGetProgramEventQuery(eventId);
 
-  if (isLoading) return <p className="pt-6 typo-text-3 text-white/50">{labels.loading}</p>;
+  if (isLoading) return <Skeleton className="mx-7.5 mb-5 h-40 md:mx-10" />;
   if (!data) return null;
 
   return (
@@ -105,6 +105,8 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
   );
   const isRefreshing = programQuery.isFetching && !programQuery.isLoading;
   const filtersQuery = useGetFiltersQuery();
+  const expandedQuery = useGetProgramEventQuery(expandedId ?? '', { skip: !expandedId });
+  const expandedEvent = expandedQuery.data?.id === expandedId ? expandedQuery.data : undefined;
 
   const contentTypeLabels = toLabelMap(filtersQuery.data?.contentTypes ?? []);
   const genreLabels = toLabelMap(filtersQuery.data?.genres ?? []);
@@ -116,8 +118,8 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
     options: { value: string; label: string }[];
   }> = filters
     ? [
-        { key: 'date', name: 'date', options: filters.dates },
         { key: 'location', name: 'location', options: filters.locations },
+        { key: 'date', name: 'date', options: filters.dates },
         { key: 'room', name: 'room', options: filters.rooms },
       ]
     : [];
@@ -159,13 +161,21 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
 
         <ul
           aria-busy={isRefreshing}
-          className={cn('flex flex-col gap-3 transition-opacity', isRefreshing && 'opacity-50')}
+          className={cn('flex flex-col gap-10 transition-opacity', isRefreshing && 'opacity-50')}
         >
           {programQuery.data?.events.map((event) => (
             <ProgramRow
               key={event.id}
               event={event}
               expanded={expandedId === event.id}
+              variant={
+                expandedEvent?.id === event.id
+                  ? expandedEvent.projects.length > 0
+                    ? 'projects'
+                    : 'people'
+                  : undefined
+              }
+              topic={expandedEvent?.id === event.id ? expandedEvent.topic : null}
               expandLabel={labels.expand}
               onToggle={() => setExpandedId((value) => (value === event.id ? null : event.id))}
             >

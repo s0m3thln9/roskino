@@ -1,17 +1,8 @@
 'use client';
 
-import { useFormatter } from 'next-intl';
 import { cn } from '@/shared/lib';
 import type { Screening } from '../model/schema';
-
-const ordinalRules = new Intl.PluralRules('en', { type: 'ordinal' });
-
-const ORDINAL_SUFFIXES: Partial<Record<Intl.LDMLPluralRule, string>> = {
-  one: 'st',
-  two: 'nd',
-  few: 'rd',
-  other: 'th',
-};
+import { useScreeningDate } from './useScreeningDate';
 
 type ScreeningFlagProps = {
   screening: Screening;
@@ -20,17 +11,7 @@ type ScreeningFlagProps = {
 };
 
 export function ScreeningFlag({ screening, variant = 'flag', className }: ScreeningFlagProps) {
-  const format = useFormatter();
-  const date = new Date(screening.startsAt);
-  const time = format.dateTime(date, {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-    timeZone: 'Europe/Moscow',
-  });
-  const dayNumber = Number(format.dateTime(date, { day: 'numeric', timeZone: 'Europe/Moscow' }));
-  const month = format.dateTime(date, { month: 'long', timeZone: 'Europe/Moscow' });
-  const day = `${dayNumber}${ORDINAL_SUFFIXES[ordinalRules.select(dayNumber)] ?? 'th'} ${month}`;
+  const { time, day } = useScreeningDate(screening);
 
   return (
     <div
