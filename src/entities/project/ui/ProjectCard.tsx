@@ -42,7 +42,7 @@ export function ProjectCard({
       </div>
 
       <div className="mt-6 flex flex-col gap-1">
-        <h3 className="typo-title uppercase">
+        <h3 className="typo-title">
           <Link
             href={href ?? ROUTES.project(project.id)}
             className="before:absolute before:inset-0"
@@ -50,14 +50,18 @@ export function ProjectCard({
             {project.title}
           </Link>
         </h3>
-        <p className="typo-text-1">{meta}</p>
-        <p className="typo-text-1">
+        <p className="typo-text-7">{meta}</p>
+        <p className="typo-text-7">
           {project.country} ({project.year})
         </p>
       </div>
 
-      <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-        {project.screening ? <ScreeningFlag screening={project.screening} /> : <span />}
+      <div className="mt-auto flex items-end justify-between gap-4 pt-4">
+        {project.screening ? (
+          <ScreeningFlag screening={project.screening} className="-mb-5 -ml-6 md:-ml-10" />
+        ) : (
+          <span />
+        )}
         <Icon
           name="open"
           className="transition-transform group-focus-within:translate-x-1 group-hover:translate-x-1"

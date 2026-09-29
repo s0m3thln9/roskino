@@ -173,7 +173,7 @@ export function ProjectsCatalog({
         open={Boolean(selectedId)}
         onClose={() => router.push(withQuery(ROUTES.projects))}
         closeLabel={labels.close}
-        className="bg-black/90 text-white backdrop-blur-panel"
+        className="bg-black text-white"
       >
         {detailsQuery.isLoading && (
           <div aria-hidden className="flex flex-col gap-10 lg:flex-row">

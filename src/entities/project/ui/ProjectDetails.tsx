@@ -63,8 +63,8 @@ export function ProjectDetails({
 
   return (
     <div className={cn('flex flex-col gap-10 text-white', className)}>
-      <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:pr-14">
-        <h2 className="max-w-[595px] typo-headline-2">{project.title}</h2>
+      <div className="flex flex-col gap-6 md:mt-10 md:flex-row md:items-start md:justify-between md:pr-14">
+        <h2 className="typo-headline-1">{project.title}</h2>
         {project.screening && <ScreeningFlag screening={project.screening} variant="line" />}
       </div>
 
@@ -107,8 +107,10 @@ export function ProjectDetails({
         </section>
       )}
 
+      <hr className="my-5 border-0 border-t border-dotted border-white" />
+
       <div className="flex flex-col gap-10 lg:flex-row">
-        <div className="flex shrink-0 flex-col gap-6">
+        <div className="flex shrink-0 flex-col gap-8">
           {project.poster && (
             <div className="relative aspect-[3/4] w-[200px] overflow-hidden md:w-[240px]">
               <Image
