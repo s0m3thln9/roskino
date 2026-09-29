@@ -15,6 +15,7 @@ import {
   Tag,
   type IconName,
 } from '@/shared/ui';
+import { UiKitFields } from './UiKitFields';
 import { UiKitInteractive } from './UiKitInteractive';
 
 type UiKitPageProps = {
@@ -162,6 +163,10 @@ export async function UiKitPage({ params }: UiKitPageProps) {
           <dl className="w-full max-w-167.5">
             <InfoRow label="Age Rating" value="6+" />
           </dl>
+        </Section>
+
+        <Section title="Inputs" dark>
+          <UiKitFields />
         </Section>
       </main>
     </>

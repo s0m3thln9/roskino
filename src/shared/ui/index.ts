@@ -1,5 +1,6 @@
 export { Button, buttonVariants, type ButtonVariants } from './button';
 export { ContactLink } from './contact-link';
+export { fieldVariants, PasswordField, SearchField, TextField, type FieldVariants } from './field';
 export { FilterGroup } from './filter-group';
 export { FilterOption } from './filter-option';
 export { Icon, ICONS, type IconName } from './icon';
