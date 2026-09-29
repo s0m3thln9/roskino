@@ -1,4 +1,5 @@
 export { Button, buttonVariants, type ButtonVariants } from './button';
+export { Carousel } from './carousel';
 export { catalogLayout, FiltersSkeleton } from './catalog-layout';
 export { ContactLink } from './contact-link';
 export { fieldVariants, PasswordField, SearchField, TextField, type FieldVariants } from './field';

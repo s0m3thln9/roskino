@@ -15,9 +15,8 @@ import { ROUTES } from '@/shared/config';
 import { useRouter } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { useUrlFilters } from '@/shared/model';
-import { catalogLayout, FiltersSkeleton, Modal, Pagination, Skeleton } from '@/shared/ui';
+import { Carousel, catalogLayout, FiltersSkeleton, Modal, Pagination, Skeleton } from '@/shared/ui';
 import { ParticipantDetailsSkeleton } from './ParticipantDetailsSkeleton';
-import { ProjectsCarousel } from './ProjectsCarousel';
 
 export type CatalogLabels = {
   origin: string;
@@ -167,7 +166,10 @@ export function ParticipantsCatalog({
             contentTypeLabels={contentTypeLabels}
             projectsSlot={
               detailsQuery.data.projects.length > 0 ? (
-                <ProjectsCarousel labels={{ previous: labels.previous, next: labels.next }}>
+                <Carousel
+                  labels={{ previous: labels.previous, next: labels.next }}
+                  arrowsClassName="top-35"
+                >
                   {detailsQuery.data.projects.map((project) => (
                     <li key={project.id} className="snap-start">
                       <ProjectPosterCard
@@ -177,7 +179,7 @@ export function ParticipantsCatalog({
                       />
                     </li>
                   ))}
-                </ProjectsCarousel>
+                </Carousel>
               ) : null
             }
           />

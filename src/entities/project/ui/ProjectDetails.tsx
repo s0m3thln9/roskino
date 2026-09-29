@@ -5,7 +5,7 @@ import { useState, type ReactNode } from 'react';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Icon, InfoRow, Person, PlayButton, RoundButton } from '@/shared/ui';
+import { Carousel, Icon, InfoRow, Person, PlayButton } from '@/shared/ui';
 import type { Project } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
 
@@ -45,7 +45,6 @@ export function ProjectDetails({
   favoriteSlot,
   className,
 }: ProjectDetailsProps) {
-  const [stillIndex, setStillIndex] = useState(0);
   const [showTrailer, setShowTrailer] = useState(false);
 
   const rows: Array<[string, string]> = [
@@ -146,43 +145,26 @@ export function ProjectDetails({
       {project.stills.length > 0 && (
         <section className="flex flex-col gap-5">
           <h3 className="typo-button">{labels.stills}</h3>
-          <div className="flex items-center gap-4">
-            <RoundButton
-              label={labels.previous}
-              variant="glass"
-              onClick={() => setStillIndex((index) => Math.max(0, index - 1))}
-            >
-              <Icon name="arrow-back" />
-            </RoundButton>
-            <ul className="flex flex-1 [scrollbar-width:none] gap-2.5 overflow-x-auto">
-              {project.stills.map((still, index) => (
-                <li
-                  key={still.url}
-                  className={cn(
-                    'relative aspect-video w-[240px] shrink-0 overflow-hidden md:w-[390px]',
-                    index === stillIndex && 'ring-2 ring-white',
-                  )}
-                >
-                  <Image
-                    src={still.url}
-                    alt={still.alt}
-                    fill
-                    sizes="390px"
-                    className="object-cover"
-                  />
-                </li>
-              ))}
-            </ul>
-            <RoundButton
-              label={labels.next}
-              variant="glass"
-              onClick={() =>
-                setStillIndex((index) => Math.min(project.stills.length - 1, index + 1))
-              }
-            >
-              <Icon name="arrow-forward" />
-            </RoundButton>
-          </div>
+          <Carousel
+            labels={{ previous: labels.previous, next: labels.next }}
+            arrowsClassName="top-[4.25rem] md:top-[6.875rem]"
+            scrollOnItemClick
+          >
+            {project.stills.map((still, index) => (
+              <li
+                key={`${still.url}-${index}`}
+                className="relative aspect-video w-[240px] shrink-0 snap-start overflow-hidden md:w-[390px]"
+              >
+                <Image
+                  src={still.url}
+                  alt={still.alt}
+                  fill
+                  sizes="390px"
+                  className="object-cover"
+                />
+              </li>
+            ))}
+          </Carousel>
         </section>
       )}
     </div>
