@@ -18,9 +18,21 @@ export const loginResponseSchema = z.object({
   token: z.string().min(1),
 });
 
+export const RECOVER_FIELD_MAX_LENGTH = 48;
+
 export const recoverAccessParamsSchema = z.object({
-  fullName: z.string().trim().min(1),
-  companyName: z.string().trim().min(1),
+  fullName: z
+    .string()
+    .trim()
+    .min(1)
+    .max(RECOVER_FIELD_MAX_LENGTH)
+    .regex(/^[\p{L}\s'.-]+$/u),
+  companyName: z
+    .string()
+    .trim()
+    .min(1)
+    .max(RECOVER_FIELD_MAX_LENGTH)
+    .regex(/^[\p{L}\p{N}\s"'«».,&-]+$/u),
   email: z.email(),
 });
 

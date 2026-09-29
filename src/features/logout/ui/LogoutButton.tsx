@@ -17,7 +17,7 @@ export function LogoutButton({ label, className }: LogoutButtonProps) {
 
   const handleClick = async () => {
     await logout();
-    if (pathname.startsWith(MARKET_PREFIX)) router.replace(ROUTES.login);
+    if (pathname.startsWith(MARKET_PREFIX)) router.replace(ROUTES.about);
     router.refresh();
   };
 

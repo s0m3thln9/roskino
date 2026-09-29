@@ -1,105 +1,109 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { recoverAccessContract } from '@/entities/session';
+import { recoverAccessContract, recoverAccessParamsSchema } from '@/entities/session';
 import { bffRequest, clientHttp } from '@/shared/api';
-import { cn } from '@/shared/lib';
-import { Button } from '@/shared/ui';
+import { Button, TextField } from '@/shared/ui';
+import type { AuthLabels } from '../model/labels';
+
+type Field = 'fullName' | 'companyName' | 'email';
+
+const FIELDS: { key: Field; type: string; autoComplete: string }[] = [
+  { key: 'fullName', type: 'text', autoComplete: 'name' },
+  { key: 'companyName', type: 'text', autoComplete: 'organization' },
+  { key: 'email', type: 'email', autoComplete: 'email' },
+];
+
+const ERROR_LABELS = {
+  fullName: 'fullNameError',
+  companyName: 'companyNameError',
+  email: 'emailError',
+} as const satisfies Record<Field, keyof AuthLabels>;
 
 type RecoverAccessFormProps = {
-  labels: {
-    title: string;
-    description: string;
-    fullName: string;
-    companyName: string;
-    email: string;
-    cancel: string;
-    send: string;
-    sent: string;
-    error: string;
-  };
+  titleId: string;
+  labels: AuthLabels;
+  onSent: () => void;
   onCancel: () => void;
-  className?: string;
 };
 
-const fieldClassName =
-  'typo-text-3 w-full border-b-2 border-black/20 bg-transparent pb-2 outline-none focus:border-black';
+export function RecoverAccessForm({ titleId, labels, onSent, onCancel }: RecoverAccessFormProps) {
+  const [values, setValues] = useState<Record<Field, string>>({
+    fullName: '',
+    companyName: '',
+    email: '',
+  });
+  const [invalid, setInvalid] = useState<Field | null>(null);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
 
-export function RecoverAccessForm({ labels, onCancel, className }: RecoverAccessFormProps) {
-  const [values, setValues] = useState({ fullName: '', companyName: '', email: '' });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'sent' | 'error'>('idle');
+  const update = (key: Field, value: string) => {
+    setValues((previous) => ({ ...previous, [key]: value }));
+    if (invalid === key) setInvalid(null);
+    if (status === 'error') setStatus('idle');
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const parsed = recoverAccessParamsSchema.safeParse(values);
+    if (!parsed.success) {
+      const fields = new Set(parsed.error.issues.map((issue) => issue.path[0]));
+      setInvalid(FIELDS.find(({ key }) => fields.has(key))?.key ?? null);
+      return;
+    }
+
     setStatus('loading');
     try {
-      const request = bffRequest(recoverAccessContract, values);
+      const request = bffRequest(recoverAccessContract, parsed.data);
       await clientHttp.request({ url: request.url, method: request.method, data: request.data });
-      setStatus('sent');
+      onSent();
     } catch {
       setStatus('error');
     }
   };
 
-  const update = (key: keyof typeof values) => (event: { target: { value: string } }) =>
-    setValues((previous) => ({ ...previous, [key]: event.target.value }));
+  const message = invalid
+    ? labels[ERROR_LABELS[invalid]]
+    : status === 'error'
+      ? labels.recoverError
+      : labels.recoverHint;
 
   return (
-    <form onSubmit={handleSubmit} className={cn('flex flex-col gap-8', className)}>
-      <div className="flex flex-col gap-3">
-        <h2 className="typo-title uppercase">{labels.title}</h2>
-        <p className="typo-text-7">{labels.description}</p>
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col">
+      <h2 id={titleId} className="max-w-80 pr-12 typo-title uppercase">
+        {labels.recoverTitle}
+      </h2>
+      <p className="mt-5 typo-text-4">{labels.recoverDescription}</p>
+
+      <div className="mt-10 flex flex-col gap-7.5">
+        {FIELDS.map(({ key, type, autoComplete }) => (
+          <TextField
+            key={key}
+            name={key}
+            type={type}
+            autoComplete={autoComplete}
+            required
+            label={labels[key]}
+            value={values[key]}
+            onChange={(event) => update(key, event.target.value)}
+            onClear={() => update(key, '')}
+            clearLabel={labels.clear}
+            error={invalid === key}
+          />
+        ))}
       </div>
 
-      <label className="flex flex-col gap-2">
-        <span className="typo-text-7 text-black/50">{labels.fullName}</span>
-        <input
-          required
-          value={values.fullName}
-          onChange={update('fullName')}
-          className={fieldClassName}
-        />
-      </label>
+      <p
+        role={invalid || status === 'error' ? 'alert' : undefined}
+        className="mt-5 text-sm leading-6"
+      >
+        {message}
+      </p>
 
-      <label className="flex flex-col gap-2">
-        <span className="typo-text-7 text-black/50">{labels.companyName}</span>
-        <input
-          required
-          value={values.companyName}
-          onChange={update('companyName')}
-          className={fieldClassName}
-        />
-      </label>
-
-      <label className="flex flex-col gap-2">
-        <span className="typo-text-7 text-black/50">{labels.email}</span>
-        <input
-          type="email"
-          required
-          value={values.email}
-          onChange={update('email')}
-          className={fieldClassName}
-        />
-      </label>
-
-      {status === 'sent' && <p className="typo-text-7">{labels.sent}</p>}
-      {status === 'error' && <p className="typo-text-7 text-violet">{labels.error}</p>}
-
-      <div className="flex flex-wrap gap-4">
-        <Button
-          type="button"
-          variant="primary"
-          onClick={onCancel}
-          className="border-2 border-black"
-        >
+      <div className="mt-15 grid grid-cols-2 gap-2.5">
+        <Button variant="secondary" width="full" onClick={onCancel}>
           {labels.cancel}
         </Button>
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={status === 'loading'}
-          className="border-2 border-black"
-        >
+        <Button type="submit" variant="primary" width="full" disabled={status === 'loading'}>
           {labels.send}
         </Button>
       </div>

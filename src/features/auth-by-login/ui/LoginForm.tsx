@@ -1,98 +1,97 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { useRouter } from '@/shared/i18n';
-import { cn } from '@/shared/lib';
-import { Button, Icon } from '@/shared/ui';
+import { sessionApi } from '@/entities/session';
+import { useAppDispatch } from '@/shared/model';
+import { Button, PasswordField } from '@/shared/ui';
 import { useLoginMutation } from '../api/authApi';
+import type { AuthLabels } from '../model/labels';
 
 type LoginFormProps = {
-  redirectTo: string;
-  labels: {
-    title: string;
-    login: string;
-    password: string;
-    submit: string;
-    forgot: string;
-    error: string;
-    showPassword: string;
-    hidePassword: string;
-  };
+  titleId: string;
+  labels: AuthLabels;
+  onSuccess: (name: string) => void;
+  onCancel: () => void;
   onForgot: () => void;
-  className?: string;
 };
 
-const fieldClassName =
-  'typo-text-3 w-full border-b-2 border-black/20 bg-transparent pb-2 outline-none focus:border-black';
-
-export function LoginForm({ redirectTo, labels, onForgot, className }: LoginFormProps) {
+export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: LoginFormProps) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [visible, setVisible] = useState(false);
-  const [submit, { isLoading, isError }] = useLoginMutation();
-  const router = useRouter();
+  const [submit, { isLoading, isError, reset }] = useLoginMutation();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = await submit({ login, password });
-    if ('data' in result) router.replace(redirectTo);
+    if (!('data' in result)) return;
+
+    const request = dispatch(sessionApi.endpoints.getMe.initiate());
+    const user = await request.unwrap().catch(() => null);
+    request.unsubscribe();
+    onSuccess(user?.name ?? login);
+  };
+
+  const handleChange = (setter: (value: string) => void) => (value: string) => {
+    setter(value);
+    if (isError) reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn('flex flex-col gap-8', className)}>
-      <h1 className="typo-title uppercase">{labels.title}</h1>
+    <form onSubmit={handleSubmit} className="flex flex-col">
+      <h2 id={titleId} className="pr-12 typo-title uppercase">
+        {labels.title}
+      </h2>
+      <p className="mt-5 typo-text-4">{labels.intro}</p>
 
-      <label className="flex flex-col gap-2">
-        <span className="typo-text-7 text-black/50">{labels.login}</span>
-        <input
-          type="text"
+      <div className="mt-10 flex flex-col gap-7.5">
+        <PasswordField
           name="login"
           autoComplete="username"
           required
+          defaultVisible
+          placeholder={labels.login}
+          aria-label={labels.login}
           value={login}
-          onChange={(event) => setLogin(event.target.value)}
-          className={fieldClassName}
+          onChange={(event) => handleChange(setLogin)(event.target.value)}
+          error={isError}
+          labels={{ show: labels.showPassword, hide: labels.hidePassword }}
         />
-      </label>
+        <PasswordField
+          name="password"
+          autoComplete="current-password"
+          required
+          placeholder={labels.password}
+          aria-label={labels.password}
+          value={password}
+          onChange={(event) => handleChange(setPassword)(event.target.value)}
+          error={isError}
+          labels={{ show: labels.showPassword, hide: labels.hidePassword }}
+        />
+      </div>
 
-      <label className="flex flex-col gap-2">
-        <span className="typo-text-7 text-black/50">{labels.password}</span>
-        <span className="flex items-center gap-3">
-          <input
-            type={visible ? 'text' : 'password'}
-            name="password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            className={fieldClassName}
-          />
-          <button
-            type="button"
-            onClick={() => setVisible((value) => !value)}
-            aria-label={visible ? labels.hidePassword : labels.showPassword}
-            className="shrink-0 pb-2"
-          >
-            <Icon name={visible ? 'hide' : 'show'} />
-          </button>
-        </span>
-      </label>
+      {isError && (
+        <p role="alert" className="mt-5 text-sm leading-6">
+          {labels.error}
+        </p>
+      )}
 
-      {isError && <p className="typo-text-7 text-violet">{labels.error}</p>}
-
-      <div className="flex flex-col gap-4">
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={isLoading}
-          className="border-2 border-black"
-        >
+      <div className="mt-15 grid grid-cols-2 gap-2.5">
+        <Button variant="secondary" width="full" onClick={onCancel}>
+          {labels.cancel}
+        </Button>
+        <Button type="submit" variant="primary" width="full" disabled={isLoading}>
           {labels.submit}
         </Button>
-        <button type="button" onClick={onForgot} className="self-start typo-link-2">
-          {labels.forgot}
-        </button>
       </div>
+
+      <button
+        type="button"
+        onClick={onForgot}
+        className="mt-7.5 self-center text-sm underline decoration-from-font underline-offset-2 hover:opacity-70"
+      >
+        {labels.forgot}
+      </button>
     </form>
   );
 }

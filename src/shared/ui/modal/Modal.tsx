@@ -4,8 +4,29 @@ import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
 import { cn } from '@/shared/lib';
 import { Icon } from '../icon';
 
+type ModalVariant = 'light' | 'dark';
+
+const variantClassNames: Record<
+  ModalVariant,
+  { dialog: string; wrapper: string; panel: string; close: string }
+> = {
+  light: {
+    dialog: 'bg-black/50',
+    wrapper: 'items-start px-4 py-20 md:px-8 lg:pt-107',
+    panel: 'max-w-content rounded-lg bg-white/75 p-5 text-black backdrop-blur-panel md:p-10',
+    close: 'top-5 right-5 md:top-10 md:right-10',
+  },
+  dark: {
+    dialog: 'bg-transparent',
+    wrapper: 'items-center px-4 py-10',
+    panel: 'max-w-150 rounded-lg bg-black/50 p-6 text-white backdrop-blur-panel md:p-10',
+    close: 'top-6 right-6 md:top-10 md:right-10',
+  },
+};
+
 type ModalProps = {
   open: boolean;
+  variant?: ModalVariant;
   onClose: () => void;
   closeLabel: string;
   labelledBy?: string;
@@ -13,7 +34,16 @@ type ModalProps = {
   className?: string;
 };
 
-export function Modal({ open, onClose, closeLabel, labelledBy, children, className }: ModalProps) {
+export function Modal({
+  open,
+  variant = 'light',
+  onClose,
+  closeLabel,
+  labelledBy,
+  children,
+  className,
+}: ModalProps) {
+  const styles = variantClassNames[variant];
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -44,23 +74,21 @@ export function Modal({ open, onClose, closeLabel, labelledBy, children, classNa
         onClose();
       }}
       onClick={handleBackdropClick}
-      className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-black/50 p-0 backdrop:bg-transparent"
+      className={cn(
+        'fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto p-0 backdrop:bg-transparent',
+        styles.dialog,
+      )}
     >
       <div
-        className="flex min-h-full items-start justify-center px-4 py-20 md:px-8 lg:pt-107"
+        className={cn('flex min-h-full justify-center', styles.wrapper)}
         onClick={handleBackdropClick}
       >
-        <div
-          className={cn(
-            'relative w-full max-w-content rounded-lg bg-white/75 p-5 text-black backdrop-blur-panel md:p-10',
-            className,
-          )}
-        >
+        <div className={cn('relative w-full', styles.panel, className)}>
           <button
             type="button"
             onClick={onClose}
             aria-label={closeLabel}
-            className="absolute top-5 right-5 z-10 inline-flex hover:opacity-60 md:top-10 md:right-10"
+            className={cn('absolute z-10 inline-flex hover:opacity-60', styles.close)}
           >
             <Icon name="close" className="size-6 md:size-8" />
           </button>

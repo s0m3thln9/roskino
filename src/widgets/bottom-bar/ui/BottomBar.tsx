@@ -1,13 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import { getCurrentUser } from '@/entities/session/server';
-import { ROUTES } from '@/shared/config';
+import { getAuthLabels } from '@/features/auth-by-login/server';
 import { featureFlags } from '@/shared/config/server';
-import { Link } from '@/shared/i18n';
-import { cn } from '@/shared/lib';
-import { Icon } from '@/shared/ui';
 import { NAV_ITEMS } from '../model/nav';
+import { MarketLoginButton } from './MarketLoginButton';
 import { MenuButton } from './MenuButton';
-import { barButtonClassName } from './styles';
 import { UserPanel } from './UserPanel';
 
 export async function BottomBar() {
@@ -29,13 +26,7 @@ export async function BottomBar() {
           labels={{ welcome: t('welcome'), signOut: t('signOut'), market: t('market') }}
         />
       ) : (
-        <Link
-          href={ROUTES.participants}
-          className={cn(barButtonClassName, 'bg-black hover:bg-black/80')}
-        >
-          <Icon name="my-market" className="size-6" />
-          <span className="typo-menu">{t('market')}</span>
-        </Link>
+        <MarketLoginButton label={t('market')} authLabels={await getAuthLabels()} />
       )}
     </div>
   );

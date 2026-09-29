@@ -4,7 +4,6 @@ export const ROUTES = {
   newsItem: (slug: string) => `/news/${slug}`,
   partners: '/partners',
   archive: '/archive',
-  login: '/market/login',
   market: '/market',
   participants: '/market/participants',
   participant: (id: string) => `/market/participants/${id}`,
@@ -15,6 +14,12 @@ export const ROUTES = {
 } as const;
 
 export const MARKET_PREFIX = ROUTES.market;
+
+export const LOGIN_PARAM = 'login';
+
+export function resolveLoginRedirect(target: string | null | undefined): string {
+  return target?.startsWith(`${MARKET_PREFIX}/`) ? target : ROUTES.participants;
+}
 
 export const MARKET_NAV_ITEMS = [
   { key: 'participants', href: ROUTES.participants },

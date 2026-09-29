@@ -1,1 +1,7 @@
-export { MARKET_NAV_ITEMS, MARKET_PREFIX, ROUTES } from './routes';
+export {
+  LOGIN_PARAM,
+  MARKET_NAV_ITEMS,
+  MARKET_PREFIX,
+  resolveLoginRedirect,
+  ROUTES,
+} from './routes';

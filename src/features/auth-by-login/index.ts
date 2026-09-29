@@ -1,3 +1,3 @@
 export { authByLoginApi, useLoginMutation } from './api/authApi';
-export { LoginForm } from './ui/LoginForm';
-export { RecoverAccessForm } from './ui/RecoverAccessForm';
+export { AUTH_LABEL_KEYS, type AuthLabels } from './model/labels';
+export { AuthDialog } from './ui/AuthDialog';

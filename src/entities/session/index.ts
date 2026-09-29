@@ -7,6 +7,7 @@ export {
 export { sessionApi, useGetMeQuery } from './api/sessionApi';
 export {
   loginParamsSchema,
+  RECOVER_FIELD_MAX_LENGTH,
   recoverAccessParamsSchema,
   userSchema,
   type LoginParams,
