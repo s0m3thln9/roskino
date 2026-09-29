@@ -2,6 +2,7 @@ import 'server-only';
 import { randomUUID } from 'node:crypto';
 import { ApiError } from '@/shared/api';
 import { defineMockHandler } from '@/shared/api/server';
+import { userSchema } from '../model/schema';
 import { getMeContract, loginContract, logoutContract, recoverAccessContract } from './contracts';
 
 const MOCK_TOKEN_PREFIX = 'mock-token.';
@@ -9,6 +10,15 @@ const MOCK_TOKEN_PREFIX = 'mock-token.';
 function decodeLogin(token: string): string {
   const encoded = token.slice(MOCK_TOKEN_PREFIX.length).split('.')[0] ?? '';
   return Buffer.from(encoded, 'base64url').toString('utf8') || 'guest';
+}
+
+function toMockEmail(login: string): string {
+  if (userSchema.shape.email.safeParse(login).success) return login;
+  const local = login
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, '')
+    .replace(/^[._-]+|[._-]+$/g, '');
+  return `${local || 'guest'}@example.com`;
 }
 
 function toDisplayName(login: string): string {
@@ -33,7 +43,7 @@ export const sessionMockHandlers = [
     return {
       id: `user-${login}`,
       name: toDisplayName(login) || 'Guest',
-      email: login.includes('@') ? login : `${login}@example.com`,
+      email: toMockEmail(login),
       company: 'Demo Distribution LLC',
       avatar: null,
     };

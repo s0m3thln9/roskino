@@ -8,7 +8,10 @@ import { MenuButton } from './MenuButton';
 import { UserPanel } from './UserPanel';
 
 export async function BottomBar() {
-  const [user, t] = await Promise.all([getCurrentUser(), getTranslations('Navigation')]);
+  const [user, t] = await Promise.all([
+    getCurrentUser().catch(() => null),
+    getTranslations('Navigation'),
+  ]);
   const items = NAV_ITEMS.filter((item) => item.key !== 'archive' || featureFlags.archive);
   const labels = Object.fromEntries(items.map((item) => [item.key, t(item.key)]));
 
