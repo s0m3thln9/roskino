@@ -38,6 +38,7 @@ export function ParticipantCard({ participant, href, className }: ParticipantCar
         <h3 className="typo-title uppercase">
           <Link
             href={href ?? ROUTES.participant(participant.id)}
+            scroll={false}
             className="before:absolute before:inset-0"
           >
             {participant.name}

@@ -45,6 +45,7 @@ export function ProjectCard({
         <h3 className="typo-title">
           <Link
             href={href ?? ROUTES.project(project.id)}
+            scroll={false}
             className="before:absolute before:inset-0"
           >
             {project.title}

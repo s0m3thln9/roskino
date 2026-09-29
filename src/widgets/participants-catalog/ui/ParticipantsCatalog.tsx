@@ -155,7 +155,7 @@ export function ParticipantsCatalog({
 
       <Modal
         open={Boolean(selectedId)}
-        onClose={() => router.push(withQuery(ROUTES.participants))}
+        onClose={() => router.push(withQuery(ROUTES.participants), { scroll: false })}
         closeLabel={labels.close}
       >
         {detailsQuery.isLoading && <ParticipantDetailsSkeleton />}

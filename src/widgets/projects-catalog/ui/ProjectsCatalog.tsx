@@ -171,7 +171,7 @@ export function ProjectsCatalog({
 
       <Modal
         open={Boolean(selectedId)}
-        onClose={() => router.push(withQuery(ROUTES.projects))}
+        onClose={() => router.push(withQuery(ROUTES.projects), { scroll: false })}
         closeLabel={labels.close}
         className="bg-black text-white"
       >

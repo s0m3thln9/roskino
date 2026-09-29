@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
-import { cn } from '@/shared/lib';
+import { cn, lockDocumentScroll } from '@/shared/lib';
 import { Icon } from '../icon';
 
 type ModalVariant = 'light' | 'dark';
@@ -51,16 +51,16 @@ export function Modal({
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    if (open && !dialog.open) {
+    if (!open) {
+      if (dialog.open) dialog.close();
+      return;
+    }
+
+    if (!dialog.open) {
       dialog.showModal();
       panelRef.current?.focus({ preventScroll: true });
-      document.documentElement.style.overflow = 'hidden';
     }
-    if (!open && dialog.open) dialog.close();
-
-    return () => {
-      document.documentElement.style.overflow = '';
-    };
+    return lockDocumentScroll();
   }, [open]);
 
   const handleBackdropClick = (event: MouseEvent<HTMLElement>) => {
@@ -77,7 +77,7 @@ export function Modal({
       }}
       onClick={handleBackdropClick}
       className={cn(
-        'fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto p-0 backdrop:bg-transparent',
+        'fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overscroll-contain p-0 backdrop:bg-transparent',
         styles.dialog,
       )}
     >
