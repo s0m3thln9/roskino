@@ -173,6 +173,7 @@ export function ProjectsCatalog({
         open={Boolean(selectedId)}
         onClose={() => router.push(withQuery(ROUTES.projects), { scroll: false })}
         closeLabel={labels.close}
+        overlayClassName="bg-white/75"
         className="bg-black text-white"
       >
         {detailsQuery.isLoading && (

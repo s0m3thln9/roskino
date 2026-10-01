@@ -157,6 +157,7 @@ export function ParticipantsCatalog({
         open={Boolean(selectedId)}
         onClose={() => router.push(withQuery(ROUTES.participants), { scroll: false })}
         closeLabel={labels.close}
+        overlayClassName="bg-dark-grey/75"
       >
         {detailsQuery.isLoading && <ParticipantDetailsSkeleton />}
         {detailsQuery.data && (

@@ -32,6 +32,7 @@ type ModalProps = {
   labelledBy?: string;
   children: ReactNode;
   className?: string;
+  overlayClassName?: string;
 };
 
 export function Modal({
@@ -42,6 +43,7 @@ export function Modal({
   labelledBy,
   children,
   className,
+  overlayClassName,
 }: ModalProps) {
   const styles = variantClassNames[variant];
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -79,6 +81,7 @@ export function Modal({
       className={cn(
         'fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overscroll-contain p-0 backdrop:bg-transparent',
         styles.dialog,
+        overlayClassName,
       )}
     >
       <div
