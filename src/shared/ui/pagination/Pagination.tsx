@@ -100,27 +100,23 @@ export function Pagination({
         className={styles.arrow}
       />
       <ul className="flex items-center">
-        {items.map((item) =>
-          item.type === 'gap' ? (
-            <li key={item.key} aria-hidden className={cn(numberClassName, styles.number)}>
-              ...
-            </li>
-          ) : (
-            <li key={item.page}>
-              <Link
-                href={buildHref(item.page)}
-                aria-label={labels.page(item.page)}
-                aria-current={item.page === page ? 'page' : undefined}
-                className={cn(
-                  numberClassName,
-                  item.page === page ? styles.current : [styles.number, styles.link],
-                )}
-              >
-                {item.page}
-              </Link>
-            </li>
-          ),
-        )}
+        {items.map((item) => (
+          <li key={item.type === 'gap' ? item.key : item.page}>
+            <Link
+              href={buildHref(item.page)}
+              aria-label={labels.page(item.page)}
+              aria-current={item.type === 'page' && item.page === page ? 'page' : undefined}
+              className={cn(
+                numberClassName,
+                item.type === 'page' && item.page === page
+                  ? styles.current
+                  : [styles.number, styles.link],
+              )}
+            >
+              {item.type === 'gap' ? '...' : item.page}
+            </Link>
+          </li>
+        ))}
       </ul>
       <ArrowLink
         href={page < totalPages ? buildHref(page + 1) : null}
