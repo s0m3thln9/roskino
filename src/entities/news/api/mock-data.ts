@@ -123,6 +123,29 @@ const seeds: NewsSeed[] = [
   },
 ];
 
+const ARCHIVE_YEARS = [2025, 2024, 2023, 2022, 2021];
+
+const replaceYear = (text: string, year: number) =>
+  text.replace(/2026/g, String(year)).replace(/2025/g, String(year - 1));
+
+const archiveSeeds: NewsSeed[] = ARCHIVE_YEARS.flatMap((year) =>
+  seeds.map((seed) => ({
+    ...seed,
+    slug: `${seed.slug}-${year}`,
+    publishedAt: `${year}${seed.publishedAt.slice(4)}`,
+    title: {
+      ru: replaceYear(seed.title.ru, year),
+      en: replaceYear(seed.title.en, year),
+    },
+    excerpt: {
+      ru: replaceYear(seed.excerpt.ru, year),
+      en: replaceYear(seed.excerpt.en, year),
+    },
+  })),
+);
+
+const allSeeds = [...seeds, ...archiveSeeds];
+
 const body: Localized<NewsItem['blocks']> = {
   ru: [
     {
@@ -172,7 +195,7 @@ const credits: Localized<string[]> = {
 };
 
 export function buildNewsMock(lang: AppLocale): NewsItem[] {
-  return seeds.map((seed, index) => ({
+  return allSeeds.map((seed, index) => ({
     id: `news-${index + 1}`,
     slug: seed.slug,
     publishedAt: seed.publishedAt,
