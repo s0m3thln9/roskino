@@ -33,7 +33,7 @@ export function PasswordField({
         onClick={() => setVisible((value) => !value)}
         aria-label={visible ? labels.hide : labels.show}
         aria-pressed={visible}
-        className="flex h-full shrink-0 items-center px-5"
+        className="mr-3 flex size-10 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-grey/50 active:bg-grey/50"
       >
         <Icon name={visible ? 'show' : 'hide'} className="size-6" />
       </button>
