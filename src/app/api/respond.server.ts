@@ -15,10 +15,23 @@ export function errorResponse(error: unknown): NextResponse {
   );
 }
 
+function requestHost(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-host')?.split(',')[0]?.trim() ??
+    request.headers.get('host') ??
+    request.nextUrl.host
+  );
+}
+
+export function isSecureRequest(request: NextRequest): boolean {
+  const forwardedProto = request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim();
+  return (forwardedProto ?? request.nextUrl.protocol.replace(':', '')) === 'https';
+}
+
 export function assertSameOrigin(request: NextRequest): void {
   const origin = request.headers.get('origin');
   if (!origin) return;
-  if (new URL(origin).host !== request.nextUrl.host) {
+  if (new URL(origin).host !== requestHost(request)) {
     throw new ApiError(403, 'Cross-origin request rejected', 'FORBIDDEN');
   }
 }

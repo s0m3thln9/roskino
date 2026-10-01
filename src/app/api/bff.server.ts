@@ -31,7 +31,9 @@ export async function handleBffRequest(request: NextRequest, snippet: string) {
   try {
     assertSameOrigin(request);
     const contract = contractsByName.get(snippet);
-    if (!contract) throw new ApiError(404, `Snippet "${snippet}" is not available`, 'NOT_FOUND');
+    if (!contract) {
+      return errorResponse(new ApiError(404, `Snippet "${snippet}" is not available`, 'NOT_FOUND'));
+    }
 
     const params = await readJsonBody(request);
     const data = await executeSnippet(contract, params);

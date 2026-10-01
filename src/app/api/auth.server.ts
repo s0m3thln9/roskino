@@ -4,7 +4,7 @@ import { loginContract, logoutContract } from '@/entities/session';
 import { ApiError } from '@/shared/api';
 import { callSnippet, clearSession, getSessionToken, setSessionToken } from '@/shared/api/server';
 import '../mocks';
-import { assertSameOrigin, errorResponse, readJsonBody } from './respond.server';
+import { assertSameOrigin, errorResponse, isSecureRequest, readJsonBody } from './respond.server';
 
 export async function handleLogin(request: NextRequest) {
   try {
@@ -12,11 +12,13 @@ export async function handleLogin(request: NextRequest) {
     const body = await readJsonBody(request);
     const parsed = loginContract.params.safeParse(body);
     if (!parsed.success) {
-      throw new ApiError(400, 'Login and password are required', 'VALIDATION_ERROR');
+      return errorResponse(
+        new ApiError(400, 'Login and password are required', 'VALIDATION_ERROR'),
+      );
     }
     const credentials = parsed.data;
     const { token } = await callSnippet(loginContract, credentials);
-    await setSessionToken(token);
+    await setSessionToken(token, isSecureRequest(request));
     return NextResponse.json({ ok: true }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
     return errorResponse(error);
