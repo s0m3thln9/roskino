@@ -97,9 +97,16 @@ export function Modal({
             type="button"
             onClick={onClose}
             aria-label={closeLabel}
-            className={cn('absolute z-10 inline-flex hover:opacity-60', styles.close)}
+            className={cn('group absolute z-10 inline-flex', styles.close)}
           >
-            <Icon name="close" className="size-6 md:size-8" />
+            <Icon
+              name="close"
+              className="size-6 group-hover:hidden group-active:hidden md:size-8"
+            />
+            <Icon
+              name="close-hover"
+              className="hidden size-6 scale-[1.026] group-hover:inline-block group-active:inline-block md:size-8"
+            />
           </button>
           {children}
         </div>
