@@ -68,7 +68,7 @@ export function RecoverAccessForm({ titleId, labels, onSent, onCancel }: Recover
       : labels.recoverHint;
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-1 flex-col">
       <h2 id={titleId} className="max-w-80 pr-12 typo-title uppercase">
         {labels.recoverTitle}
       </h2>
@@ -99,7 +99,7 @@ export function RecoverAccessForm({ titleId, labels, onSent, onCancel }: Recover
         {message}
       </p>
 
-      <div className="mt-15 grid grid-cols-2 gap-2.5">
+      <div className="mt-auto grid grid-cols-2 gap-2.5 pt-15">
         <Button variant="secondary" width="full" onClick={onCancel}>
           {labels.cancel}
         </Button>

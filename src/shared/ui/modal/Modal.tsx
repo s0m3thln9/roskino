@@ -19,7 +19,7 @@ const variantClassNames: Record<
   dark: {
     dialog: 'bg-transparent',
     wrapper: 'items-center px-4 py-10',
-    panel: 'max-w-150 rounded-lg bg-black/50 p-6 text-white backdrop-blur-panel md:p-10',
+    panel: 'max-w-150 rounded-lg bg-dark-grey/75 p-6 text-white backdrop-blur-modal md:p-10',
     close: 'top-6 right-6 md:top-10 md:right-10',
   },
 };

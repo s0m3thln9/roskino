@@ -48,7 +48,10 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
         aria-expanded={open}
         aria-haspopup="menu"
         aria-label={menuLabel}
-        className={cn(barButtonClassName, 'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass')}
+        className={cn(
+          barButtonClassName,
+          'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass hover:bg-dark-grey aria-expanded:bg-dark-grey',
+        )}
       >
         <Icon name="menu" className="size-6" />
         <span className="typo-menu">{buttonLabel}</span>
@@ -57,7 +60,7 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
       <nav
         hidden={!open}
         aria-label={menuLabel}
-        className="absolute right-0 bottom-full mb-2.5 w-72 rounded-md bg-[rgba(48,51,70,0.25)] py-1 backdrop-blur-glass"
+        className="absolute right-0 bottom-full mb-2.5 w-72.5 rounded-md bg-dark-grey py-1"
       >
         <ul>
           {items.map((item) => {
@@ -69,7 +72,7 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
                   aria-current={active ? 'page' : undefined}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    'flex h-15 items-center gap-5 px-7 text-white transition-opacity hover:opacity-100',
+                    'flex h-15 items-center gap-6 px-7 text-white transition-opacity hover:opacity-100',
                     active ? 'opacity-100' : 'opacity-50',
                   )}
                 >

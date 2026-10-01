@@ -52,7 +52,7 @@ export function MarketLoginButton({ label, authLabels }: MarketLoginButtonProps)
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className={cn(barButtonClassName, 'bg-black hover:bg-black/80')}
+        className={cn(barButtonClassName, 'bg-dark-grey/75 backdrop-blur-glass hover:bg-dark-grey')}
       >
         <Icon name="my-market" className="size-6" />
         <span className="typo-menu">{label}</span>

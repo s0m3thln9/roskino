@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useId, useState } from 'react';
+import { cn } from '@/shared/lib';
 import { Modal } from '@/shared/ui';
 import type { AuthLabels } from '../model/labels';
 import { LoginForm } from './LoginForm';
@@ -48,6 +49,11 @@ export function AuthDialog({ open, labels, onClose, onAuthenticated }: AuthDialo
       onClose={handleClose}
       closeLabel={labels.close}
       labelledBy={titleId}
+      className={cn(
+        (step.type === 'login' || step.type === 'recover') && 'flex flex-col',
+        step.type === 'login' && 'min-h-160',
+        step.type === 'recover' && 'min-h-170',
+      )}
     >
       {step.type === 'login' && (
         <LoginForm

@@ -10,6 +10,7 @@
   --color-black: #000000;
   --color-white: #ffffff;
   --color-grey: #cad0ce;
+  --color-dark-grey: #333333;
   --color-violet: #5d34da;
   --color-error: #ffb2b2;
   --color-program-plenary: #febb00;
@@ -28,6 +29,7 @@
   --blur-glass: 20px;
   --blur-soft: 10px;
   --blur-panel: 50px;
+  --blur-modal: 60px;
 
   --container-page: 90rem;
   --container-wide: 69.625rem;

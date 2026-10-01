@@ -38,7 +38,7 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col">
+    <form onSubmit={handleSubmit} className="flex flex-1 flex-col">
       <h2 id={titleId} className="pr-12 typo-title uppercase">
         {labels.title}
       </h2>
@@ -76,7 +76,7 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
         </p>
       )}
 
-      <div className="mt-15 grid grid-cols-2 gap-2.5">
+      <div className="mt-auto grid grid-cols-2 gap-2.5 pt-15">
         <Button variant="secondary" width="full" onClick={onCancel}>
           {labels.cancel}
         </Button>
