@@ -12,13 +12,13 @@ export function EventDetailCard({
   return (
     <div
       className={cn(
-        'flex flex-col gap-2.5 border-l-2 border-black pt-1.5 pl-5 md:gap-5 md:pb-7.5 md:pl-10',
+        'flex flex-col gap-2.5 border-l-2 border-current pt-1.5 pl-5 md:gap-6 md:pb-7.5 md:pl-10',
         className,
       )}
     >
       <Icon name={detail.icon} className="h-9 w-18 md:h-12 md:w-24" />
       <div className="flex flex-col typo-title">
-        <span className="typo-text-3 font-normal text-black/50">{detail.label}</span>
+        <span className="typo-text-3 font-normal opacity-50">{detail.label}</span>
         {detail.lines.map((line) => (
           <span key={line} className="uppercase">
             {line}

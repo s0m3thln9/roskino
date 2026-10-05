@@ -12,7 +12,7 @@ export function EventHighlightCard({
   return (
     <div
       className={cn(
-        'flex flex-col justify-between gap-5 border-l-2 border-black pt-3.5 pb-5 pl-5 text-black md:pt-6 md:pb-10 md:pl-10',
+        'flex flex-col justify-between gap-5 border-l-2 border-current pt-3.5 pb-5 pl-5 md:pt-6 md:pb-10 md:pl-10',
         className,
       )}
     >

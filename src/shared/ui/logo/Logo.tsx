@@ -1,9 +1,16 @@
+import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { cn } from '@/shared/lib';
 
 const LOGOS = {
   ricm: {
     file: 'ricm',
+    width: 115,
+    height: 32,
+    label: 'RICM — Russian International Content Market',
+  },
+  'ricm-color': {
+    file: 'ricm-color',
     width: 115,
     height: 32,
     label: 'RICM — Russian International Content Market',
@@ -18,6 +25,17 @@ type LogoProps = {
 
 export function Logo({ variant, className }: LogoProps) {
   const logo = LOGOS[variant];
+  if (variant === 'ricm-color') {
+    return (
+      <Image
+        src={`/logos/${logo.file}.svg`}
+        alt={logo.label}
+        width={logo.width}
+        height={logo.height}
+        className={cn('shrink-0', className)}
+      />
+    );
+  }
   const url = `url(/logos/${logo.file}.svg)`;
   const style = {
     '--logo-width': `${logo.width}px`,

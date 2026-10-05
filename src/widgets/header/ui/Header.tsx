@@ -8,9 +8,10 @@ import { Logo } from '@/shared/ui';
 
 type HeaderProps = {
   tone?: 'light' | 'dark';
+  coloredLogo?: boolean;
 };
 
-export async function Header({ tone = 'light' }: HeaderProps) {
+export async function Header({ tone = 'light', coloredLogo = false }: HeaderProps) {
   const t = await getTranslations('Navigation');
 
   return (
@@ -21,7 +22,10 @@ export async function Header({ tone = 'light' }: HeaderProps) {
       )}
     >
       <Link href={ROUTES.about} aria-label={t('home')}>
-        <Logo variant="ricm" className="h-6 w-[86px] md:h-8 md:w-[115px]" />
+        <Logo
+          variant={coloredLogo ? 'ricm-color' : 'ricm'}
+          className="h-6 w-[86px] md:h-8 md:w-[115px]"
+        />
       </Link>
       <Suspense fallback={<span className="size-10" />}>
         <LocaleSwitch label={t('switchLocale')} />
