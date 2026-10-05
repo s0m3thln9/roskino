@@ -16,7 +16,7 @@ export function NewsCard({ news, dateLabel, className }: NewsCardProps) {
     <article
       className={cn(
         'group relative flex min-h-[420px] flex-col md:min-h-[560px]',
-        news.cover ? 'bg-white' : 'bg-grey',
+        news.cover ? 'bg-white' : 'bg-apricot',
         className,
       )}
     >

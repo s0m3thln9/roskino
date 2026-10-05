@@ -30,7 +30,7 @@ function ScreeningRibbon({
   return (
     <div
       className={cn(
-        'absolute top-6 right-0 z-10 flex flex-col items-end bg-pink py-5 pr-6 pl-14 text-right text-white md:pr-10',
+        'absolute top-6 right-0 z-10 flex flex-col items-end bg-peach py-5 pr-6 pl-14 text-right text-white md:pr-10',
         RIBBON_CLIP,
       )}
     >
