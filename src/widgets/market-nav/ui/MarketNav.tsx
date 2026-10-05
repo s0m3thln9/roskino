@@ -47,8 +47,8 @@ export function MarketNav({ labels, className }: MarketNavProps) {
             className={cn(
               'typo-text-3 transition-colors',
               active
-                ? 'text-black underline decoration-from-font'
-                : 'text-black/50 hover:text-black',
+                ? 'text-peach'
+                : 'text-black/50 underline decoration-from-font hover:text-black',
             )}
           >
             {labels[item.key]}
