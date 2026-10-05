@@ -22,7 +22,7 @@ export async function PartnersPage({ params }: PartnersPageProps) {
   return (
     <>
       <Header tone="dark" />
-      <main className="flex-1 bg-grey pt-30 pb-20 md:pt-40 md:pb-30 lg:pt-50">
+      <main className="flex-1 bg-apricot pt-30 pb-20 md:pt-40 md:pb-30 lg:pt-50">
         <div className="mx-auto flex max-w-page flex-col gap-15 page-gutter md:gap-25 lg:gap-40">
           <h1 className="sr-only">{t('partners')}</h1>
           {groups.map((group) => (
@@ -30,7 +30,7 @@ export async function PartnersPage({ params }: PartnersPageProps) {
               key={group.type}
               className="mx-auto flex w-full max-w-wide flex-col gap-6 md:gap-10 lg:gap-25"
             >
-              <h2 className="typo-headline-2 hyphens-none! md:w-min">{group.title}</h2>
+              <h2 className="typo-headline-2 hyphens-none! md:max-w-190">{group.title}</h2>
               <div className="flex flex-col gap-1">
                 {group.partners.map((partner) => (
                   <PartnerCard key={partner.id} partner={partner} />

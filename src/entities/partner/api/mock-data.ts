@@ -14,8 +14,8 @@ const lorem =
 export const partnersMock: Localized<PartnerGroup[]> = {
   ru: [
     {
-      type: 'informational',
-      title: 'Информационные партнеры',
+      type: 'support',
+      title: 'При поддержке',
       partners: [
         {
           id: 'minkult',
@@ -60,8 +60,8 @@ export const partnersMock: Localized<PartnerGroup[]> = {
       ],
     },
     {
-      type: 'other',
-      title: 'Другие партнеры',
+      type: 'official',
+      title: 'Официальные партнеры',
       partners: [
         {
           id: 'company-1',
@@ -84,8 +84,8 @@ export const partnersMock: Localized<PartnerGroup[]> = {
   ],
   en: [
     {
-      type: 'informational',
-      title: 'Media partners',
+      type: 'support',
+      title: 'Supported by',
       partners: [
         {
           id: 'minkult',
@@ -130,8 +130,8 @@ export const partnersMock: Localized<PartnerGroup[]> = {
       ],
     },
     {
-      type: 'other',
-      title: 'Other partners',
+      type: 'official',
+      title: 'Official partners',
       partners: [
         {
           id: 'company-1',
