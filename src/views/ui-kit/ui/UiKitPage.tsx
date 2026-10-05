@@ -46,6 +46,23 @@ function Section({
   );
 }
 
+const GRADIENTS = [
+  {
+    className: 'bg-gradient-main text-white',
+    stops: [
+      { name: 'Sea Wave Blue', hex: 'HEX: 006B80' },
+      { name: 'Strawberry Pink', hex: 'HEX: E08585' },
+    ],
+  },
+  {
+    className: 'bg-gradient-news text-black',
+    stops: [
+      { name: 'Peach Orange [20%]', hex: 'HEX: FF754D' },
+      { name: 'Peach Orange [0%]', hex: 'HEX: FF754D' },
+    ],
+  },
+];
+
 const COLOUR_GROUPS = [
   {
     title: 'Primary',
@@ -76,11 +93,8 @@ const COLOUR_GROUPS = [
     ],
   },
   {
-    title: 'Gradients',
-    swatches: [
-      { name: 'Main', hex: '006B80 → E07A7A', className: 'bg-gradient-main text-white' },
-      { name: 'News', hex: 'FF754D [20% → 0%]', className: 'bg-gradient-news text-black' },
-    ],
+    title: 'Accent',
+    swatches: [{ name: 'Red', hex: 'HEX: E53400', className: 'bg-red text-white' }],
   },
 ];
 
@@ -114,23 +128,43 @@ export async function UiKitPage({ params }: UiKitPageProps) {
         </Section>
 
         <Section title="Colour">
-          <div className="flex flex-col gap-8">
+          <div className="flex w-full flex-col gap-8 bg-[#b5b5b5] p-6 md:p-10">
             {COLOUR_GROUPS.map((group) => (
               <div key={group.title} className="flex flex-col gap-3">
-                <p className="typo-text-3">{group.title}</p>
-                <div className="flex flex-wrap">
+                <p className="typo-filter">{group.title}</p>
+                <div
+                  className={`flex flex-wrap ${group.title === 'Secondary' ? 'max-w-120' : 'max-w-240'}`}
+                >
                   {group.swatches.map((swatch) => (
                     <div
                       key={swatch.name}
                       className={`flex h-20 w-40 flex-col items-end justify-end p-2.5 ${swatch.className}`}
                     >
-                      <span className="typo-text-7">{swatch.name}</span>
-                      <span className="typo-text-3">{swatch.hex}</span>
+                      <span className="text-xs">{swatch.name}</span>
+                      <span className="typo-filter">{swatch.hex}</span>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
+            <div className="flex flex-col gap-3">
+              <p className="typo-filter">Gradients</p>
+              <div className="flex flex-wrap">
+                {GRADIENTS.map((gradient) => (
+                  <div
+                    key={gradient.className}
+                    className={`flex size-40 flex-col items-end justify-between p-2.5 ${gradient.className}`}
+                  >
+                    {gradient.stops.map((stop) => (
+                      <div key={stop.name} className="flex flex-col items-end">
+                        <span className="text-xs">{stop.name}</span>
+                        <span className="typo-filter">{stop.hex}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </Section>
 
@@ -182,10 +216,10 @@ export async function UiKitPage({ params }: UiKitPageProps) {
             <RoundButton label="Previous slide" variant="glass">
               <Icon name="arrow-back" />
             </RoundButton>
-            <RoundButton label="Telegram" variant="solid">
+            <RoundButton label="Telegram" variant="glass">
               <Icon name="social-telegram" />
             </RoundButton>
-            <RoundButton label="Max" variant="solid">
+            <RoundButton label="Max" variant="glass">
               <Icon name="social-max" />
             </RoundButton>
           </div>
