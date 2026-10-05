@@ -77,7 +77,7 @@ export function NewsArticle({
               <figure key={index} className="relative flex gap-4 md:gap-5">
                 <Icon
                   name="quote"
-                  className="h-8 w-12 shrink-0 text-grey md:h-16 md:w-24 lg:absolute lg:top-0 lg:right-[calc(100%+1.25rem)]"
+                  className="h-8 w-12 shrink-0 text-peach md:h-16 md:w-24 lg:absolute lg:top-0 lg:right-[calc(100%+1.25rem)]"
                 />
                 <div className="flex flex-col gap-5">
                   <blockquote className="typo-text-5 font-medium">{block.text}</blockquote>

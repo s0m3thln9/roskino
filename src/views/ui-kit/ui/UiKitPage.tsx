@@ -151,7 +151,7 @@ export async function UiKitPage({ params }: UiKitPageProps) {
                     : 'p-2'
                 }
               >
-                <Icon name={name} />
+                <Icon name={name} className={name === 'quote' ? 'text-peach' : undefined} />
               </span>
               <span className="text-xs">{name}</span>
             </div>
