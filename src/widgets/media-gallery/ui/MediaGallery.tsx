@@ -46,6 +46,7 @@ export function MediaGallery({
     return query ? `${pathname}?${query}` : pathname;
   };
   const [activeIndex, setActiveIndex] = useState(0);
+  const [playingId, setPlayingId] = useState<string | null>(null);
   const active = items[activeIndex] ?? items[0];
   const yearIndex = years.indexOf(year);
   const previousYear = years[yearIndex + 1];
@@ -111,13 +112,30 @@ export function MediaGallery({
         <div className="flex flex-col gap-5">
           <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
             {active.type === 'video' ? (
-              <video
-                key={active.id}
-                src={active.video.url}
-                poster={active.video.poster?.url}
-                controls
-                className="size-full object-cover"
-              />
+              playingId === active.id ? (
+                <video
+                  key={active.id}
+                  src={active.video.url}
+                  controls
+                  autoPlay
+                  className="size-full object-cover"
+                />
+              ) : (
+                <>
+                  {active.video.poster && (
+                    <Image
+                      src={active.video.poster.url}
+                      alt={active.video.poster.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 1280px"
+                      className="object-cover"
+                    />
+                  )}
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <PlayButton label={labels.play} onClick={() => setPlayingId(active.id)} />
+                  </span>
+                </>
+              )
             ) : (
               <Image
                 src={active.image.url}
@@ -159,11 +177,6 @@ export function MediaGallery({
                         sizes="100px"
                         className="object-cover"
                       />
-                      {item.type === 'video' && (
-                        <span className="absolute inset-0 flex items-center justify-center bg-black/30">
-                          <PlayButton label={labels.play} className="size-10" />
-                        </span>
-                      )}
                     </button>
                   </li>
                 ))}

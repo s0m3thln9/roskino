@@ -45,9 +45,9 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
     <>
       <Header tone="light" />
       <main className="flex-1">
-        <section className="bg-linear-to-b from-[#143744] to-grey pt-30 pb-20 md:pt-40 lg:min-h-[860px] lg:pt-65">
+        <section className="bg-linear-to-b from-[#143744] to-grey pt-30 pb-20 md:pt-40 lg:min-h-215 lg:pt-65">
           <div className="mx-auto max-w-page page-gutter lg:max-w-[calc(var(--container-wide)+6.25rem)]">
-            <h1 className="max-w-[833px] typo-headline-2 text-white">{event.title}</h1>
+            <h1 className="max-w-208.25 typo-headline-2 text-white">{event.title}</h1>
           </div>
         </section>
 
