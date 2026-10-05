@@ -72,12 +72,14 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
                   aria-current={active ? 'page' : undefined}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    'flex h-15 items-center gap-6 px-7 text-white transition-opacity hover:opacity-100',
+                    'flex h-15 items-center gap-6 pr-6 pl-7 text-white transition-opacity hover:opacity-100',
                     active ? 'opacity-100' : 'opacity-50',
                   )}
                 >
                   <Icon name={item.icon} className="size-6" />
-                  <span className="typo-subtitle leading-6">{labels[item.key]}</span>
+                  <span className="typo-subtitle leading-6 whitespace-nowrap">
+                    {labels[item.key]}
+                  </span>
                   {active && <Icon name="check-checked" className="ml-auto size-3" />}
                 </Link>
               </li>
