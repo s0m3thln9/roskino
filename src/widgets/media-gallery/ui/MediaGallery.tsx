@@ -48,6 +48,7 @@ export function MediaGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const active = items[activeIndex] ?? items[0];
+  const next = items[activeIndex + 1];
   const yearIndex = years.indexOf(year);
   const previousYear = years[yearIndex + 1];
   const nextYear = years[yearIndex - 1];
@@ -109,46 +110,64 @@ export function MediaGallery({
       {!active ? (
         <p className="typo-text-3 text-white/50">{labels.empty}</p>
       ) : (
-        <div className="flex flex-col gap-5">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
-            {active.type === 'video' ? (
-              playingId === active.id ? (
-                <video
-                  key={active.id}
-                  src={active.video.url}
-                  controls
-                  autoPlay
-                  className="size-full object-cover"
-                />
+        <div className="relative left-1/2 mb-13 w-screen -translate-x-1/2">
+          <div className="flex gap-2">
+            <div className="relative aspect-[1277/682] w-[88.7%] shrink-0 overflow-hidden bg-black">
+              {active.type === 'video' ? (
+                playingId === active.id ? (
+                  <video
+                    key={active.id}
+                    src={active.video.url}
+                    controls
+                    autoPlay
+                    className="size-full object-cover"
+                  />
+                ) : (
+                  <>
+                    {active.video.poster && (
+                      <Image
+                        src={active.video.poster.url}
+                        alt={active.video.poster.alt}
+                        fill
+                        sizes="90vw"
+                        className="object-cover"
+                      />
+                    )}
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <PlayButton label={labels.play} onClick={() => setPlayingId(active.id)} />
+                    </span>
+                  </>
+                )
               ) : (
-                <>
-                  {active.video.poster && (
-                    <Image
-                      src={active.video.poster.url}
-                      alt={active.video.poster.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 1280px"
-                      className="object-cover"
-                    />
-                  )}
-                  <span className="absolute inset-0 flex items-center justify-center">
-                    <PlayButton label={labels.play} onClick={() => setPlayingId(active.id)} />
-                  </span>
-                </>
-              )
-            ) : (
-              <Image
-                src={active.image.url}
-                alt={active.image.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 1280px"
-                className="object-cover"
-              />
+                <Image
+                  src={active.image.url}
+                  alt={active.image.alt}
+                  fill
+                  sizes="90vw"
+                  className="object-cover"
+                />
+              )}
+            </div>
+            {next && (
+              <button
+                type="button"
+                aria-label={labels.next}
+                onClick={() => setActiveIndex(activeIndex + 1)}
+                className="relative aspect-[1277/682] w-[88.7%] shrink-0 overflow-hidden bg-black"
+              >
+                <Image
+                  src={next.image.url}
+                  alt=""
+                  fill
+                  sizes="20vw"
+                  className="object-cover object-left"
+                />
+              </button>
             )}
           </div>
 
           {items.length > 1 && (
-            <div className="mx-auto flex w-fit max-w-full items-center">
+            <div className="absolute bottom-0 left-1/2 flex w-fit max-w-full -translate-x-1/2 translate-y-1/2 items-center">
               <RoundButton
                 label={labels.previous}
                 variant="glass"
