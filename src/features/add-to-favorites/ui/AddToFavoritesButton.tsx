@@ -31,7 +31,7 @@ export function AddToFavoritesButton({
       >
         {added ? labels.added : labels.add}
       </Button>
-      {isError && <span className="typo-text-7 text-violet">{labels.error}</span>}
+      {isError && <span className="typo-text-7 text-pink">{labels.error}</span>}
     </div>
   );
 }

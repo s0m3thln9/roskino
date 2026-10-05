@@ -58,7 +58,7 @@ export function FilterOption({
         onClick={handleClick}
         className="peer sr-only"
       />
-      <span className="flex pt-1 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-violet">
+      <span className="flex pt-1 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pink">
         <Icon name={resolveIcon(type, checked)} />
       </span>
       <span className="flex-1">{label}</span>

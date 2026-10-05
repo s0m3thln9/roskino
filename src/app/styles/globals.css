@@ -11,8 +11,15 @@
   --color-white: #ffffff;
   --color-grey: #cad0ce;
   --color-dark-grey: #333333;
-  --color-violet: #5d34da;
+  --color-pink: #e08585;
   --color-error: #ffb2b2;
+  --color-mango: #f2b90d;
+  --color-peach: #ff794d;
+  --color-orchid: #ed5eed;
+  --color-turquoise: #17b0cf;
+  --color-lilac: #9f80ff;
+  --color-apple: #73b82e;
+  --color-apricot: #e0d4d1;
   --color-program-plenary: #febb00;
   --color-program-presentation: #0084fe;
   --color-program-screening: #0084fe;
@@ -35,6 +42,14 @@
   --container-wide: 69.625rem;
   --container-content: 62.5rem;
   --container-text: 55.375rem;
+}
+
+@utility bg-gradient-main {
+  background-image: linear-gradient(to bottom, #006b80, #e07a7a);
+}
+
+@utility bg-gradient-news {
+  background-image: linear-gradient(to right, rgb(255 117 77 / 0.2), rgb(255 117 77 / 0));
 }
 
 @theme inline {
@@ -211,7 +226,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-violet);
+    outline: 2px solid var(--color-pink);
     outline-offset: 2px;
   }
 
@@ -224,7 +239,7 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
     -webkit-text-fill-color: currentColor;
-    caret-color: var(--color-violet);
+    caret-color: var(--color-pink);
     transition: background-color 0s 86400s;
   }
 }

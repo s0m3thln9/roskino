@@ -46,6 +46,44 @@ function Section({
   );
 }
 
+const COLOUR_GROUPS = [
+  {
+    title: 'Primary',
+    swatches: [
+      { name: 'Black', hex: 'HEX: 000000', className: 'bg-black text-white' },
+      { name: 'Black [50%]', hex: 'HEX: 000000', className: 'bg-black/50 text-white' },
+      { name: 'Black [20%]', hex: 'HEX: 000000', className: 'bg-black/20 text-white' },
+      { name: 'Dark Grey', hex: 'HEX: 333333', className: 'bg-dark-grey text-white' },
+      { name: 'Dark Grey [75%]', hex: 'HEX: 333333', className: 'bg-dark-grey/75 text-white' },
+      { name: 'White', hex: 'HEX: FFFFFF', className: 'bg-white text-black' },
+      { name: 'White [75%]', hex: 'HEX: FFFFFF', className: 'bg-white/75 text-black' },
+      { name: 'White [50%]', hex: 'HEX: FFFFFF', className: 'bg-white/50 text-black' },
+      { name: 'Strawberry Pink', hex: 'HEX: E08585', className: 'bg-pink text-white' },
+      { name: 'Error', hex: 'HEX: FFB2B2', className: 'bg-error text-black' },
+    ],
+  },
+  {
+    title: 'Secondary',
+    swatches: [
+      { name: 'Mango Yellow', hex: 'HEX: F2B90D', className: 'bg-mango text-black' },
+      { name: 'Peach Orange', hex: 'HEX: FF794D', className: 'bg-peach text-black' },
+      { name: 'Orchid Pink', hex: 'HEX: ED5EED', className: 'bg-orchid text-black' },
+      { name: 'Turquoise Blue', hex: 'HEX: 17B0CF', className: 'bg-turquoise text-white' },
+      { name: 'Lilac Purple', hex: 'HEX: 9F80FF', className: 'bg-lilac text-white' },
+      { name: 'Apple Green', hex: 'HEX: 73B82E', className: 'bg-apple text-white' },
+      { name: 'Apricot Grey', hex: 'HEX: E0D5D1', className: 'bg-apricot text-black' },
+      { name: 'Ash Grey [50%]', hex: 'HEX: CAD0CE', className: 'bg-grey/50 text-black' },
+    ],
+  },
+  {
+    title: 'Gradients',
+    swatches: [
+      { name: 'Main', hex: '006B80 → E07A7A', className: 'bg-gradient-main text-white' },
+      { name: 'News', hex: 'FF754D [20% → 0%]', className: 'bg-gradient-news text-black' },
+    ],
+  },
+];
+
 export async function UiKitPage({ params }: UiKitPageProps) {
   if (process.env.NODE_ENV === 'production') notFound();
   await resolveLocale(params);
@@ -76,11 +114,24 @@ export async function UiKitPage({ params }: UiKitPageProps) {
         </Section>
 
         <Section title="Colour">
-          {['bg-black', 'bg-black/50', 'bg-black/20', 'bg-grey', 'bg-grey/50', 'bg-violet'].map(
-            (bg) => (
-              <div key={bg} className={`h-20 w-40 ${bg}`} title={bg} />
-            ),
-          )}
+          <div className="flex flex-col gap-8">
+            {COLOUR_GROUPS.map((group) => (
+              <div key={group.title} className="flex flex-col gap-3">
+                <p className="typo-text-3">{group.title}</p>
+                <div className="flex flex-wrap">
+                  {group.swatches.map((swatch) => (
+                    <div
+                      key={swatch.name}
+                      className={`flex h-20 w-40 flex-col items-end justify-end p-2.5 ${swatch.className}`}
+                    >
+                      <span className="typo-text-7">{swatch.name}</span>
+                      <span className="typo-text-3">{swatch.hex}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section title="Logotype" dark>
