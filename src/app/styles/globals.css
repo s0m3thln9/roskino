@@ -20,11 +20,13 @@
   --color-lilac: #9f80ff;
   --color-apple: #73b82e;
   --color-apricot: #e0d4d1;
-  --color-program-plenary: #febb00;
-  --color-program-presentation: #0084fe;
-  --color-program-screening: #0084fe;
-  --color-program-business: #f26350;
-  --color-program-break: #cad0ce;
+  --color-program-plenary: #f2b90d;
+  --color-program-presentation: #9f80ff;
+  --color-program-screening: #ff794d;
+  --color-program-pitching: #ed5eed;
+  --color-program-business: #17b0cf;
+  --color-program-public-talk: #73b82e;
+  --color-program-break: #000000;
   --color-transparent: transparent;
   --color-current: currentColor;
 

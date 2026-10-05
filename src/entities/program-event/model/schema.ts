@@ -6,7 +6,9 @@ export const PROGRAM_CATEGORIES = [
   'plenary',
   'presentation',
   'screening',
+  'pitching',
   'business',
+  'public-talk',
   'break',
 ] as const;
 export const programCategorySchema = z.enum(PROGRAM_CATEGORIES);

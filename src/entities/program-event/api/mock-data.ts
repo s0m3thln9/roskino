@@ -21,6 +21,12 @@ const summarySeed: SummarySeed[] = [
   },
   {
     room: { ru: 'Зал 1', en: 'Room 1' },
+    time: ['11:00', '12:00'],
+    title: { ru: 'Публичная лекция', en: 'Public talk' },
+    category: 'public-talk',
+  },
+  {
+    room: { ru: 'Зал 1', en: 'Room 1' },
     time: ['12:00', '13:00'],
     title: { ru: 'Презентация проектов', en: 'Project presentations' },
     category: 'presentation',
@@ -42,6 +48,12 @@ const summarySeed: SummarySeed[] = [
     time: ['16:00', '18:00'],
     title: { ru: 'Деловые встречи', en: 'Business meetings' },
     category: 'business',
+  },
+  {
+    room: { ru: 'Зал 2', en: 'Room 2' },
+    time: ['11:00', '12:00'],
+    title: { ru: 'Питчинг проектов', en: 'Pitching of projects' },
+    category: 'pitching',
   },
   {
     room: { ru: 'Зал 2', en: 'Room 2' },
@@ -161,6 +173,23 @@ export const programSeed: ProgramEventSeed[] = DAYS.flatMap((date, dayIndex) => 
     ],
     moderators: [speaker('Regina J.B. Buyer', 'Moderator, Toonz Turkey')],
   }),
+  baseSeed(`d${dayIndex + 1}-public-talk`, date, ['11:00', '12:00'], 'Public talk', 'public-talk', {
+    topic: 'How Russian animation reaches international audiences',
+    participants: [speaker('Maria Savinykh', 'Director of International Sales, SMF Animation')],
+    moderators: [speaker('Name Surname', 'Moderator')],
+  }),
+  baseSeed(
+    `d${dayIndex + 1}-pitching`,
+    date,
+    ['11:00', '12:00'],
+    'Pitching of projects',
+    'pitching',
+    {
+      room: 'Room 2',
+      projectIds: ['fixies-big-secret', 'northern-lights'],
+      moderators: [speaker('Name Surname', 'Moderator')],
+    },
+  ),
   baseSeed(
     `d${dayIndex + 1}-presentations`,
     date,
