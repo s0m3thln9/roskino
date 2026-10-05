@@ -14,19 +14,37 @@ type FilterOptionProps = {
   className?: string;
 };
 
-function OptionMark({ type, checked }: Pick<FilterOptionProps, 'type' | 'checked'>) {
+function OptionMark({
+  type,
+  checked,
+  dimmed,
+}: Pick<FilterOptionProps, 'type' | 'checked'> & { dimmed: boolean }) {
+  const hoverTone = dimmed ? 'bg-current' : 'bg-dark-grey';
   if (type === 'radio') {
     return (
       <span className="relative inline-flex">
         <Icon name="radio" />
-        {checked && <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-peach" />}
+        {checked ? (
+          <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-peach" />
+        ) : (
+          <span
+            className={cn(
+              'absolute inset-0 m-auto hidden size-1.5 rounded-full group-hover:block',
+              hoverTone,
+            )}
+          />
+        )}
       </span>
     );
   }
   if (checked) return <Icon name="check-checked" className="text-peach" />;
   return (
     <span className="inline-flex size-3 items-center justify-center">
-      <span className="h-0.5 w-3 bg-current" />
+      <span className="h-0.5 w-3 bg-current group-hover:hidden" />
+      <Icon
+        name="check-checked"
+        className={cn('hidden group-hover:inline-block', !dimmed && 'text-dark-grey')}
+      />
     </span>
   );
 }
@@ -57,7 +75,7 @@ export function FilterOption({
     <label
       className={cn(
         'group flex min-w-25 cursor-pointer items-start gap-3 typo-filter text-black transition-colors',
-        dimmed && !checked && 'text-black/20 hover:text-black',
+        dimmed && !checked && 'text-black/20 hover:text-black/50',
         className,
       )}
     >
@@ -71,7 +89,7 @@ export function FilterOption({
         className="peer sr-only"
       />
       <span className="flex pt-1 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pink">
-        <OptionMark type={type} checked={checked} />
+        <OptionMark type={type} checked={checked} dimmed={dimmed && !checked} />
       </span>
       <span className="flex-1">{label}</span>
       {checked && (
