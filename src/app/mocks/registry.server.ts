@@ -9,7 +9,6 @@ import { programEventMockHandlers } from '@/entities/program-event/server';
 import { projectMockHandlers } from '@/entities/project/server';
 import { sessionMockHandlers } from '@/entities/session/server';
 import { siteSettingsMockHandlers } from '@/entities/site-settings/server';
-import { favoritesMockHandlers } from '@/features/add-to-favorites/server';
 import { SNIPPETS } from '@/shared/api';
 import { registerMockHandlers, type MockHandlerEntry } from '@/shared/api/server';
 import { serverEnv } from '@/shared/config/server';
@@ -25,7 +24,6 @@ export const mockHandlers: readonly MockHandlerEntry[] = [
   ...projectMockHandlers,
   ...participantMockHandlers,
   ...programEventMockHandlers,
-  ...favoritesMockHandlers,
 ];
 
 export function registerMocks(): void {

@@ -11,7 +11,6 @@ import {
   useGetProjectsQuery,
   type CatalogFilters,
 } from '@/entities/project';
-import { AddToFavoritesButton } from '@/features/add-to-favorites';
 import { ProjectsFilter } from '@/features/filter-projects';
 import { ROUTES } from '@/shared/config';
 import { useRouter } from '@/shared/i18n';
@@ -48,9 +47,6 @@ export type ProjectsCatalogLabels = {
   producers: string;
   writers: string;
   minutes: string;
-  addToFavorites: string;
-  addedToFavorites: string;
-  favoritesError: string;
 };
 
 const FILTER_KEYS = ['contentType', 'genre'] as const;
@@ -192,17 +188,6 @@ export function ProjectsCatalog({
             contentTypeLabel={contentTypeLabels[project.contentType] ?? ''}
             genreLabels={project.genres.map((genre) => genreLabels[genre] ?? genre)}
             labels={{ ...labels, genre: labels.genreLabel }}
-            favoriteSlot={
-              <AddToFavoritesButton
-                projectId={project.id}
-                isFavorite={project.isFavorite}
-                labels={{
-                  add: labels.addToFavorites,
-                  added: labels.addedToFavorites,
-                  error: labels.favoritesError,
-                }}
-              />
-            }
           />
         )}
       </Modal>

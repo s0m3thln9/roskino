@@ -3,7 +3,7 @@ import { ApiError } from '@/shared/api';
 import { defineMockHandler } from '@/shared/api/server';
 import type { Project, ProjectPreview } from '../model/schema';
 import { getFiltersContract, getProjectContract, getProjectsContract } from './contracts';
-import { getMockFavorites, participantRefsSeed, projectsSeed } from './mock-data';
+import { participantRefsSeed, projectsSeed } from './mock-data';
 
 type Seed = (typeof projectsSeed)[number];
 
@@ -25,7 +25,7 @@ export const GENRE_LABELS = {
   'sci-fi': 'Sci-Fi',
 } as const;
 
-function toPreview(seed: Seed, favorites: Set<string>): ProjectPreview {
+function toPreview(seed: Seed): ProjectPreview {
   return {
     id: seed.id,
     title: seed.title,
@@ -36,15 +36,13 @@ function toPreview(seed: Seed, favorites: Set<string>): ProjectPreview {
     country: seed.country,
     year: seed.year,
     screening: seed.screening,
-    isFavorite: favorites.has(seed.id),
   };
 }
 
-function toProject(seed: Seed, favorites: Set<string>): Project {
+function toProject(seed: Seed): Project {
   const { participantId, ...rest } = seed;
   return {
     ...rest,
-    isFavorite: favorites.has(seed.id),
     participant: {
       id: participantId,
       name: participantRefsSeed[participantId]?.name ?? participantId,
@@ -53,28 +51,19 @@ function toProject(seed: Seed, favorites: Set<string>): Project {
   };
 }
 
-export function findMockProjectPreviews(
-  predicate: (seed: Seed) => boolean,
-  token: string | null,
-): ProjectPreview[] {
-  const favorites = getMockFavorites(token);
+export function findMockProjectPreviews(predicate: (seed: Seed) => boolean): ProjectPreview[] {
   return projectsSeed
     .filter(predicate)
     .sort((a, b) => a.title.localeCompare(b.title))
-    .map((seed) => toPreview(seed, favorites));
-}
-
-export function mockProjectExists(projectId: string): boolean {
-  return projectsSeed.some((seed) => seed.id === projectId);
+    .map(toPreview);
 }
 
 export const projectMockHandlers = [
-  defineMockHandler(getProjectsContract, ({ contentType, genre, page, limit }, { token }) => {
+  defineMockHandler(getProjectsContract, ({ contentType, genre, page, limit }) => {
     const all = findMockProjectPreviews(
       (seed) =>
         (contentType.length === 0 || contentType.includes(seed.contentType)) &&
         (genre.length === 0 || seed.genres.some((item) => genre.includes(item))),
-      token,
     );
     const start = (page - 1) * limit;
     return {
@@ -85,10 +74,10 @@ export const projectMockHandlers = [
       totalPages: Math.max(1, Math.ceil(all.length / limit)),
     };
   }),
-  defineMockHandler(getProjectContract, ({ id }, { token }) => {
+  defineMockHandler(getProjectContract, ({ id }) => {
     const seed = projectsSeed.find((item) => item.id === id);
     if (!seed) throw new ApiError(404, `Project "${id}" not found`);
-    return toProject(seed, getMockFavorites(token));
+    return toProject(seed);
   }),
   defineMockHandler(getFiltersContract, () => ({
     origins: [
@@ -100,13 +89,12 @@ export const projectMockHandlers = [
   })),
 ];
 
-export function findMockProjectScreenings(ids: readonly string[], token: string | null) {
-  const favorites = getMockFavorites(token);
+export function findMockProjectScreenings(ids: readonly string[]) {
   return ids
     .map((id) => projectsSeed.find((seed) => seed.id === id))
     .filter((seed): seed is Seed => seed !== undefined)
     .map((seed) => ({
-      ...toPreview(seed, favorites),
+      ...toPreview(seed),
       lengthMinutes: seed.lengthMinutes,
       description: seed.description,
     }));

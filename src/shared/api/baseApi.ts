@@ -3,14 +3,7 @@ import { AUTH_BASE_PATH, BFF_BASE_PATH } from './config';
 import type { SnippetContract, SnippetParams } from './contract';
 import { axiosBaseQuery, type AxiosQueryArgs } from './axiosBaseQuery';
 
-export const API_TAGS = [
-  'Me',
-  'Filters',
-  'Participant',
-  'Project',
-  'Favorites',
-  'Program',
-] as const;
+export const API_TAGS = ['Me', 'Filters', 'Participant', 'Project', 'Program'] as const;
 
 export const baseApi = createApi({
   reducerPath: 'api',

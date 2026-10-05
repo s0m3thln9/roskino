@@ -61,7 +61,7 @@ export const programEventMockHandlers = [
       .sort((a, b) => `${a.date}${a.time[0]}`.localeCompare(`${b.date}${b.time[0]}`))
       .map(toPreview),
   })),
-  defineMockHandler(getProgramEventContract, ({ id }, { token }) => {
+  defineMockHandler(getProgramEventContract, ({ id }) => {
     const seed = programSeed.find((item) => item.id === id);
     if (!seed) throw new ApiError(404, `Program event "${id}" not found`);
     return {
@@ -69,7 +69,7 @@ export const programEventMockHandlers = [
       topic: seed.topic,
       participants: seed.participants,
       moderators: seed.moderators,
-      projects: findMockProjectScreenings(seed.projectIds, token),
+      projects: findMockProjectScreenings(seed.projectIds),
     };
   }),
 ];

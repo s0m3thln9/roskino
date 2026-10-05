@@ -35,12 +35,12 @@ export const participantMockHandlers = [
       totalPages: Math.max(1, Math.ceil(all.length / limit)),
     };
   }),
-  defineMockHandler(getParticipantContract, ({ id }, { token }) => {
+  defineMockHandler(getParticipantContract, ({ id }) => {
     const participant = participantsSeed.find((item) => item.id === id);
     if (!participant) throw new ApiError(404, `Participant "${id}" not found`);
     const projects =
       participant.origin === 'russian'
-        ? findMockProjectPreviews((project) => project.participantId === id, token)
+        ? findMockProjectPreviews((project) => project.participantId === id)
         : [];
     return { ...participant, projects };
   }),

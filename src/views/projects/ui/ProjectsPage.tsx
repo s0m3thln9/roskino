@@ -48,9 +48,6 @@ async function buildLabels(): Promise<ProjectsCatalogLabels> {
     producers: t('producers'),
     writers: t('writers'),
     minutes: t('minutes'),
-    addToFavorites: t('addToFavorites'),
-    addedToFavorites: t('addedToFavorites'),
-    favoritesError: t('favoritesError'),
   };
 }
 

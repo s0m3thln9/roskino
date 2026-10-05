@@ -4,7 +4,6 @@ import { getParticipantContract, getParticipantsContract } from '@/entities/part
 import { getProgramContract, getProgramEventContract } from '@/entities/program-event';
 import { getFiltersContract, getProjectContract, getProjectsContract } from '@/entities/project';
 import { getMeContract, recoverAccessContract } from '@/entities/session';
-import { addToFavoritesContract } from '@/features/add-to-favorites';
 import { ApiError, type SnippetContract } from '@/shared/api';
 import { executeSnippet } from '@/shared/api/server';
 import '../mocks';
@@ -18,7 +17,6 @@ const BFF_WHITELIST: readonly SnippetContract[] = [
   getParticipantContract,
   getProjectsContract,
   getProjectContract,
-  addToFavoritesContract,
   getProgramContract,
   getProgramEventContract,
 ];

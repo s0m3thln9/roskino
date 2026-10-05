@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
@@ -33,7 +33,6 @@ type ProjectDetailsProps = {
   };
   contentTypeLabel: string;
   genreLabels: string[];
-  favoriteSlot?: ReactNode;
   className?: string;
 };
 
@@ -42,7 +41,6 @@ export function ProjectDetails({
   labels,
   contentTypeLabel,
   genreLabels,
-  favoriteSlot,
   className,
 }: ProjectDetailsProps) {
   const [showTrailer, setShowTrailer] = useState(false);
@@ -62,10 +60,7 @@ export function ProjectDetails({
 
   return (
     <div className={cn('flex flex-col gap-10 text-white', className)}>
-      <div className="flex flex-col gap-6 md:mt-10 md:flex-row md:items-start md:justify-between md:pr-14">
-        <h2 className="typo-headline-1">{project.title}</h2>
-        {project.screening && <ScreeningFlag screening={project.screening} variant="line" />}
-      </div>
+      <h2 className="typo-headline-1 md:mt-10 md:pr-14">{project.title}</h2>
 
       <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
         <Person
@@ -74,7 +69,7 @@ export function ProjectDetails({
           email={project.representative.email}
           photoUrl={project.representative.photo?.url}
         />
-        {favoriteSlot}
+        {project.screening && <ScreeningFlag screening={project.screening} variant="aside" />}
       </div>
 
       {project.trailer && (
@@ -105,8 +100,6 @@ export function ProjectDetails({
           </div>
         </section>
       )}
-
-      <hr className="my-5 border-0 border-t border-dotted border-white" />
 
       <div className="flex flex-col gap-10 lg:flex-row">
         <div className="flex shrink-0 flex-col gap-8">

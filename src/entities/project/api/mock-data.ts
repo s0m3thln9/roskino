@@ -1,6 +1,6 @@
 import type { ContentType, Genre, Project } from '../model/schema';
 
-type ProjectSeed = Omit<Project, 'isFavorite' | 'participant'> & { participantId: string };
+type ProjectSeed = Omit<Project, 'participant'> & { participantId: string };
 
 const poster = { url: '/mocks/media/poster-1.jpg', alt: '', width: 700, height: 990 };
 const stills = [
@@ -232,30 +232,6 @@ const generatedProjects: ProjectSeed[] = GENERATED_TITLES.map((title, index) => 
 });
 
 projectsSeed.push(...generatedProjects);
-
-const FAVORITES_KEY = Symbol.for('roskino.mock-favorites');
-
-type FavoritesHolder = { [FAVORITES_KEY]?: Map<string, Set<string>> };
-
-function favoritesStore(): Map<string, Set<string>> {
-  const holder = globalThis as FavoritesHolder;
-  holder[FAVORITES_KEY] ??= new Map();
-  return holder[FAVORITES_KEY];
-}
-
-export function getMockFavorites(token: string | null): Set<string> {
-  if (!token) return new Set();
-  const store = favoritesStore();
-  const existing = store.get(token);
-  if (existing) return existing;
-  const created = new Set<string>();
-  store.set(token, created);
-  return created;
-}
-
-export function addMockFavorite(token: string | null, projectId: string): void {
-  getMockFavorites(token).add(projectId);
-}
 
 export const participantRefsSeed: Record<string, { name: string }> = {
   'smf-animation': { name: 'SMF Animation' },

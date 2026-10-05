@@ -52,7 +52,6 @@ export const projectPreviewSchema = z.object({
   country: z.string(),
   year: z.number().int(),
   screening: screeningSchema.nullable().default(null),
-  isFavorite: z.boolean().default(false),
 });
 
 export const projectSchema = projectPreviewSchema.extend({
