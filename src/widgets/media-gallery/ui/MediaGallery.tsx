@@ -10,10 +10,10 @@ import { Icon, PlayButton, RoundButton } from '@/shared/ui';
 
 type MediaGalleryProps = {
   title: string;
-  items: MediaItem[];
+  items: Record<MediaType, MediaItem[]>;
   years: number[];
   year: number;
-  type: MediaType;
+  initialType: MediaType;
   labels: {
     photo: string;
     video: string;
@@ -31,7 +31,7 @@ export function MediaGallery({
   items,
   years,
   year,
-  type,
+  initialType,
   labels,
   showArchive,
   className,
@@ -45,10 +45,20 @@ export function MediaGallery({
     const query = params.toString();
     return query ? `${pathname}?${query}` : pathname;
   };
+  const [type, setType] = useState(initialType);
   const [activeIndex, setActiveIndex] = useState(0);
   const [playingId, setPlayingId] = useState<string | null>(null);
-  const active = items[activeIndex] ?? items[0];
-  const next = items[activeIndex + 1];
+  const typeItems = items[type];
+  const active = typeItems[activeIndex] ?? typeItems[0];
+  const next = typeItems[activeIndex + 1];
+  const selectType = (value: MediaType) => {
+    setType(value);
+    setActiveIndex(0);
+    setPlayingId(null);
+    const url = new URL(window.location.href);
+    url.searchParams.set('media', value);
+    window.history.replaceState(null, '', url);
+  };
   const yearIndex = years.indexOf(year);
   const previousYear = years[yearIndex + 1];
   const nextYear = years[yearIndex - 1];
@@ -61,16 +71,17 @@ export function MediaGallery({
         <ul className="flex items-center gap-8">
           {(['photo', 'video'] as const).map((value) => (
             <li key={value}>
-              <Link
-                href={buildHref({ type: value })}
-                aria-current={type === value ? 'true' : undefined}
+              <button
+                type="button"
+                onClick={() => selectType(value)}
+                aria-pressed={type === value}
                 className={cn(
                   'typo-title uppercase transition-opacity',
                   type === value ? 'text-red' : 'opacity-50 hover:opacity-80',
                 )}
               >
                 {labels[value]}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
@@ -79,6 +90,7 @@ export function MediaGallery({
           <div className="flex items-center gap-4 md:gap-8">
             <Link
               href={previousYear ? buildHref({ year: previousYear }) : '#'}
+              scroll={false}
               aria-disabled={!previousYear}
               aria-label={labels.previous}
               className={cn('p-0.5', !previousYear && 'pointer-events-none opacity-30')}
@@ -89,6 +101,7 @@ export function MediaGallery({
               <Link
                 key={item}
                 href={buildHref({ year: item })}
+                scroll={false}
                 aria-current={item === year ? 'true' : undefined}
                 className={cn('typo-title uppercase', item === year ? 'text-red' : 'opacity-50')}
               >
@@ -97,6 +110,7 @@ export function MediaGallery({
             ))}
             <Link
               href={nextYear ? buildHref({ year: nextYear }) : '#'}
+              scroll={false}
               aria-disabled={!nextYear}
               aria-label={labels.next}
               className={cn('p-0.5', !nextYear && 'pointer-events-none opacity-30')}
@@ -166,7 +180,7 @@ export function MediaGallery({
             )}
           </div>
 
-          {items.length > 1 && (
+          {typeItems.length > 1 && (
             <div className="absolute bottom-0 left-1/2 flex w-fit max-w-full -translate-x-1/2 translate-y-1/2 items-center">
               <RoundButton
                 label={labels.previous}
@@ -178,7 +192,7 @@ export function MediaGallery({
                 <Icon name="arrow-back" />
               </RoundButton>
               <ul className="flex min-w-0 [scrollbar-width:none] gap-1 overflow-x-auto">
-                {items.map((item, index) => (
+                {typeItems.map((item, index) => (
                   <li key={item.id}>
                     <button
                       type="button"
@@ -203,8 +217,8 @@ export function MediaGallery({
               <RoundButton
                 label={labels.next}
                 variant="glass"
-                disabled={activeIndex === items.length - 1}
-                onClick={() => setActiveIndex((index) => Math.min(items.length - 1, index + 1))}
+                disabled={activeIndex === typeItems.length - 1}
+                onClick={() => setActiveIndex((index) => Math.min(typeItems.length - 1, index + 1))}
                 className="relative z-10 -ml-5"
               >
                 <Icon name="arrow-forward" />

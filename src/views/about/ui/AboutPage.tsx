@@ -32,13 +32,15 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
   const locale = await resolveLocale(params);
   const { media, year } = await searchParams;
   const mediaType = mediaTypeSchema.catch('photo').parse(media);
-  const mediaYear = year ? Number(year) : undefined;
+  const parsedYear = year ? Number(year) : undefined;
+  const mediaYear = Number.isNaN(parsedYear) ? undefined : parsedYear;
 
-  const [event, banners, program, gallery, t] = await Promise.all([
+  const [event, banners, program, photos, videos, t] = await Promise.all([
     getEvent(locale),
     getBanners(locale),
     getProgramSummary(locale),
-    getMedia(locale, mediaType, Number.isNaN(mediaYear) ? undefined : mediaYear),
+    getMedia(locale, 'photo', mediaYear),
+    getMedia(locale, 'video', mediaYear),
     getTranslations('About'),
   ]);
 
@@ -102,11 +104,12 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
 
             <Suspense fallback={null}>
               <MediaGallery
+                key={photos.year}
                 title={t('galleryTitle')}
-                items={gallery.items}
-                years={gallery.years}
-                year={gallery.year}
-                type={mediaType}
+                items={{ photo: photos.items, video: videos.items }}
+                years={photos.years}
+                year={photos.year}
+                initialType={mediaType}
                 showArchive={featureFlags.archive}
                 labels={{
                   photo: t('photo'),
