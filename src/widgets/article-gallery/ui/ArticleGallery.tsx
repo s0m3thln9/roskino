@@ -35,7 +35,7 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
           <button
             type="button"
             onClick={() => switchTab('photo')}
-            className={cn('typo-text-2 transition-opacity', tab === 'photo' ? '' : 'opacity-50')}
+            className={cn('typo-text-2 transition-opacity', tab === 'photo' ? 'text-red' : 'opacity-50')}
           >
             {labels.photo}
           </button>
@@ -44,7 +44,7 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
           <button
             type="button"
             onClick={() => switchTab('video')}
-            className={cn('typo-text-2 transition-opacity', tab === 'video' ? '' : 'opacity-50')}
+            className={cn('typo-text-2 transition-opacity', tab === 'video' ? 'text-red' : 'opacity-50')}
           >
             {labels.video}
           </button>

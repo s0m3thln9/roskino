@@ -67,7 +67,7 @@ export function NewsArticle({
               return (
                 <p
                   key={index}
-                  className="bg-linear-to-r from-grey/50 to-transparent perforated-edge px-5 py-7.5 typo-text-5 md:pr-10 md:pl-12.5"
+                  className="bg-gradient-news perforated-edge px-5 py-7.5 typo-text-5 md:pr-10 md:pl-12.5"
                 >
                   {block.text}
                 </p>
