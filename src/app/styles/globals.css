@@ -228,7 +228,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-pink);
+    outline: 2px solid var(--color-turquoise);
     outline-offset: 2px;
   }
 
@@ -241,7 +241,7 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
     -webkit-text-fill-color: currentColor;
-    caret-color: var(--color-pink);
+    caret-color: var(--color-turquoise);
     transition: background-color 0s 86400s;
   }
 }

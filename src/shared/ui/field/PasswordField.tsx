@@ -25,7 +25,7 @@ export function PasswordField({
       <input
         type={visible ? 'text' : 'password'}
         aria-invalid={error || undefined}
-        className="h-full min-w-0 flex-1 bg-transparent pl-5 typo-text-3 caret-pink outline-none placeholder:text-black/50"
+        className="h-full min-w-0 flex-1 bg-transparent pl-5 typo-text-3 caret-turquoise outline-none placeholder:text-black/50"
         {...props}
       />
       <button

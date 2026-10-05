@@ -88,7 +88,7 @@ export function FilterOption({
         onClick={handleClick}
         className="peer sr-only"
       />
-      <span className="flex pt-1 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pink">
+      <span className="flex pt-1 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-turquoise">
         <OptionMark type={type} checked={checked} dimmed={dimmed && !checked} />
       </span>
       <span className="flex-1">{label}</span>

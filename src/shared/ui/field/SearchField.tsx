@@ -23,7 +23,7 @@ export function SearchField({ onClear, clearLabel, className, value, ...props }:
       <input
         type="search"
         value={value}
-        className="h-full min-w-0 flex-1 bg-transparent text-sm caret-pink outline-none placeholder:text-white/50 [&::-webkit-search-cancel-button]:hidden"
+        className="h-full min-w-0 flex-1 bg-transparent text-sm caret-turquoise outline-none placeholder:text-white/50 [&::-webkit-search-cancel-button]:hidden"
         {...props}
       />
       {onClear && hasValue && (
