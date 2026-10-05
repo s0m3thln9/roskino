@@ -1,6 +1,6 @@
 import type { ChangeEvent, MouseEvent } from 'react';
 import { cn } from '@/shared/lib';
-import { Icon, type IconName } from '../icon';
+import { Icon } from '../icon';
 
 type FilterOptionProps = {
   type: 'checkbox' | 'radio';
@@ -14,9 +14,21 @@ type FilterOptionProps = {
   className?: string;
 };
 
-function resolveIcon(type: FilterOptionProps['type'], checked: boolean): IconName {
-  if (type === 'radio') return checked ? 'radio-active' : 'radio';
-  return checked ? 'check-checked' : 'check';
+function OptionMark({ type, checked }: Pick<FilterOptionProps, 'type' | 'checked'>) {
+  if (type === 'radio') {
+    return (
+      <span className="relative inline-flex">
+        <Icon name="radio" />
+        {checked && <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-peach" />}
+      </span>
+    );
+  }
+  if (checked) return <Icon name="check-checked" className="text-peach" />;
+  return (
+    <span className="inline-flex size-3 items-center justify-center">
+      <span className="h-0.5 w-3 bg-current" />
+    </span>
+  );
 }
 
 export function FilterOption({
@@ -59,7 +71,7 @@ export function FilterOption({
         className="peer sr-only"
       />
       <span className="flex pt-1 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pink">
-        <Icon name={resolveIcon(type, checked)} />
+        <OptionMark type={type} checked={checked} />
       </span>
       <span className="flex-1">{label}</span>
       {checked && (

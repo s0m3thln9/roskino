@@ -31,13 +31,13 @@ const toneClassNames: Record<
   light: {
     number: 'text-black/50',
     link: 'hover:bg-grey hover:text-black',
-    current: 'bg-grey/50 text-black',
+    current: 'bg-peach text-black',
     arrow: roundButtonVariants({ variant: 'ghost' }),
   },
   dark: {
     number: 'text-white/50',
     link: 'hover:text-white',
-    current: 'bg-grey/50 text-white',
+    current: 'bg-peach text-black',
     arrow:
       'inline-flex size-10 items-center justify-center text-white transition-opacity hover:opacity-70',
   },
