@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {
   ProgramEventDetails,
   ProgramRow,
+  type ProgramCategory,
   toProgramParams,
   useGetProgramEventQuery,
   useGetProgramQuery,
@@ -58,6 +59,7 @@ export type ProgramLabels = {
   moderators: string;
   description: string;
   minutes: string;
+  categories: Record<ProgramCategory, string>;
 };
 
 const FILTER_KEYS = ['date', 'location', 'room'] as const;
@@ -113,7 +115,7 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
   const filters = programQuery.data?.filters;
 
   const groups: Array<{
-    key: keyof typeof labels;
+    key: (typeof FILTER_KEYS)[number];
     name: string;
     options: { value: string; label: string }[];
   }> = filters
@@ -175,7 +177,7 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
                     : 'people'
                   : undefined
               }
-              topic={expandedEvent?.id === event.id ? expandedEvent.topic : null}
+              categoryLabel={labels.categories[event.category]}
               expandLabel={labels.expand}
               onToggle={() => setExpandedId((value) => (value === event.id ? null : event.id))}
             >

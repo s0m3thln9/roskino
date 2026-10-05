@@ -13,7 +13,7 @@ type ProgramRowProps = {
   event: ProgramEventPreview;
   expanded: boolean;
   variant?: ProgramRowVariant;
-  topic?: string | null;
+  categoryLabel: string;
   onToggle: () => void;
   expandLabel: string;
   children?: ReactNode;
@@ -26,7 +26,7 @@ export function ProgramRow({
   event,
   expanded,
   variant,
-  topic,
+  categoryLabel,
   onToggle,
   expandLabel,
   children,
@@ -55,8 +55,8 @@ export function ProgramRow({
         </span>
       ) : (
         <span className="flex flex-col">
-          {expanded && topic && <span className="typo-subtitle">{topic}</span>}
-          <span className="typo-text-3">{event.title}</span>
+          <span className="typo-text-5">{event.topic ?? event.title}</span>
+          <span className="typo-text-3">{categoryLabel}</span>
         </span>
       )}
     </span>
@@ -65,6 +65,7 @@ export function ProgramRow({
   const headerClassName = cn(
     'flex w-full items-center gap-6 border-l-10 py-5 pr-6 pl-5 text-black md:pr-10 md:pl-7.5',
     isBreak ? cn('border-black', HATCHED_BACKGROUND) : PROGRAM_CATEGORY_BORDER[event.category],
+    event.hasDetails && 'transition-colors hover:bg-grey/50',
   );
 
   return (

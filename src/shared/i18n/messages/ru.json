@@ -88,7 +88,16 @@
     "filterDate": "Filter by date:",
     "filterLocation": "Filter by location:",
     "filterRoom": "Filter by room:",
-    "expandEvent": "Show event details"
+    "expandEvent": "Show event details",
+    "programCategories": {
+      "plenary": "Plenary session",
+      "presentation": "Presentation of projects",
+      "screening": "Screening",
+      "pitching": "Pitching of projects",
+      "business": "Business meetings",
+      "public-talk": "Public talk",
+      "break": "Break"
+    }
   },
   "Auth": {
     "title": "Authorisation",

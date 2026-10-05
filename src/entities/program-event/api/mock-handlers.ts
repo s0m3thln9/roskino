@@ -38,6 +38,7 @@ function toPreview(seed: ProgramEventSeed): ProgramEventPreview {
     room: seed.room,
     place: seed.place,
     category: seed.category,
+    topic: seed.topic,
     hasDetails: hasDetails(seed),
   };
 }

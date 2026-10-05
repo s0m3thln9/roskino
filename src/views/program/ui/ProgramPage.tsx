@@ -29,6 +29,15 @@ async function buildLabels(): Promise<ProgramLabels> {
     moderators: t('moderators'),
     description: t('description'),
     minutes: t('minutes'),
+    categories: {
+      plenary: t('programCategories.plenary'),
+      presentation: t('programCategories.presentation'),
+      screening: t('programCategories.screening'),
+      pitching: t('programCategories.pitching'),
+      business: t('programCategories.business'),
+      'public-talk': t('programCategories.public-talk'),
+      break: t('programCategories.break'),
+    },
   };
 }
 

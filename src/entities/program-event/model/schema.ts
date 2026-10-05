@@ -47,6 +47,7 @@ export const programEventPreviewSchema = z.object({
   room: z.string().nullable().default(null),
   place: z.string().nullable().default(null),
   category: programCategorySchema,
+  topic: z.string().nullable().default(null),
   hasDetails: z.boolean(),
 });
 
@@ -56,7 +57,6 @@ export const programProjectSchema = projectPreviewSchema.extend({
 });
 
 export const programEventSchema = programEventPreviewSchema.extend({
-  topic: z.string().nullable().default(null),
   participants: z.array(personSchema).default([]),
   moderators: z.array(personSchema).default([]),
   projects: z.array(programProjectSchema).default([]),
