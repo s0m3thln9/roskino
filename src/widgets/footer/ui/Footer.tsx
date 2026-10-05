@@ -23,7 +23,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className={roundButtonVariants({ variant: 'solid' })}
+                  className={roundButtonVariants({ variant: 'glass' })}
                 >
                   <Icon name={SOCIAL_ICONS[social.type]} />
                 </a>

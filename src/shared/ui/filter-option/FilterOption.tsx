@@ -25,7 +25,7 @@ function OptionMark({
       <span className="relative inline-flex">
         <Icon name="radio" />
         {checked ? (
-          <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-peach" />
+          <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-red" />
         ) : (
           <span
             className={cn(
@@ -37,7 +37,7 @@ function OptionMark({
       </span>
     );
   }
-  if (checked) return <Icon name="check-checked" className="text-peach" />;
+  if (checked) return <Icon name="check-checked" className="text-red" />;
   return (
     <span className="inline-flex size-3 items-center justify-center">
       <span className="h-0.5 w-3 bg-current group-hover:hidden" />

@@ -65,7 +65,7 @@ export function MediaGallery({
                 aria-current={type === value ? 'true' : undefined}
                 className={cn(
                   'typo-title uppercase transition-opacity',
-                  type === value ? 'text-peach' : 'opacity-50 hover:opacity-80',
+                  type === value ? 'text-red' : 'opacity-50 hover:opacity-80',
                 )}
               >
                 {labels[value]}
@@ -89,7 +89,7 @@ export function MediaGallery({
                 key={item}
                 href={buildHref({ year: item })}
                 aria-current={item === year ? 'true' : undefined}
-                className={cn('typo-title uppercase', item === year ? 'text-peach' : 'opacity-50')}
+                className={cn('typo-title uppercase', item === year ? 'text-red' : 'opacity-50')}
               >
                 {item}
               </Link>
