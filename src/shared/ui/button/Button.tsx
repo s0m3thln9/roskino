@@ -7,9 +7,9 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-white text-black hover:bg-grey active:bg-grey',
+        primary: 'bg-white text-black hover:bg-peach active:bg-peach',
         secondary:
-          'border-2 border-white text-white hover:border-grey hover:text-grey active:border-grey active:text-grey',
+          'border-2 border-white text-white hover:border-peach hover:text-peach active:border-peach active:text-peach',
       },
       width: {
         auto: '',

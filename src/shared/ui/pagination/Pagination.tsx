@@ -30,7 +30,7 @@ const toneClassNames: Record<
 > = {
   light: {
     number: 'text-black/50',
-    link: 'hover:bg-grey hover:text-black',
+    link: 'hover:bg-apricot hover:text-black',
     current: 'bg-peach text-black',
     arrow: roundButtonVariants({ variant: 'ghost' }),
   },
