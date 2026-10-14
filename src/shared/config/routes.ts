@@ -4,6 +4,7 @@ export const ROUTES = {
   newsItem: (slug: string) => `/news/${slug}`,
   partners: '/partners',
   archive: '/archive',
+  dummy: '/dummy',
   market: '/market',
   participants: '/market/participants',
   participant: (id: string) => `/market/participants/${id}`,
