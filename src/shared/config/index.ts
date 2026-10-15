@@ -1,3 +1,4 @@
+export { MEDIA_QUERIES } from './breakpoints';
 export {
   LOGIN_PARAM,
   MARKET_NAV_ITEMS,
