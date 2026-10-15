@@ -21,7 +21,11 @@ export async function generateEdition2026Metadata({
 }: Edition2026PageProps): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'Edition2026' });
-  return { title: t('title') };
+  return {
+    title: t('title'),
+    description: null,
+    openGraph: { title: t('title') },
+  };
 }
 
 export async function Edition2026Page({ params }: Edition2026PageProps) {
@@ -51,7 +55,7 @@ export async function Edition2026Page({ params }: Edition2026PageProps) {
           alt=""
           width={360}
           height={152}
-          className="h-auto w-full mix-blend-hard-light md:max-h-[calc(67dvh-2.5rem)] md:object-contain md:object-left-top"
+          className="h-auto w-full mix-blend-hard-light md:max-h-[calc(67dvh-2.5rem)] md:object-contain md:object-top-left"
         />
       </picture>
     </main>
