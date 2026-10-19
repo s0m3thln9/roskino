@@ -1,11 +1,18 @@
 import type { CSSProperties } from 'react';
 import { cn } from '@/shared/lib';
+import { RicmEnLogo } from './RicmEnLogo';
 import { RicmLogo } from './RicmLogo';
 
 const LOGOS = {
   ricm: {
     file: 'ricm',
     width: 142,
+    height: 30,
+    label: 'РМК — Российский международный кинорынок',
+  },
+  'ricm-en': {
+    file: 'ricm-en',
+    width: 145,
     height: 30,
     label: 'RICM — Russian International Content Market',
   },
@@ -25,9 +32,10 @@ export function Logo({ variant, className }: LogoProps) {
   } as CSSProperties;
   const sizeClassName = 'inline-block h-(--logo-height) w-(--logo-width) shrink-0';
 
-  if (variant === 'ricm') {
+  if (variant === 'ricm' || variant === 'ricm-en') {
+    const InlineLogo = variant === 'ricm' ? RicmLogo : RicmEnLogo;
     return (
-      <RicmLogo
+      <InlineLogo
         role="img"
         aria-label={logo.label}
         style={sizeStyle}
