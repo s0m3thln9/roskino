@@ -22,6 +22,15 @@ async function buildLabels(): Promise<ProjectsCatalogLabels> {
   return {
     contentType: t('filterContentType'),
     genre: t('filterGenre'),
+    filterPanel: {
+      title: t('filterTitle'),
+      open: t('filterOpen'),
+      apply: t('apply'),
+      reset: t('reset'),
+      close: t('close'),
+    },
+    shortLegends: { contentType: t('legendContentType'), genre: t('legendGenre') },
+    chips: { contentType: t('chipContentType'), genre: t('chipGenre') },
     reset: t('reset'),
     clear: t('clear'),
     loading: t('loading'),
@@ -41,6 +50,7 @@ async function buildLabels(): Promise<ProjectsCatalogLabels> {
     length: t('length'),
     type: t('type'),
     genreLabel: t('genreLabel'),
+    productionYear: t('productionYear'),
     releaseInRussia: t('releaseInRussia'),
     status: t('status'),
     productionCompanies: t('productionCompanies'),
@@ -60,8 +70,10 @@ export async function ProjectsPage({ params }: ProjectsPageProps) {
   ]);
 
   return (
-    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20">
-      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25 lg:pl-[14.125rem]">{nav('projects')}</h1>
+    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20 max-md:px-10 max-md:pb-25">
+      <h1 className="mt-8 mb-17 typo-headline-1 md:mt-5 md:mb-12 lg:mb-25 lg:pl-[14.125rem]">
+        {nav('projects')}
+      </h1>
       <Suspense fallback={<ProjectsCatalogSkeleton />}>
         <ProjectsCatalog labels={labels} selectedId={id} />
       </Suspense>

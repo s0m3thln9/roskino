@@ -74,7 +74,7 @@ export function FilterOption({
   return (
     <label
       className={cn(
-        'group flex min-w-25 cursor-pointer items-start gap-4 typo-text-2 text-black transition-colors md:gap-3 md:typo-filter',
+        'group flex min-w-25 cursor-pointer items-start gap-4 typo-text-2 text-black transition-colors lg:gap-3 lg:typo-filter',
         dimmed && !checked && 'text-black/20 hover:text-black/50',
         className,
       )}
@@ -88,13 +88,13 @@ export function FilterOption({
         onClick={handleClick}
         className="peer sr-only"
       />
-      <span className="flex pt-1.5 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-turquoise md:pt-1">
+      <span className="flex pt-1.5 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-turquoise lg:pt-1">
         <OptionMark type={type} checked={checked} dimmed={dimmed && !checked} />
       </span>
       <span className="flex-1">{label}</span>
       {checked && (
         <span
-          className="flex pt-1.5 opacity-0 transition-opacity group-hover:opacity-100 md:pt-1"
+          className="flex pt-1.5 opacity-0 transition-opacity group-hover:opacity-100 lg:pt-1"
           aria-hidden={clearLabel ? undefined : true}
           title={clearLabel}
         >

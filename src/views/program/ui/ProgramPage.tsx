@@ -19,6 +19,19 @@ async function buildLabels(): Promise<ProgramLabels> {
     date: t('filterDate'),
     location: t('filterLocation'),
     room: t('filterRoom'),
+    filterPanel: {
+      title: t('filterTitle'),
+      open: t('filterOpen'),
+      apply: t('apply'),
+      reset: t('reset'),
+      close: t('close'),
+    },
+    shortLegends: {
+      date: t('legendDate'),
+      location: t('legendLocation'),
+      room: t('legendRoom'),
+    },
+    chips: { date: t('chipDate'), location: t('chipLocation'), room: t('chipRoom') },
     reset: t('reset'),
     clear: t('clear'),
     loading: t('loading'),
@@ -49,8 +62,10 @@ export async function ProgramPage({ params }: ProgramPageProps) {
   ]);
 
   return (
-    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20">
-      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25 lg:pl-[14.125rem]">{nav('program')}</h1>
+    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20 max-md:px-10 max-md:pb-25">
+      <h1 className="mt-8 mb-17 typo-headline-1 md:mt-5 md:mb-12 lg:mb-25 lg:pl-[14.125rem]">
+        {nav('program')}
+      </h1>
       <Suspense fallback={<ProgramBoardSkeleton />}>
         <ProgramBoard labels={labels} />
       </Suspense>

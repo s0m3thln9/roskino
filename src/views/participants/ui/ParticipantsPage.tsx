@@ -23,6 +23,23 @@ export async function buildCatalogLabels(): Promise<CatalogLabels> {
     origin: t('filterOrigin'),
     contentType: t('filterContentType'),
     genre: t('filterGenre'),
+    filterPanel: {
+      title: t('filterTitle'),
+      open: t('filterOpen'),
+      apply: t('apply'),
+      reset: t('reset'),
+      close: t('close'),
+    },
+    shortLegends: {
+      origin: t('legendOrigin'),
+      contentType: t('legendContentType'),
+      genre: t('legendGenre'),
+    },
+    chips: {
+      origin: t('chipOrigin'),
+      contentType: t('chipContentType'),
+      genre: t('chipGenre'),
+    },
     reset: t('reset'),
     clear: t('clear'),
     loading: t('loading'),
@@ -50,8 +67,8 @@ export async function ParticipantsPage({ params }: ParticipantsPageProps) {
   ]);
 
   return (
-    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20">
-      <h1 className="mt-5 mb-12 typo-headline-1 lg:mb-25 lg:pl-[14.125rem]">
+    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20 max-md:px-10 max-md:pb-25">
+      <h1 className="mt-8 mb-17 typo-headline-1 md:mt-5 md:mb-12 lg:mb-25 lg:pl-[14.125rem]">
         {nav('participants')}
       </h1>
       <Suspense fallback={<ParticipantsCatalogSkeleton />}>

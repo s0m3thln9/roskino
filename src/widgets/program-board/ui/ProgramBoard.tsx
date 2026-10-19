@@ -16,10 +16,10 @@ import {
   catalogLayout,
   FilterGroup,
   FilterOption,
+  FilterPanel,
   FiltersSkeleton,
-  Icon,
-  RoundButton,
   Skeleton,
+  type FilterPanelLabels,
 } from '@/shared/ui';
 
 const ROW_SKELETON_COUNT = 6;
@@ -45,10 +45,12 @@ export function ProgramBoardSkeleton() {
   );
 }
 
-export type ProgramLabels = {
-  date: string;
-  location: string;
-  room: string;
+type FilterGroupLabels = { date: string; location: string; room: string };
+
+export type ProgramLabels = FilterGroupLabels & {
+  filterPanel: FilterPanelLabels;
+  shortLegends: FilterGroupLabels;
+  chips: FilterGroupLabels;
   reset: string;
   clear: string;
   loading: string;
@@ -128,33 +130,49 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
 
   return (
     <div className={cn(catalogLayout.root, className)}>
-      {!filters && <FiltersSkeleton />}
-      <div className={cn('flex flex-col gap-8', catalogLayout.filters, !filters && 'hidden')}>
-        {groups.map((group) => (
-          <FilterGroup key={group.name} legend={labels[group.key]}>
-            {group.options.map((option) => (
-              <FilterOption
-                key={option.value}
-                type="radio"
-                name={group.name}
-                value={option.value}
-                label={option.label}
-                checked={url.values(group.name)[0] === option.value}
-                clearLabel={labels.clear}
-                onCheckedChange={(checked) =>
-                  url.setSingle(group.name, checked ? option.value : null)
-                }
-              />
-            ))}
-          </FilterGroup>
-        ))}
-
-        {!url.isEmpty && (
-          <RoundButton label={labels.reset} variant="muted" onClick={url.reset}>
-            <Icon name="reset" />
-          </RoundButton>
-        )}
-      </div>
+      {filters ? (
+        <FilterPanel
+          chips={groups.map((group) => {
+            const selected = group.options.find(
+              (option) => option.value === url.values(group.name)[0],
+            );
+            return {
+              key: group.key,
+              label: selected?.label ?? labels.chips[group.key],
+              active: Boolean(selected),
+            };
+          })}
+          canReset={!url.isEmpty}
+          onReset={url.reset}
+          labels={labels.filterPanel}
+          className={catalogLayout.filters}
+        >
+          {groups.map((group) => (
+            <FilterGroup
+              key={group.name}
+              legend={labels[group.key]}
+              shortLegend={labels.shortLegends[group.key]}
+            >
+              {group.options.map((option) => (
+                <FilterOption
+                  key={option.value}
+                  type="radio"
+                  name={group.name}
+                  value={option.value}
+                  label={option.label}
+                  checked={url.values(group.name)[0] === option.value}
+                  clearLabel={labels.clear}
+                  onCheckedChange={(checked) =>
+                    url.setSingle(group.name, checked ? option.value : null)
+                  }
+                />
+              ))}
+            </FilterGroup>
+          ))}
+        </FilterPanel>
+      ) : (
+        <FiltersSkeleton />
+      )}
 
       <div className={cn(catalogLayout.content, 'gap-3')}>
         {programQuery.isError && <p className="typo-text-3">{labels.error}</p>}
@@ -163,7 +181,10 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
 
         <ul
           aria-busy={isRefreshing}
-          className={cn('flex flex-col gap-10 transition-opacity', isRefreshing && 'opacity-50')}
+          className={cn(
+            '-mx-10 flex flex-col gap-10 transition-opacity md:mx-0',
+            isRefreshing && 'opacity-50',
+          )}
         >
           {programQuery.data?.events.map((event) => (
             <ProgramRow

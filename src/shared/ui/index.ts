@@ -5,6 +5,7 @@ export { ContactLink } from './contact-link';
 export { fieldVariants, PasswordField, SearchField, TextField, type FieldVariants } from './field';
 export { FilterGroup } from './filter-group';
 export { FilterOption } from './filter-option';
+export { FilterPanel, type FilterChip, type FilterPanelLabels } from './filter-panel';
 export { Icon, ICONS, type IconName } from './icon';
 export { InfoRow } from './info-row';
 export { Logo } from './logo';

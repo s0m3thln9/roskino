@@ -1,15 +1,21 @@
 'use client';
 
 import type { CatalogFilters } from '@/entities/project';
-import { cn } from '@/shared/lib';
 import { useUrlFilters } from '@/shared/model';
-import { FilterGroup, FilterOption, Icon, RoundButton } from '@/shared/ui';
+import { FilterGroup, FilterOption, FilterPanel, type FilterPanelLabels } from '@/shared/ui';
 
 export const PROJECT_FILTER_KEYS = ['contentType', 'genre'] as const;
 
+type GroupLabels = { contentType: string; genre: string };
+
 type ProjectsFilterProps = {
   filters: CatalogFilters;
-  labels: { contentType: string; genre: string; reset: string; clear: string };
+  labels: GroupLabels & {
+    clear: string;
+    filterPanel: FilterPanelLabels;
+    shortLegends: GroupLabels;
+    chips: GroupLabels;
+  };
   className?: string;
 };
 
@@ -19,8 +25,27 @@ export function ProjectsFilter({ filters, labels, className }: ProjectsFilterPro
   const genres = url.values('genre');
 
   return (
-    <div className={cn('flex flex-col gap-8', className)}>
-      <FilterGroup legend={labels.contentType}>
+    <FilterPanel
+      chips={[
+        {
+          key: 'contentType',
+          label: labels.chips.contentType,
+          count: contentTypes.length,
+          active: contentTypes.length > 0,
+        },
+        {
+          key: 'genre',
+          label: labels.chips.genre,
+          count: genres.length,
+          active: genres.length > 0,
+        },
+      ]}
+      canReset={!url.isEmpty}
+      onReset={url.reset}
+      labels={labels.filterPanel}
+      className={className}
+    >
+      <FilterGroup legend={labels.contentType} shortLegend={labels.shortLegends.contentType}>
         {filters.contentTypes.map((option) => (
           <FilterOption
             key={option.value}
@@ -36,7 +61,7 @@ export function ProjectsFilter({ filters, labels, className }: ProjectsFilterPro
         ))}
       </FilterGroup>
 
-      <FilterGroup legend={labels.genre}>
+      <FilterGroup legend={labels.genre} shortLegend={labels.shortLegends.genre}>
         {filters.genres.map((option) => (
           <FilterOption
             key={option.value}
@@ -51,12 +76,6 @@ export function ProjectsFilter({ filters, labels, className }: ProjectsFilterPro
           />
         ))}
       </FilterGroup>
-
-      {!url.isEmpty && (
-        <RoundButton label={labels.reset} variant="muted" onClick={url.reset}>
-          <Icon name="reset" />
-        </RoundButton>
-      )}
-    </div>
+    </FilterPanel>
   );
 }
