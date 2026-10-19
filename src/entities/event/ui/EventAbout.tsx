@@ -9,25 +9,26 @@ export function EventAbout({
   className?: string;
 }) {
   return (
-    <section className={cn('flex max-w-[48rem] flex-col gap-6', className)}>
-      <h2 className="max-w-[17rem] typo-title uppercase">{about.title}</h2>
-      <p className="typo-text-4">
-        {about.body.map((segment, index) =>
-          segment.href ? (
-            <a
-              key={index}
-              href={segment.href}
-              target="_blank"
-              rel="noreferrer"
-              className="underline decoration-from-font hover:opacity-70"
-            >
-              {segment.text}
-            </a>
-          ) : (
-            <span key={index}>{segment.text}</span>
-          ),
-        )}
-      </p>
-    </section>
+    <div className={cn('flex max-w-[48rem] flex-col gap-6 typo-text-4', className)}>
+      {about.map((paragraph, paragraphIndex) => (
+        <p key={paragraphIndex}>
+          {paragraph.map((segment, index) =>
+            segment.href ? (
+              <a
+                key={index}
+                href={segment.href}
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-from-font hover:opacity-70"
+              >
+                {segment.text}
+              </a>
+            ) : (
+              <span key={index}>{segment.text}</span>
+            ),
+          )}
+        </p>
+      ))}
+    </div>
   );
 }

@@ -36,7 +36,8 @@
     "next": "Вперёд",
     "play": "Смотреть видео",
     "bannerSlide": "Баннер",
-    "galleryEmpty": "Материалов пока нет"
+    "galleryEmpty": "Материалов пока нет",
+    "register": "Зарегистрироваться"
   },
   "News": {
     "listTitle": "Новости",

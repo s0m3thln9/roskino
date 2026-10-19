@@ -46,7 +46,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
 
   return (
     <>
-      <Header tone="dark" coloredLogo />
+      <Header tone="dark" showLogo={false} />
       <main className="flex-1">
         <section className="relative isolate overflow-hidden bg-[#006b80] pt-30 pb-20 md:pt-40 lg:h-215 lg:pt-50 lg:pb-0">
           <Image
@@ -99,7 +99,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
             <ProgramSummary
               summary={program}
               title={t('programTitle')}
-              labels={{ previous: t('previous'), next: t('next') }}
+              labels={{ previous: t('previous'), next: t('next'), register: t('register') }}
             />
 
             <Suspense fallback={null}>

@@ -35,7 +35,7 @@ export function LocaleSwitch({ label, className }: LocaleSwitchProps) {
       aria-label={label}
       lang={nextLocale}
       className={cn(
-        'inline-flex size-10 shrink-0 items-center justify-center rounded-full typo-filter text-current uppercase opacity-50 transition-colors hover:bg-[#e5e8e7] hover:text-black hover:opacity-100 disabled:pointer-events-none disabled:opacity-30',
+        'inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-[rgba(48,51,70,0.25)] typo-filter text-white uppercase backdrop-blur-glass transition-colors hover:bg-dark-grey active:bg-dark-grey disabled:pointer-events-none disabled:opacity-30',
         className,
       )}
     >

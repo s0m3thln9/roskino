@@ -36,7 +36,8 @@
     "next": "Next",
     "play": "Play video",
     "bannerSlide": "Banner",
-    "galleryEmpty": "No media yet"
+    "galleryEmpty": "No media yet",
+    "register": "Register"
   },
   "News": {
     "listTitle": "News",

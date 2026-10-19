@@ -22,6 +22,13 @@ export const siteSettingsSchema = z.object({
     directionsUrl: z.url(),
     directionsLabel: z.string(),
   }),
+  accreditation: z
+    .object({
+      url: z.url(),
+      label: z.string(),
+    })
+    .nullable()
+    .default(null),
 });
 
 export type SocialLink = z.infer<typeof socialLinkSchema>;

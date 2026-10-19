@@ -17,24 +17,35 @@ export const eventMock: Localized<MarketEvent> = {
         lines: ['Кинотеатр «Москва»', 'НЦ «Россия»'],
       },
     ],
-    about: {
-      title: 'Российский международный кинорынок —',
-      body: [
-        {
-          text: 'международный рынок российского аудиовизуального контента, проводится РОСКИНО при поддержке ',
-        },
-        { text: 'Министерства культуры Российской Федерации', href: 'https://culture.gov.ru' },
+    about: [
+      [
+        { text: 'РОСКИНО', href: 'https://roskino.org' },
+        { text: ' при поддержке ' },
+        { text: 'Минкультуры России', href: 'https://culture.gov.ru' },
+        { text: ', а также Фонда кино и ключевых российских холдингов: ' },
+        { text: '«Газпром-Медиа Холдинга»', href: 'https://gazprom-media.com' },
         { text: ' и ' },
-        { text: 'Фонда кино', href: 'https://fond-kino.ru' },
-        { text: ', при участии АО «' },
-        { text: 'Газпром-Медиа Холдинг', href: 'https://gazprom-media.com' },
-        { text: '» и АО «' },
-        { text: 'Национальная Медиа Группа', href: 'https://nmg.ru' },
+        { text: '«Национальной Медиа Группы»', href: 'https://nmg.ru' },
         {
-          text: '». Уникальная бизнес-площадка российской индустрии, созданная для презентации контента международным дистрибьюторам и поиска партнёров.',
+          text: ', организует Российский международный кинорынок (Russian International Content Market).',
         },
       ],
-    },
+      [
+        {
+          text: 'В мероприятии примут участие крупнейшие закупщики аудиовизуальной продукции из стран БРИКС, Латинской Америки, MENA, Азии, Европы и других государств.',
+        },
+      ],
+      [
+        {
+          text: 'Программа включает презентации и показы художественных фильмов, телевизионных сериалов и анимационных проектов ведущих российских производственных и дистрибьюторских компаний, индивидуальные встречи и панельные сессии, которые пройдут на основной площадке мероприятия – в кинотеатре «Москва».',
+        },
+      ],
+      [
+        {
+          text: 'Одним из ключевых событий деловой программы станет пленарная сессия с участием представителей госструктур, крупнейших холдингов и ведущих российских и зарубежных деятелей киноиндустрии, которые обсудят новые отраслевые вызовы. Мероприятие состоится 1 декабря на площадке Национального центра «Россия».',
+        },
+      ],
+    ],
     highlights: [
       {
         kind: 'number',
@@ -77,24 +88,33 @@ export const eventMock: Localized<MarketEvent> = {
       { icon: 'dates', label: 'Dates:', lines: ['December 1-3, 2026'] },
       { icon: 'venue', label: 'Venues:', lines: ['Moskva Cinema', 'Rossiya National Center'] },
     ],
-    about: {
-      title: 'Russian International Content Market —',
-      body: [
-        {
-          text: 'an international market of Russian audiovisual content organised by ROSKINO with the support of the ',
-        },
-        { text: 'Ministry of Culture of the Russian Federation', href: 'https://culture.gov.ru' },
-        { text: ' and the ' },
-        { text: 'Cinema Fund', href: 'https://fond-kino.ru' },
-        { text: ', with the participation of ' },
+    about: [
+      [
+        { text: 'ROSKINO', href: 'https://roskino.org' },
+        { text: ', with the support of the ' },
+        { text: 'Russian Ministry of Culture', href: 'https://culture.gov.ru' },
+        { text: ', the Cinema Fund and the key Russian media holdings ' },
         { text: 'Gazprom-Media Holding', href: 'https://gazprom-media.com' },
         { text: ' and ' },
         { text: 'National Media Group', href: 'https://nmg.ru' },
+        { text: ', organises the Russian International Content Market.' },
+      ],
+      [
         {
-          text: '. A unique business platform of the Russian industry created to present content to international distributors and find partners.',
+          text: 'The event will bring together the largest buyers of audiovisual content from the BRICS countries, Latin America, MENA, Asia, Europe and other regions.',
         },
       ],
-    },
+      [
+        {
+          text: 'The program includes presentations and screenings of feature films, TV series and animated projects by leading Russian production and distribution companies, one-to-one meetings and panel sessions held at the main venue of the event, the Moskva Cinema.',
+        },
+      ],
+      [
+        {
+          text: 'One of the key events of the business program will be a plenary session with representatives of government bodies, major media holdings and leading Russian and international film industry figures discussing new challenges facing the industry. It will take place on December 1 at the Rossiya National Center.',
+        },
+      ],
+    ],
     highlights: [
       {
         kind: 'number',

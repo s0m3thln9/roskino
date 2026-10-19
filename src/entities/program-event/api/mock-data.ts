@@ -10,6 +10,7 @@ type SummarySeed = {
   time: [string, string];
   title: Localized;
   category: ProgramCategory;
+  registrationUrl?: string;
 };
 
 const summarySeed: SummarySeed[] = [
@@ -18,6 +19,7 @@ const summarySeed: SummarySeed[] = [
     time: ['10:00', '11:00'],
     title: { ru: 'Пленарная сессия', en: 'Plenary session' },
     category: 'plenary',
+    registrationUrl: 'https://example.com/registration',
   },
   {
     room: { ru: 'Зал 1', en: 'Room 1' },
@@ -93,6 +95,7 @@ export function buildProgramSummary(lang: keyof Localized): ProgramSummary {
           endsAt: at(date, seed.time[1]),
           title: seed.title[lang],
           category: seed.category,
+          registrationUrl: seed.registrationUrl ?? null,
         });
         rooms.set(name, room);
       });

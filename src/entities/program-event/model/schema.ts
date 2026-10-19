@@ -19,6 +19,7 @@ export const programSummaryEventSchema = z.object({
   endsAt: z.iso.datetime({ offset: true }),
   title: z.string(),
   category: programCategorySchema,
+  registrationUrl: z.url().nullable().default(null),
 });
 
 export const programSummarySchema = z.object({

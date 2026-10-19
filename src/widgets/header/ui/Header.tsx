@@ -1,5 +1,6 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
+import { getSiteSettings } from '@/entities/site-settings/server';
 import { LocaleSwitch } from '@/features/switch-locale';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
@@ -8,11 +9,15 @@ import { Logo } from '@/shared/ui';
 
 type HeaderProps = {
   tone?: 'light' | 'dark';
-  coloredLogo?: boolean;
+  showLogo?: boolean;
 };
 
-export async function Header({ tone = 'light', coloredLogo = false }: HeaderProps) {
-  const t = await getTranslations('Navigation');
+export async function Header({ tone = 'light', showLogo = true }: HeaderProps) {
+  const locale = await getLocale();
+  const [{ accreditation }, t] = await Promise.all([
+    getSiteSettings(locale),
+    getTranslations('Navigation'),
+  ]);
 
   return (
     <header
@@ -21,15 +26,28 @@ export async function Header({ tone = 'light', coloredLogo = false }: HeaderProp
         tone === 'light' ? 'text-white' : 'text-black',
       )}
     >
-      <Link href={ROUTES.about} aria-label={t('home')}>
-        <Logo
-          variant={coloredLogo ? 'ricm-color' : 'ricm'}
-          className="h-6 w-[86px] md:h-8 md:w-[115px]"
-        />
-      </Link>
-      <Suspense fallback={<span className="size-10" />}>
-        <LocaleSwitch label={t('switchLocale')} />
-      </Suspense>
+      {showLogo ? (
+        <Link href={ROUTES.about} aria-label={t('home')}>
+          <Logo variant="ricm" className="h-5 w-[95px] md:h-7.5 md:w-[142px]" />
+        </Link>
+      ) : (
+        <span />
+      )}
+      <div className="flex items-center gap-2.5">
+        {accreditation && (
+          <a
+            href={accreditation.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 items-center rounded-pill bg-[rgba(48,51,70,0.25)] px-5 typo-text-7 whitespace-nowrap text-white backdrop-blur-glass transition-colors hover:bg-dark-grey active:bg-dark-grey"
+          >
+            {accreditation.label}
+          </a>
+        )}
+        <Suspense fallback={<span className="size-10" />}>
+          <LocaleSwitch label={t('switchLocale')} />
+        </Suspense>
+      </div>
     </header>
   );
 }

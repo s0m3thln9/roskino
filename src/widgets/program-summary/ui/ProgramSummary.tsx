@@ -8,12 +8,12 @@ import {
   type ProgramSummary as ProgramSummaryData,
 } from '@/entities/program-event';
 import { cn } from '@/shared/lib';
-import { Icon, RoundButton } from '@/shared/ui';
+import { buttonVariants, Icon, RoundButton } from '@/shared/ui';
 
 type ProgramSummaryProps = {
   summary: ProgramSummaryData;
   title: string;
-  labels: { previous: string; next: string };
+  labels: { previous: string; next: string; register: string };
   className?: string;
 };
 
@@ -43,8 +43,8 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
         src="/images/program-stripes.svg"
         alt=""
         aria-hidden
-        width={373}
-        height={489}
+        width={370}
+        height={398}
         className="pointer-events-none absolute top-[93px] right-[calc((100%-100vw)/2)] hidden lg:block"
       />
 
@@ -89,27 +89,48 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
       </div>
 
       <div className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-[8.375rem]">
-        {day.rooms.map((room) => (
-          <div
-            key={room.name}
-            className="flex w-[300px] shrink-0 snap-start flex-col gap-6 md:w-80"
-          >
-            <h3 className="flex h-20 items-center border-t-2 border-white typo-title uppercase">
-              {room.name}
-            </h3>
+        {day.rooms.map((room, roomIndex) => (
+          <div key={room.name} className="flex w-full shrink-0 snap-start flex-col gap-6 md:w-80">
+            <div className="flex flex-col">
+              <div aria-hidden className="flex gap-2 md:hidden">
+                {day.rooms.map((item, index) => (
+                  <span
+                    key={item.name}
+                    className={cn('h-0.5 flex-1', index === roomIndex ? 'bg-white' : 'bg-white/40')}
+                  />
+                ))}
+              </div>
+              <h3 className="flex h-20 items-center typo-title uppercase md:border-t-2 md:border-white">
+                {room.name}
+              </h3>
+            </div>
             <ul className="flex flex-col gap-6 md:gap-7.5">
               {room.events.map((event) => (
-                <li
-                  key={event.id}
-                  className={cn(
-                    'flex flex-col gap-1 border-l-10 py-3 pl-5 md:pl-7.5',
-                    PROGRAM_CATEGORY_BORDER[event.category],
+                <li key={event.id} className="flex flex-col gap-6 md:gap-7.5">
+                  <div
+                    className={cn(
+                      'flex flex-col gap-1 border-l-10 py-3 pl-5 md:pl-7.5',
+                      PROGRAM_CATEGORY_BORDER[event.category],
+                    )}
+                  >
+                    <span className="typo-text-2 text-white/50">
+                      {formatTime(event.startsAt)} - {formatTime(event.endsAt)}
+                    </span>
+                    <span className="typo-text-5">{event.title}</span>
+                  </div>
+                  {event.registrationUrl && (
+                    <a
+                      href={event.registrationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={cn(
+                        buttonVariants({ variant: 'secondary', width: 'full' }),
+                        'typo-text-1',
+                      )}
+                    >
+                      {labels.register}
+                    </a>
                   )}
-                >
-                  <span className="typo-text-2 text-white/50">
-                    {formatTime(event.startsAt)} - {formatTime(event.endsAt)}
-                  </span>
-                  <span className="typo-text-5">{event.title}</span>
                 </li>
               ))}
             </ul>

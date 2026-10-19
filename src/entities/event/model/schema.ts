@@ -37,10 +37,7 @@ export const eventSchema = z.object({
   endDate: z.iso.date(),
   heroImage: imageSchema.nullable().default(null),
   details: z.array(eventDetailSchema),
-  about: z.object({
-    title: z.string(),
-    body: z.array(richTextSegmentSchema),
-  }),
+  about: z.array(z.array(richTextSegmentSchema).min(1)),
   highlights: z.array(eventHighlightSchema),
   goals: z
     .object({
