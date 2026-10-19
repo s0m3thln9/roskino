@@ -72,9 +72,9 @@ export function RecoverAccessForm({ titleId, labels, onSent, onCancel }: Recover
       <h2 id={titleId} className="max-w-80 pr-12 typo-title uppercase">
         {labels.recoverTitle}
       </h2>
-      <p className="mt-5 typo-text-4">{labels.recoverDescription}</p>
+      <p className="mt-4 typo-text-4 md:mt-5">{labels.recoverDescription}</p>
 
-      <div className="mt-10 flex flex-col gap-7.5">
+      <div className="mt-10 flex flex-col gap-3 md:gap-7.5">
         {FIELDS.map(({ key, type, autoComplete }) => (
           <TextField
             key={key}
@@ -94,12 +94,12 @@ export function RecoverAccessForm({ titleId, labels, onSent, onCancel }: Recover
 
       <p
         role={invalid || status === 'error' ? 'alert' : undefined}
-        className="mt-5 text-sm leading-6"
+        className="mt-4 typo-text-7 md:mt-5 md:text-sm md:leading-6"
       >
         {message}
       </p>
 
-      <div className="mt-auto grid grid-cols-2 gap-2.5 pt-15">
+      <div className="mt-auto grid gap-2.5 pt-12 md:grid-cols-2 md:pt-15">
         <Button variant="secondary" width="full" onClick={onCancel}>
           {labels.cancel}
         </Button>

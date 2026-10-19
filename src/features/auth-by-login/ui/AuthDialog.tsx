@@ -26,7 +26,7 @@ function SuccessBadge() {
       aria-hidden
       width={160}
       height={160}
-      className="size-30 md:size-40"
+      className="size-40"
     />
   );
 }
@@ -51,8 +51,8 @@ export function AuthDialog({ open, labels, onClose, onAuthenticated }: AuthDialo
       labelledBy={titleId}
       className={cn(
         (step.type === 'login' || step.type === 'recover') && 'flex flex-col',
-        step.type === 'login' && 'min-h-160',
-        step.type === 'recover' && 'min-h-170',
+        step.type === 'login' && 'md:min-h-160',
+        step.type === 'recover' && 'md:min-h-170',
       )}
     >
       {step.type === 'login' && (
@@ -75,9 +75,9 @@ export function AuthDialog({ open, labels, onClose, onAuthenticated }: AuthDialo
       )}
 
       {step.type === 'welcome' && (
-        <div className="flex flex-col items-center py-5 text-center md:py-7.5">
+        <div className="flex flex-col items-center pt-8 text-center md:py-7.5">
           <SuccessBadge />
-          <p className="mt-10 typo-text-3">{labels.welcomeBack}</p>
+          <p className="mt-12 typo-text-3 md:mt-10">{labels.welcomeBack}</p>
           <p id={titleId} className="mt-1 typo-title uppercase">
             {step.name}
           </p>
@@ -85,12 +85,12 @@ export function AuthDialog({ open, labels, onClose, onAuthenticated }: AuthDialo
       )}
 
       {step.type === 'sent' && (
-        <div className="flex flex-col items-center py-5 text-center md:py-7.5">
+        <div className="flex flex-col items-center pt-8 text-center md:py-7.5">
           <SuccessBadge />
-          <p id={titleId} className="mt-10 typo-text-3">
+          <p id={titleId} className="mt-12 typo-text-3 md:mt-10">
             {labels.sentTitle}
           </p>
-          <p className="mt-2.5 max-w-80 text-sm">{labels.sentText}</p>
+          <p className="mt-2.5 max-w-80 text-base md:text-sm">{labels.sentText}</p>
         </div>
       )}
     </Modal>

@@ -44,7 +44,7 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
       </h2>
       <p className="mt-5 typo-text-4">{labels.intro}</p>
 
-      <div className="mt-10 flex flex-col gap-7.5">
+      <div className="mt-10 flex flex-col gap-3 md:gap-7.5">
         <PasswordField
           name="login"
           autoComplete="username"
@@ -71,12 +71,12 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
       </div>
 
       {isError && (
-        <p role="alert" className="mt-5 text-sm leading-6">
+        <p role="alert" className="mt-4 typo-text-7 md:mt-5 md:text-sm md:leading-6">
           {labels.error}
         </p>
       )}
 
-      <div className="mt-auto grid grid-cols-2 gap-2.5 pt-15">
+      <div className="mt-auto grid gap-2.5 pt-12 md:grid-cols-2 md:pt-15">
         <Button variant="secondary" width="full" onClick={onCancel}>
           {labels.cancel}
         </Button>
@@ -88,7 +88,7 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
       <button
         type="button"
         onClick={onForgot}
-        className="mt-7.5 self-center text-sm underline decoration-from-font underline-offset-2 hover:opacity-70"
+        className="mt-8 self-center text-base underline decoration-from-font underline-offset-2 hover:opacity-70 md:mt-7.5 md:text-sm"
       >
         {labels.forgot}
       </button>
