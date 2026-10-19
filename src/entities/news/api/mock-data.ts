@@ -154,16 +154,41 @@ const body: Localized<NewsItem['blocks']> = {
     },
     {
       type: 'quote',
-      text: 'Мы видим устойчивый интерес зарубежных партнёров к российскому контенту и стремимся создать для него максимально удобную бизнес-среду.',
-      author: 'Иванова А.С.',
-      position: 'Генеральный директор',
+      quotes: [
+        {
+          text: 'Мы видим устойчивый интерес зарубежных партнёров к российскому контенту и стремимся создать для него максимально удобную бизнес-среду.',
+          author: 'Иванова А.С.',
+          position: 'Генеральный директор',
+        },
+      ],
     },
     {
       type: 'paragraph',
       text: 'Участники смогут представить проекты в разработке, заключить соглашения о дистрибуции и найти партнёров для совместного производства. Для аккредитованных гостей доступен личный кабинет My market с каталогом участников и проектов.',
     },
     {
+      type: 'quote',
+      quotes: [
+        {
+          text: 'Фильмы, созданные при участии холдинга, уже доказали свою востребованность в России. Наша амбиция шире: мы хотим, чтобы российское кино знали и смотрели во всём мире. Кинорынок — возможность показать зарубежным партнёрам высокий уровень отечественного кино.',
+          author: 'Смирнов К.Д.',
+          position: 'Генеральный директор холдинга',
+        },
+        {
+          text: 'Мы видим всё возрастающий интерес к российским проектам на зарубежных рынках. Наша задача — наращивать международное присутствие и рассказывать наши истории по всему миру.',
+          author: 'Орлова М.А.',
+          position: 'Генеральный директор медиагруппы',
+        },
+        {
+          text: 'Индивидуальные встречи с байерами стали самой востребованной частью программы: за три дня участники проводят десятки переговоров.',
+          author: 'Петрова Е.Н.',
+          position: 'Руководитель деловой программы',
+        },
+      ],
+    },
+    {
       type: 'highlight',
+      title: 'Справка',
       text: 'Аккредитация открыта до 1 ноября. Подать заявку можно на сайте кинорынка, указав компанию и контактное лицо.',
     },
   ],
@@ -174,16 +199,41 @@ const body: Localized<NewsItem['blocks']> = {
     },
     {
       type: 'quote',
-      text: 'We see steady interest of international partners in Russian content and strive to create the most convenient business environment for it.',
-      author: 'A. Ivanova',
-      position: 'CEO',
+      quotes: [
+        {
+          text: 'We see steady interest of international partners in Russian content and strive to create the most convenient business environment for it.',
+          author: 'A. Ivanova',
+          position: 'CEO',
+        },
+      ],
     },
     {
       type: 'paragraph',
       text: 'Participants will be able to present projects in development, sign distribution agreements and find co-production partners. Accredited guests get access to My market with the catalogue of participants and projects.',
     },
     {
+      type: 'quote',
+      quotes: [
+        {
+          text: 'Films made with the holding have already proven their demand in Russia. Our ambition is wider: we want Russian cinema to be known and watched all over the world. The market is a chance to show international partners the high level of our films.',
+          author: 'K. Smirnov',
+          position: 'CEO of the holding',
+        },
+        {
+          text: 'We see growing interest in Russian projects on international markets. Our task is to expand our international presence and tell our stories around the world.',
+          author: 'M. Orlova',
+          position: 'CEO of the media group',
+        },
+        {
+          text: 'One-to-one meetings with buyers have become the most popular part of the program: participants hold dozens of negotiations in three days.',
+          author: 'E. Petrova',
+          position: 'Head of the business program',
+        },
+      ],
+    },
+    {
       type: 'highlight',
+      title: 'Background',
       text: 'Accreditation is open until November 1. Apply on the market website with your company and contact person.',
     },
   ],

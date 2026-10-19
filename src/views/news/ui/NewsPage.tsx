@@ -48,6 +48,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           <NewsArticle
             news={featured}
             dateLabel={formatDate(featured.publishedAt)}
+            labels={{ previous: t('previous'), next: t('next') }}
             gallerySlot={
               <ArticleGallery
                 photos={featured.photos}
@@ -60,7 +61,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
                 }}
               />
             }
-            className="pb-20 lg:pb-37.5"
+            className="pb-25 md:pb-20 lg:pb-37.5"
           />
         ) : (
           <div className="mx-auto w-full max-w-page page-gutter pt-30">
@@ -68,15 +69,15 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           </div>
         )}
 
-        <section className="bg-black py-15 md:py-25 lg:pb-35">
-          <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter">
+        <section className="bg-black pt-10 pb-25 md:py-25 lg:pb-35">
+          <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter max-md:px-10">
             <div className="mx-auto flex w-full max-w-text flex-col gap-10">
               <div className="flex items-center justify-between gap-4 text-white">
-                <h2 className="typo-title uppercase">{t('listTitle')}</h2>
+                <h2 className="uppercase max-md:typo-headline-1 md:typo-title">{t('listTitle')}</h2>
                 <Icon name="search" aria-hidden />
               </div>
 
-              <ul className="grid gap-5 md:grid-cols-2">
+              <ul className="-mx-10 grid gap-3 md:mx-0 md:grid-cols-2 md:gap-5">
                 {list.items.map((item) => (
                   <li key={item.id} className="contents">
                     <NewsCard news={item} dateLabel={formatDate(item.publishedAt)} />

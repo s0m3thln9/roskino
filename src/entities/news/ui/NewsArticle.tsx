@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import { cn } from '@/shared/lib';
-import { Icon } from '@/shared/ui';
 import type { NewsItem } from '../model/schema';
+import { QuoteSlider } from './QuoteSlider';
 
 type NewsArticleProps = {
   news: NewsItem;
   dateLabel: string;
+  labels: { previous: string; next: string };
   headingLevel?: 'h1' | 'h2';
   backSlot?: React.ReactNode;
   allNewsSlot?: React.ReactNode;
@@ -16,16 +17,19 @@ type NewsArticleProps = {
 export function NewsArticle({
   news,
   dateLabel,
+  labels,
   headingLevel: Heading = 'h1',
   backSlot,
   allNewsSlot,
   gallerySlot,
   className,
 }: NewsArticleProps) {
+  const SubHeading = Heading === 'h1' ? 'h2' : 'h3';
+
   return (
-    <article className={cn('flex flex-col', className)}>
+    <article className={cn('flex flex-col overflow-x-clip', className)}>
       {news.cover && (
-        <div className="relative h-[280px] w-full overflow-hidden md:h-[520px] lg:h-[800px]">
+        <div className="relative h-120 w-full overflow-hidden md:h-[520px] lg:h-[800px]">
           <Image
             src={news.cover.url}
             alt={news.cover.alt}
@@ -39,61 +43,66 @@ export function NewsArticle({
 
       <div
         className={cn(
-          'mx-auto flex w-full max-w-page flex-col gap-10 page-gutter lg:grid lg:grid-cols-[1fr_minmax(0,55.375rem)_1fr] lg:gap-x-0',
-          news.cover ? 'pt-10 md:pt-20' : 'pt-30 md:pt-40',
+          'mx-auto flex w-full max-w-page flex-col gap-10 page-gutter max-md:px-10 lg:grid lg:grid-cols-[1fr_minmax(0,55.375rem)_1fr] lg:gap-x-0',
+          news.cover ? 'pt-12.5 md:pt-20' : 'pt-30 md:pt-40',
         )}
       >
-        <div className="-mb-5 flex items-start justify-between gap-6 lg:col-start-2">
+        {(backSlot || allNewsSlot) && (
+          <div className="mb-7.5 flex items-center justify-between gap-6 md:hidden">
+            {backSlot ?? <span />}
+            {allNewsSlot}
+          </div>
+        )}
+
+        <div className="-mb-4 flex items-start justify-between gap-6 md:-mb-5 lg:col-start-2">
           <span className="typo-text-3">{dateLabel}</span>
-          {allNewsSlot}
+          {allNewsSlot && <div className="max-md:hidden">{allNewsSlot}</div>}
         </div>
 
         {backSlot && (
-          <div className="flex lg:col-start-1 lg:row-start-2 lg:mt-5 lg:self-start">{backSlot}</div>
+          <div className="flex max-md:hidden lg:col-start-1 lg:row-start-2 lg:mt-5 lg:self-start">
+            {backSlot}
+          </div>
         )}
 
         <Heading className="typo-headline-1 lg:col-start-2">{news.title}</Heading>
 
-        <div className="flex flex-col gap-10 lg:col-start-2">
+        <div className="flex flex-col gap-15 md:mt-5 lg:col-start-2">
           {news.blocks.map((block, index) => {
             if (block.type === 'paragraph') {
               return (
-                <p key={index} className="typo-text-5">
+                <p
+                  key={index}
+                  className={cn(
+                    'typo-text-5',
+                    news.blocks[index - 1]?.type === 'paragraph' && '-mt-7',
+                  )}
+                >
                   {block.text}
                 </p>
               );
             }
             if (block.type === 'highlight') {
               return (
-                <p
-                  key={index}
-                  className="bg-gradient-news perforated-edge px-5 py-7.5 typo-text-5 md:pr-10 md:pl-12.5"
-                >
-                  {block.text}
-                </p>
+                <section key={index} className="flex flex-col gap-6">
+                  {block.title && <SubHeading className="typo-text-5">{block.title}</SubHeading>}
+                  <p className="-mx-10 bg-gradient-news px-10 pt-5 pb-6 typo-text-5 md:mx-0 md:perforated-edge">
+                    {block.text}
+                  </p>
+                </section>
               );
             }
             return (
-              <figure key={index} className="relative flex gap-4 md:gap-5">
-                <Icon
-                  name="quote"
-                  className="h-8 w-12 shrink-0 text-peach md:h-16 md:w-24 lg:absolute lg:top-0 lg:right-[calc(100%+1.25rem)]"
-                />
-                <div className="flex flex-col gap-5">
-                  <blockquote className="typo-text-5 font-medium">{block.text}</blockquote>
-                  <figcaption className="flex flex-col">
-                    <span className="typo-text-5">{block.author}</span>
-                    {block.position && (
-                      <span className="typo-text-3 opacity-50">{block.position}</span>
-                    )}
-                  </figcaption>
-                </div>
-              </figure>
+              <QuoteSlider
+                key={index}
+                quotes={block.quotes}
+                labels={{ previous: labels.previous, next: labels.next }}
+              />
             );
           })}
         </div>
 
-        {gallerySlot && <div className="lg:col-start-2">{gallerySlot}</div>}
+        {gallerySlot && <div className="mt-5 md:mt-10 lg:col-start-2">{gallerySlot}</div>}
       </div>
     </article>
   );

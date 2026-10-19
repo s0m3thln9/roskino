@@ -43,10 +43,11 @@ export async function NewsItemPage({ params }: NewsItemPageProps) {
   return (
     <>
       <Header tone={news.cover ? 'light' : 'dark'} />
-      <main className="flex-1 pb-20">
+      <main className="flex-1 pb-25 md:pb-20">
         <NewsArticle
           news={news}
           dateLabel={format.dateTime(new Date(news.publishedAt), 'short')}
+          labels={{ previous: t('previous'), next: t('next') }}
           backSlot={
             <Link
               href={ROUTES.news}

@@ -18,15 +18,20 @@ export const newsPreviewSchema = z.object({
   cover: imageSchema.nullable().default(null),
 });
 
+export const newsQuoteSchema = z.object({
+  text: z.string(),
+  author: z.string(),
+  position: z.string().optional(),
+});
+
 export const newsBlockSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('paragraph'), text: z.string() }),
+  z.object({ type: z.literal('quote'), quotes: z.array(newsQuoteSchema).min(1) }),
   z.object({
-    type: z.literal('quote'),
+    type: z.literal('highlight'),
+    title: z.string().nullable().default(null),
     text: z.string(),
-    author: z.string(),
-    position: z.string().optional(),
   }),
-  z.object({ type: z.literal('highlight'), text: z.string() }),
 ]);
 
 export const newsItemSchema = newsPreviewSchema.extend({
@@ -49,6 +54,7 @@ export const getNewsItemParamsSchema = z.object({
 export const newsListSchema = paginatedSchema(newsPreviewSchema);
 
 export type NewsPreview = z.infer<typeof newsPreviewSchema>;
+export type NewsQuote = z.infer<typeof newsQuoteSchema>;
 export type NewsBlock = z.infer<typeof newsBlockSchema>;
 export type NewsItem = z.infer<typeof newsItemSchema>;
 export type NewsList = z.infer<typeof newsListSchema>;

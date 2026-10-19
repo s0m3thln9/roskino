@@ -15,13 +15,13 @@ export function NewsCard({ news, dateLabel, className }: NewsCardProps) {
   return (
     <article
       className={cn(
-        'group relative flex min-h-[420px] flex-col md:min-h-[560px]',
+        'group relative flex min-h-[560px] flex-col',
         news.cover ? 'bg-white' : 'bg-apricot',
         className,
       )}
     >
       {news.cover && (
-        <div className="relative h-[180px] w-full overflow-hidden md:h-[220px]">
+        <div className="relative h-50 w-full overflow-hidden md:h-[220px]">
           <Image
             src={news.cover.url}
             alt={news.cover.alt}
@@ -32,7 +32,7 @@ export function NewsCard({ news, dateLabel, className }: NewsCardProps) {
         </div>
       )}
 
-      <div className="flex flex-1 flex-col gap-4 p-5 md:p-7.5">
+      <div className="flex flex-1 flex-col gap-4 px-10 py-6 md:p-7.5">
         <h3 className="typo-title uppercase">
           <Link href={ROUTES.newsItem(news.slug)} className="before:absolute before:inset-0">
             {news.title}
@@ -50,7 +50,7 @@ export function NewsCard({ news, dateLabel, className }: NewsCardProps) {
           <span className="typo-text-3 text-black/50">{dateLabel}</span>
           <Icon
             name="open"
-            className="transition-transform group-hover:translate-x-1 group-focus-visible:translate-x-1"
+            className="transition-transform group-hover:translate-x-1 group-focus-visible:translate-x-1 max-md:-mr-5"
           />
         </div>
       </div>

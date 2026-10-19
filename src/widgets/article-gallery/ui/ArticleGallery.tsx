@@ -29,14 +29,14 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
   };
 
   return (
-    <section className={cn('flex flex-col gap-5', className)}>
+    <section className={cn('flex flex-col gap-6 md:gap-4', className)}>
       <div className="flex items-center gap-5">
         {photos.length > 0 && (
           <button
             type="button"
             onClick={() => switchTab('photo')}
             className={cn(
-              'typo-text-2 transition-opacity',
+              'typo-text-3 transition-opacity',
               tab === 'photo' ? 'text-red' : 'opacity-50',
             )}
           >
@@ -48,7 +48,7 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
             type="button"
             onClick={() => switchTab('video')}
             className={cn(
-              'typo-text-2 transition-opacity',
+              'typo-text-3 transition-opacity',
               tab === 'video' ? 'text-red' : 'opacity-50',
             )}
           >
@@ -57,7 +57,32 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
         )}
       </div>
 
-      <div className="relative">
+      <ul className="-mx-10 flex snap-x snap-mandatory [scrollbar-width:none] gap-1 overflow-x-auto md:hidden">
+        {tab === 'photo'
+          ? photos.map((item, itemIndex) => (
+              <li
+                key={`${item.url}-${itemIndex}`}
+                className="relative aspect-[354/200] w-[calc(100vw-2.25rem)] shrink-0 snap-start overflow-hidden bg-black"
+              >
+                <Image src={item.url} alt={item.alt} fill sizes="340px" className="object-cover" />
+              </li>
+            ))
+          : videos.map((item, itemIndex) => (
+              <li
+                key={`${item.url}-${itemIndex}`}
+                className="relative aspect-[354/200] w-[calc(100vw-2.25rem)] shrink-0 snap-start overflow-hidden bg-black"
+              >
+                <video
+                  src={item.url}
+                  poster={item.poster?.url}
+                  controls
+                  className="size-full object-cover"
+                />
+              </li>
+            ))}
+      </ul>
+
+      <div className="relative max-md:hidden">
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
           {tab === 'photo' && photo && (
             <Image
