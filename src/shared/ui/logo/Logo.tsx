@@ -1,18 +1,12 @@
-import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { cn } from '@/shared/lib';
+import { RicmLogo } from './RicmLogo';
 
 const LOGOS = {
   ricm: {
     file: 'ricm',
-    width: 115,
-    height: 32,
-    label: 'RICM — Russian International Content Market',
-  },
-  'ricm-color': {
-    file: 'ricm-color',
-    width: 115,
-    height: 32,
+    width: 142,
+    height: 30,
     label: 'RICM — Russian International Content Market',
   },
   roskino: { file: 'roskino', width: 129, height: 28, label: 'ROSKINO' },
@@ -25,21 +19,26 @@ type LogoProps = {
 
 export function Logo({ variant, className }: LogoProps) {
   const logo = LOGOS[variant];
-  if (variant === 'ricm-color') {
+  const sizeStyle = {
+    '--logo-width': `${logo.width}px`,
+    '--logo-height': `${logo.height}px`,
+  } as CSSProperties;
+  const sizeClassName = 'inline-block h-(--logo-height) w-(--logo-width) shrink-0';
+
+  if (variant === 'ricm') {
     return (
-      <Image
-        src={`/logos/${logo.file}.svg`}
-        alt={logo.label}
-        width={logo.width}
-        height={logo.height}
-        className={cn('shrink-0', className)}
+      <RicmLogo
+        role="img"
+        aria-label={logo.label}
+        style={sizeStyle}
+        className={cn(sizeClassName, className)}
       />
     );
   }
+
   const url = `url(/logos/${logo.file}.svg)`;
   const style = {
-    '--logo-width': `${logo.width}px`,
-    '--logo-height': `${logo.height}px`,
+    ...sizeStyle,
     maskImage: url,
     WebkitMaskImage: url,
     maskSize: '100% 100%',
@@ -53,10 +52,7 @@ export function Logo({ variant, className }: LogoProps) {
       role="img"
       aria-label={logo.label}
       style={style}
-      className={cn(
-        'inline-block h-(--logo-height) w-(--logo-width) shrink-0 bg-current',
-        className,
-      )}
+      className={cn(sizeClassName, 'bg-current', className)}
     />
   );
 }

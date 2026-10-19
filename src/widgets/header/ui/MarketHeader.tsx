@@ -9,7 +9,7 @@ export async function MarketHeader() {
   return (
     <header className="absolute inset-x-0 top-0 z-40 flex items-center justify-between gap-4 page-gutter py-5 text-black md:py-10">
       <Link href={ROUTES.about} aria-label={t('home')}>
-        <Logo variant="ricm" className="h-6 w-[86px] md:h-8 md:w-[115px]" />
+        <Logo variant="ricm" className="h-5 w-[95px] md:h-7.5 md:w-[142px]" />
       </Link>
     </header>
   );
