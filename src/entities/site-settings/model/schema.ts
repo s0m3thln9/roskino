@@ -26,6 +26,7 @@ export const siteSettingsSchema = z.object({
     .object({
       url: z.url(),
       label: z.string(),
+      shortLabel: z.string().nullable().default(null),
     })
     .nullable()
     .default(null),

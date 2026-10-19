@@ -67,6 +67,7 @@
   line-height: 2.5rem;
   text-transform: uppercase;
   hyphens: auto;
+  overflow-wrap: break-word;
 
   @variant md {
     font-size: 3rem;
@@ -86,6 +87,7 @@
   line-height: 2.5rem;
   text-transform: uppercase;
   hyphens: auto;
+  overflow-wrap: break-word;
 
   @variant md {
     font-weight: 400;

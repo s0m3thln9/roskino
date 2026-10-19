@@ -38,7 +38,9 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
   const lastDay = summary.days.length - 1;
 
   return (
-    <section className={cn('relative flex min-w-0 flex-col gap-10 text-white', className)}>
+    <section
+      className={cn('relative flex min-w-0 flex-col gap-7.5 text-white md:gap-10', className)}
+    >
       <Image
         src="/images/program-stripes.svg"
         alt=""
@@ -48,10 +50,10 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
         className="pointer-events-none absolute top-[93px] right-[calc((100%-100vw)/2)] hidden lg:block"
       />
 
-      <h2 className="relative typo-headline-2">{title}</h2>
+      <h2 className="relative mb-7.5 typo-headline-2 md:mb-0">{title}</h2>
 
       <div className="relative flex items-center justify-between gap-6">
-        <ul className="flex items-center gap-5 md:gap-8">
+        <ul className="flex items-center gap-8">
           {summary.days.map((item, index) => (
             <li key={item.date}>
               <button
@@ -59,7 +61,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                 onClick={() => setActiveDay(index)}
                 aria-current={index === activeDay ? 'true' : undefined}
                 className={cn(
-                  'typo-title uppercase transition-opacity',
+                  'typo-title whitespace-nowrap uppercase transition-opacity',
                   index === activeDay ? 'opacity-100' : 'opacity-50 hover:opacity-80',
                 )}
               >
@@ -68,7 +70,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
             </li>
           ))}
         </ul>
-        <div className="z-10 flex items-center gap-2.5 lg:absolute lg:top-[calc(100%+60px)] lg:right-0">
+        <div className="z-10 flex items-center gap-2.5 max-md:hidden lg:absolute lg:top-[calc(100%+60px)] lg:right-0">
           <RoundButton
             label={labels.previous}
             variant="glass"
@@ -90,7 +92,10 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
 
       <div className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-[8.375rem]">
         {day.rooms.map((room, roomIndex) => (
-          <div key={room.name} className="flex w-full shrink-0 snap-start flex-col gap-6 md:w-80">
+          <div
+            key={room.name}
+            className="flex w-full shrink-0 snap-start flex-col gap-4 md:w-80 md:gap-6"
+          >
             <div className="flex flex-col">
               <div aria-hidden className="flex gap-2 md:hidden">
                 {day.rooms.map((item, index) => (
@@ -104,12 +109,12 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                 {room.name}
               </h3>
             </div>
-            <ul className="flex flex-col gap-6 md:gap-7.5">
+            <ul className="flex flex-col gap-7.5">
               {room.events.map((event) => (
                 <li key={event.id} className="flex flex-col gap-6 md:gap-7.5">
                   <div
                     className={cn(
-                      'flex flex-col gap-1 border-l-10 py-3 pl-5 md:pl-7.5',
+                      'flex flex-col gap-1 border-l-10 py-3 pl-7.5',
                       PROGRAM_CATEGORY_BORDER[event.category],
                     )}
                   >

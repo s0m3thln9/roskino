@@ -12,17 +12,19 @@ export function EventHighlightCard({
   return (
     <div
       className={cn(
-        'flex flex-col justify-between gap-5 border-l-2 border-current pt-3.5 pb-5 pl-5 md:pt-6 md:pb-10 md:pl-10',
+        '-ml-5 flex flex-col justify-between gap-8 border-l-10 border-current pt-3.5 pr-5 pb-3 pl-7.5 md:ml-0 md:gap-5 md:border-l-2 md:pt-6 md:pr-0 md:pb-10 md:pl-10',
         className,
       )}
     >
       <div className="flex flex-col">
         {highlight.kind === 'number' ? (
-          <span className="typo-headline-1 leading-none">{highlight.value}</span>
+          <span className="typo-headline-1 leading-none max-md:-mt-1.5 max-md:mb-1 max-md:text-[4rem]">
+            {highlight.value}
+          </span>
         ) : (
-          <Icon name={highlight.icon} className="mb-2.5 h-9 w-18 md:h-12 md:w-24" />
+          <Icon name={highlight.icon} className="mb-2.5 h-12 w-24 max-md:hidden" />
         )}
-        <span className="typo-title uppercase md:w-min">{highlight.caption}</span>
+        <span className="w-min typo-title uppercase">{highlight.caption}</span>
       </div>
       <p className="typo-text-2">{highlight.text}</p>
     </div>

@@ -25,7 +25,11 @@ export const siteSettingsMock: Localized<SiteSettings> = {
       directionsUrl: 'https://yandex.ru/maps/-/CHaJ7Z~3',
       directionsLabel: 'Как добраться',
     },
-    accreditation: { url: 'https://example.com/accreditation', label: 'Аккредитация СМИ' },
+    accreditation: {
+      url: 'https://example.com/accreditation',
+      label: 'Аккредитация СМИ',
+      shortLabel: 'Для СМИ',
+    },
   },
   en: {
     organization: {
@@ -50,6 +54,10 @@ export const siteSettingsMock: Localized<SiteSettings> = {
       directionsUrl: 'https://yandex.ru/maps/-/CHaJ7Z~3',
       directionsLabel: 'How to get there',
     },
-    accreditation: { url: 'https://example.com/accreditation', label: 'Media accreditation' },
+    accreditation: {
+      url: 'https://example.com/accreditation',
+      label: 'Media accreditation',
+      shortLabel: 'For media',
+    },
   },
 };

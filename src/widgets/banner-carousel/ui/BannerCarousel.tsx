@@ -34,10 +34,7 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
 
   return (
     <section
-      className={cn(
-        'relative h-[360px] w-full overflow-hidden md:h-[520px] lg:h-[700px]',
-        className,
-      )}
+      className={cn('relative h-175 w-full overflow-hidden md:h-[520px] lg:h-[700px]', className)}
     >
       {isExternal ? (
         <a

@@ -27,13 +27,20 @@ export async function Header({ tone = 'light', showLogo = true }: HeaderProps) {
       )}
     >
       {showLogo ? (
-        <Link href={ROUTES.about} aria-label={t('home')}>
-          <Logo variant="ricm" className="h-5 w-[95px] md:h-7.5 md:w-[142px]" />
+        <Link href={ROUTES.about} aria-label={t('home')} className="max-md:ml-2.5">
+          <Logo
+            variant={locale === 'en' ? 'ricm-en' : 'ricm'}
+            className={
+              locale === 'en'
+                ? 'h-6.25 w-30 md:h-7.5 md:w-[145px]'
+                : 'h-6.25 w-30 md:h-7.5 md:w-[142px]'
+            }
+          />
         </Link>
       ) : (
         <span />
       )}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-4 md:gap-2.5">
         {accreditation && (
           <a
             href={accreditation.url}
@@ -41,7 +48,8 @@ export async function Header({ tone = 'light', showLogo = true }: HeaderProps) {
             rel="noreferrer"
             className="inline-flex h-10 items-center rounded-pill bg-[rgba(48,51,70,0.25)] px-5 typo-text-7 whitespace-nowrap text-white backdrop-blur-glass transition-colors hover:bg-dark-grey active:bg-dark-grey"
           >
-            {accreditation.label}
+            <span className="md:hidden">{accreditation.shortLabel ?? accreditation.label}</span>
+            <span className="max-md:hidden">{accreditation.label}</span>
           </a>
         )}
         <Suspense fallback={<span className="size-10" />}>

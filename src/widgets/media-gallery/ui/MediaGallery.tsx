@@ -64,10 +64,10 @@ export function MediaGallery({
   const nextYear = years[yearIndex - 1];
 
   return (
-    <section className={cn('flex flex-col gap-10 text-white', className)}>
-      <h2 className="typo-headline-2">{title}</h2>
+    <section className={cn('flex flex-col gap-5 text-white md:gap-10', className)}>
+      <h2 className="mb-10 px-5 typo-headline-2 md:mb-0 md:px-0">{title}</h2>
 
-      <div className="flex flex-wrap items-center justify-between gap-6">
+      <div className="flex flex-wrap items-center justify-between gap-6 max-md:px-5">
         <ul className="flex items-center gap-8">
           {(['photo', 'video'] as const).map((value) => (
             <li key={value}>
@@ -76,7 +76,7 @@ export function MediaGallery({
                 onClick={() => selectType(value)}
                 aria-pressed={type === value}
                 className={cn(
-                  'typo-title uppercase transition-opacity',
+                  'typo-text-3 transition-opacity md:typo-title md:uppercase',
                   type === value ? 'text-red' : 'opacity-50 hover:opacity-80',
                 )}
               >
@@ -121,10 +121,55 @@ export function MediaGallery({
         )}
       </div>
 
+      {active && (
+        <ul className="-mx-5 flex snap-x snap-mandatory [scrollbar-width:none] gap-1 overflow-x-auto md:hidden">
+          {typeItems.map((item) => (
+            <li
+              key={item.id}
+              className="relative aspect-[338/180] w-[86.7%] shrink-0 snap-start overflow-hidden bg-black"
+            >
+              {item.type === 'video' ? (
+                playingId === item.id ? (
+                  <video
+                    src={item.video.url}
+                    controls
+                    autoPlay
+                    className="size-full object-cover"
+                  />
+                ) : (
+                  <>
+                    {item.video.poster && (
+                      <Image
+                        src={item.video.poster.url}
+                        alt={item.video.poster.alt}
+                        fill
+                        sizes="340px"
+                        className="object-cover"
+                      />
+                    )}
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <PlayButton label={labels.play} onClick={() => setPlayingId(item.id)} />
+                    </span>
+                  </>
+                )
+              ) : (
+                <Image
+                  src={item.image.url}
+                  alt={item.image.alt}
+                  fill
+                  sizes="340px"
+                  className="object-cover"
+                />
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+
       {!active ? (
         <p className="typo-text-3 text-white/50">{labels.empty}</p>
       ) : (
-        <div className="relative left-1/2 mb-13 w-screen -translate-x-1/2">
+        <div className="relative left-1/2 mb-13 w-screen -translate-x-1/2 max-md:hidden">
           <div className="flex gap-2">
             <div className="relative aspect-[1277/682] w-[88.7%] shrink-0 overflow-hidden bg-black">
               {active.type === 'video' ? (
