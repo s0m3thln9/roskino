@@ -33,7 +33,12 @@ export function MarketNav({ labels, className }: MarketNavProps) {
   const prefetch = usePrefetchSection();
 
   return (
-    <nav className={cn('flex flex-wrap items-center gap-6 md:gap-10', className)}>
+    <nav
+      className={cn(
+        '-mx-10 flex [scrollbar-width:none] items-center gap-10 overflow-x-auto px-10 md:mx-0 md:flex-wrap md:overflow-visible md:px-0',
+        className,
+      )}
+    >
       {MARKET_NAV_ITEMS.map((item) => {
         const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
@@ -45,7 +50,7 @@ export function MarketNav({ labels, className }: MarketNavProps) {
             onFocus={() => prefetch(item.key)}
             onTouchStart={() => prefetch(item.key)}
             className={cn(
-              'typo-text-3 transition-colors',
+              'shrink-0 typo-text-3 transition-colors',
               active ? 'text-red' : 'text-black/50 underline decoration-from-font hover:text-black',
             )}
           >

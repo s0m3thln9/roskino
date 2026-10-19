@@ -12,15 +12,16 @@ const variantClassNames: Record<
 > = {
   light: {
     dialog: 'bg-black/50',
-    wrapper: 'items-start px-4 py-20 md:px-8 lg:pt-107',
-    panel: 'max-w-content rounded-lg bg-white/75 p-5 text-black backdrop-blur-panel md:p-10',
-    close: 'top-5 right-5 md:top-10 md:right-10',
+    wrapper: 'items-start pt-25 md:px-8 md:py-20 lg:pt-107',
+    panel:
+      'min-h-[calc(100dvh-6.25rem)] max-w-content rounded-t-pill bg-white/75 px-10 pt-10 pb-15 text-black backdrop-blur-panel md:min-h-0 md:rounded-lg md:p-10',
+    close: 'top-10 right-10',
   },
   dark: {
-    dialog: 'bg-transparent',
-    wrapper: 'items-center px-4 py-10',
-    panel: 'max-w-150 rounded-lg bg-dark-grey/75 p-6 text-white backdrop-blur-modal md:p-10',
-    close: 'top-6 right-6 md:top-10 md:right-10',
+    dialog: 'bg-black/60 md:bg-transparent',
+    wrapper: 'items-start px-2 pt-25 pb-10 md:items-center md:px-4 md:py-10',
+    panel: 'max-w-150 rounded-lg bg-dark-grey/75 p-10 text-white backdrop-blur-modal',
+    close: 'top-10 right-10',
   },
 };
 
@@ -99,13 +100,10 @@ export function Modal({
             aria-label={closeLabel}
             className={cn('group absolute z-10 inline-flex', styles.close)}
           >
-            <Icon
-              name="close"
-              className="size-6 group-hover:hidden group-active:hidden md:size-8"
-            />
+            <Icon name="close" className="size-8 group-hover:hidden group-active:hidden" />
             <Icon
               name="close-hover"
-              className="hidden size-6 scale-[1.026] group-hover:inline-block group-active:inline-block md:size-8"
+              className="hidden size-8 scale-[1.026] group-hover:inline-block group-active:inline-block"
             />
           </button>
           {children}

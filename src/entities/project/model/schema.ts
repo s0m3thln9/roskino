@@ -51,12 +51,12 @@ export const projectPreviewSchema = z.object({
   ageRating: z.string(),
   country: z.string(),
   year: z.number().int(),
+  lengthMinutes: z.number().int().positive().nullable().default(null),
   screening: screeningSchema.nullable().default(null),
 });
 
 export const projectSchema = projectPreviewSchema.extend({
   description: z.string(),
-  lengthMinutes: z.number().int().positive().nullable().default(null),
   releaseInRussia: z.string().nullable().default(null),
   status: z.string(),
   productionCompanies: z.array(z.string()),

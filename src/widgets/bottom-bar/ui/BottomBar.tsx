@@ -16,7 +16,7 @@ export async function BottomBar() {
   const labels = Object.fromEntries(items.map((item) => [item.key, t(item.key)]));
 
   return (
-    <div className="fixed bottom-10 left-1/2 z-40 flex -translate-x-1/2 gap-1">
+    <div className="fixed bottom-0 left-1/2 z-40 flex -translate-x-1/2 gap-1 md:bottom-10">
       <MenuButton
         items={items}
         labels={labels}

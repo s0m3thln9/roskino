@@ -4,6 +4,8 @@ import { cn } from '@/shared/lib';
 import { Icon, Person, Tag } from '@/shared/ui';
 import type { Participant } from '../model/schema';
 
+const SEPARATOR_CLASS = '-mr-10 border-t-2 border-dotted border-peach/50 md:hidden';
+
 type ParticipantDetailsProps = {
   participant: Participant;
   labels: {
@@ -28,8 +30,8 @@ export function ParticipantDetails({
   const isRussian = participant.origin === 'russian';
 
   return (
-    <div className={cn('flex flex-col gap-10', className)}>
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-15">
+    <div className={cn('flex flex-col gap-6 md:gap-10', className)}>
+      <div className="flex flex-col gap-6 md:gap-10 lg:flex-row lg:gap-15">
         <div className="flex flex-col gap-10 lg:w-88 lg:shrink-0">
           <div className="flex h-[140px] items-center">
             {participant.logo ? (
@@ -84,6 +86,8 @@ export function ParticipantDetails({
           </div>
         </div>
 
+        <hr className={cn(SEPARATOR_CLASS, 'mb-2')} />
+
         <Person
           name={participant.contact.name}
           position={participant.contact.position}
@@ -93,17 +97,19 @@ export function ParticipantDetails({
         />
       </div>
 
+      <hr className={cn(SEPARATOR_CLASS, 'mt-4 mb-2')} />
+
       <p className="max-w-[920px] typo-text-6">{participant.about}</p>
 
       {isRussian && participant.achievements && (
         <section className="flex max-w-[920px] flex-col gap-2">
-          <h3 className="typo-button">{labels.achievements}</h3>
+          <h3 className="typo-text-3 md:typo-button">{labels.achievements}</h3>
           <p className="typo-text-6">{participant.achievements}</p>
         </section>
       )}
 
       <section className="flex flex-col gap-5">
-        <h3 className="typo-button">{labels.contentTypes}</h3>
+        <h3 className="typo-text-3 md:typo-button">{labels.contentTypes}</h3>
         <ul className="flex flex-wrap gap-2">
           {participant.contentTypes.map((type) => (
             <li key={type}>
@@ -114,8 +120,8 @@ export function ParticipantDetails({
       </section>
 
       {isRussian && projectsSlot && (
-        <section className="flex flex-col gap-5">
-          <h3 className="typo-button">{labels.projects}</h3>
+        <section className="flex flex-col gap-6 max-md:mt-6 md:gap-5">
+          <h3 className="typo-text-3 md:typo-button">{labels.projects}</h3>
           {projectsSlot}
         </section>
       )}

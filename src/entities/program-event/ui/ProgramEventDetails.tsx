@@ -21,9 +21,9 @@ type ProgramEventDetailsProps = {
 
 function PeopleSection({ title, people }: { title: string; people: PersonData[] }) {
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-8 md:gap-6">
       <h4 className="typo-button">{title}</h4>
-      <ul className="grid gap-x-10 gap-y-12 md:grid-cols-2">
+      <ul className="grid gap-x-10 gap-y-10 md:grid-cols-2 md:gap-y-12">
         {people.map((person) => (
           <li key={person.email ?? person.name}>
             <Person
@@ -48,7 +48,7 @@ export function ProgramEventDetails({
 }: ProgramEventDetailsProps) {
   if (event.projects.length > 0) {
     return (
-      <ul className={cn('mt-10 flex flex-col gap-2.5', className)}>
+      <ul className={cn('mt-8 flex flex-col gap-1 md:mt-10 md:gap-2.5', className)}>
         {event.projects.map((project) => (
           <li key={project.id} className="contents">
             <ProgramProjectCard
@@ -66,7 +66,7 @@ export function ProgramEventDetails({
   return (
     <div
       className={cn(
-        'flex flex-col gap-12 pt-3 pr-6 pb-12 pl-7.5 text-black md:pr-10 md:pl-10',
+        'flex flex-col gap-15 pt-8 pr-10 pb-15 pl-10 text-black md:gap-12 md:pt-3 md:pb-12',
         className,
       )}
     >

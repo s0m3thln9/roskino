@@ -53,7 +53,6 @@ export const programEventPreviewSchema = z.object({
 });
 
 export const programProjectSchema = projectPreviewSchema.extend({
-  lengthMinutes: z.number().int().positive().nullable().default(null),
   description: z.string(),
 });
 

@@ -15,11 +15,11 @@ export function ParticipantCard({ participant, href, className }: ParticipantCar
   return (
     <article
       className={cn(
-        'group relative flex aspect-square flex-col items-center justify-center gap-8 bg-grey/50 p-6 backdrop-blur-panel transition-colors hover:bg-white md:p-10',
+        'group relative flex h-80 flex-col items-center justify-start gap-8 bg-grey/50 p-10 backdrop-blur-panel transition-colors hover:bg-white md:aspect-square md:h-auto md:justify-center',
         className,
       )}
     >
-      <div className="flex h-[100px] items-center justify-center md:h-[140px]">
+      <div className="flex h-[140px] items-center justify-center">
         {participant.logo ? (
           <Image
             src={participant.logo.url}
@@ -27,10 +27,10 @@ export function ParticipantCard({ participant, href, className }: ParticipantCar
             width={participant.logo.width ?? 140}
             height={participant.logo.height ?? 140}
             unoptimized={participant.logo.url.endsWith('.svg')}
-            className="h-auto max-h-[100px] w-auto object-contain md:max-h-[140px]"
+            className="h-auto max-h-[140px] w-auto object-contain"
           />
         ) : (
-          <Icon name="company-logo-placeholder" className="size-25 md:size-35" />
+          <Icon name="company-logo-placeholder" className="size-35" />
         )}
       </div>
 

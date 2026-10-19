@@ -68,13 +68,13 @@ export function Carousel({
   };
 
   return (
-    <div className={cn('relative -mr-5 md:-mr-10', className)}>
+    <div className={cn('relative -mr-10', className)}>
       <ul
         ref={listRef}
         onScroll={updateEdges}
         onClick={clickToScroll ? handleItemClick : undefined}
         className={cn(
-          'flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pr-5 md:pr-10',
+          'flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pr-10',
           clickToScroll && !(edges.start && edges.end) && '[&>li]:cursor-pointer',
         )}
       >
@@ -87,7 +87,10 @@ export function Carousel({
             variant="glass"
             disabled={edges.start}
             onClick={() => scroll(-1)}
-            className={cn('absolute left-0 -translate-x-1/2 -translate-y-1/2', arrowsClassName)}
+            className={cn(
+              'absolute left-0 -translate-x-1/2 -translate-y-1/2 max-md:hidden',
+              arrowsClassName,
+            )}
           >
             <Icon name="arrow-back" />
           </RoundButton>
@@ -97,7 +100,7 @@ export function Carousel({
             disabled={edges.end}
             onClick={() => scroll(1)}
             className={cn(
-              'absolute right-5 translate-x-1/2 -translate-y-1/2 md:right-10',
+              'absolute right-10 translate-x-1/2 -translate-y-1/2 max-md:hidden',
               arrowsClassName,
             )}
           >

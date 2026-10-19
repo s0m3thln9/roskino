@@ -35,6 +35,7 @@ function toPreview(seed: Seed): ProjectPreview {
     ageRating: seed.ageRating,
     country: seed.country,
     year: seed.year,
+    lengthMinutes: seed.lengthMinutes,
     screening: seed.screening,
   };
 }
@@ -95,7 +96,6 @@ export function findMockProjectScreenings(ids: readonly string[]) {
     .filter((seed): seed is Seed => seed !== undefined)
     .map((seed) => ({
       ...toPreview(seed),
-      lengthMinutes: seed.lengthMinutes,
       description: seed.description,
     }));
 }

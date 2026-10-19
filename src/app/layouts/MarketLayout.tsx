@@ -21,8 +21,8 @@ export async function MarketLayout({ children, params }: MarketLayoutProps) {
   return (
     <>
       <MarketHeader />
-      <div className="flex flex-1 flex-col pt-25 lg:pt-50">
-        <div className="mx-auto w-full max-w-page page-gutter">
+      <div className="flex flex-1 flex-col pt-40 md:pt-25 lg:pt-50">
+        <div className="mx-auto w-full max-w-page page-gutter max-md:px-10">
           <Suspense fallback={<div className="h-7" />}>
             <MarketNav
               labels={{

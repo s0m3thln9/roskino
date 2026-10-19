@@ -16,11 +16,21 @@ import { ROUTES } from '@/shared/config';
 import { useRouter } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { useUrlFilters } from '@/shared/model';
-import { catalogLayout, FiltersSkeleton, Modal, Pagination, Skeleton } from '@/shared/ui';
+import {
+  catalogLayout,
+  FiltersSkeleton,
+  Modal,
+  Pagination,
+  Skeleton,
+  type FilterPanelLabels,
+} from '@/shared/ui';
 
-export type ProjectsCatalogLabels = {
-  contentType: string;
-  genre: string;
+type FilterGroupLabels = { contentType: string; genre: string };
+
+export type ProjectsCatalogLabels = FilterGroupLabels & {
+  filterPanel: FilterPanelLabels;
+  shortLegends: FilterGroupLabels;
+  chips: FilterGroupLabels;
   reset: string;
   clear: string;
   loading: string;
@@ -40,6 +50,7 @@ export type ProjectsCatalogLabels = {
   length: string;
   type: string;
   genreLabel: string;
+  productionYear: string;
   releaseInRussia: string;
   status: string;
   productionCompanies: string;
@@ -51,7 +62,7 @@ export type ProjectsCatalogLabels = {
 
 const FILTER_KEYS = ['contentType', 'genre'] as const;
 const CONTENT_CLASS = cn(catalogLayout.content, 'lg:max-w-content');
-const GRID_CLASS = 'grid gap-5 sm:grid-cols-2 lg:grid-cols-3';
+const GRID_CLASS = '-mx-10 grid gap-1 md:mx-0 md:grid-cols-2 md:gap-5 lg:grid-cols-3';
 const CARD_SKELETON_CLASS = 'aspect-[320/660]';
 const SKELETON_COUNT = 9;
 
@@ -144,6 +155,7 @@ export function ProjectsCatalog({
                 href={withQuery(ROUTES.project(item.id))}
                 contentTypeLabel={contentTypeLabels[item.contentType] ?? ''}
                 genreLabels={item.genres.map((genre) => genreLabels[genre] ?? genre)}
+                minutesLabel={labels.minutes}
               />
             </li>
           ))}

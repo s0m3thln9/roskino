@@ -12,7 +12,7 @@ type UserPanelProps = {
 
 export function UserPanel({ user, labels }: UserPanelProps) {
   return (
-    <div className="flex h-20 w-[min(25.125rem,calc(100vw-7.25rem))] min-w-0 overflow-hidden rounded-md bg-dark-grey/75 text-white backdrop-blur-glass md:w-[min(25.125rem,calc(100vw-9.125rem))]">
+    <div className="flex h-20 w-[min(25.125rem,calc(100vw-5.25rem))] min-w-0 overflow-hidden rounded-md bg-dark-grey/75 text-white backdrop-blur-glass md:w-[min(25.125rem,calc(100vw-9.125rem))]">
       <Link
         href={ROUTES.participants}
         aria-label={labels.market}
@@ -31,7 +31,7 @@ export function UserPanel({ user, labels }: UserPanelProps) {
         )}
       </Link>
       <div className="relative flex min-w-0 flex-1 flex-col justify-center gap-1 px-5">
-        <span className="typo-text-7 text-white/50">{labels.welcome}</span>
+        <span className="truncate typo-text-7 text-white/50">{labels.welcome}</span>
         <span className="truncate typo-text-5">{user.name}</span>
         <LogoutButton
           label={labels.signOut}

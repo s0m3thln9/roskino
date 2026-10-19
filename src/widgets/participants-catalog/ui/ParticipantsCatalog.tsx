@@ -15,13 +15,23 @@ import { ROUTES } from '@/shared/config';
 import { useRouter } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { useUrlFilters } from '@/shared/model';
-import { Carousel, catalogLayout, FiltersSkeleton, Modal, Pagination, Skeleton } from '@/shared/ui';
+import {
+  Carousel,
+  catalogLayout,
+  FiltersSkeleton,
+  Modal,
+  Pagination,
+  Skeleton,
+  type FilterPanelLabels,
+} from '@/shared/ui';
 import { ParticipantDetailsSkeleton } from './ParticipantDetailsSkeleton';
 
-export type CatalogLabels = {
-  origin: string;
-  contentType: string;
-  genre: string;
+type FilterGroupLabels = { origin: string; contentType: string; genre: string };
+
+export type CatalogLabels = FilterGroupLabels & {
+  filterPanel: FilterPanelLabels;
+  shortLegends: FilterGroupLabels;
+  chips: FilterGroupLabels;
   reset: string;
   clear: string;
   loading: string;
@@ -41,7 +51,7 @@ export type CatalogLabels = {
 
 const FILTER_KEYS = ['origin', 'contentType', 'genre'] as const;
 const CONTENT_CLASS = cn(catalogLayout.content, 'lg:max-w-content');
-const GRID_CLASS = 'grid gap-5 sm:grid-cols-2 lg:grid-cols-3';
+const GRID_CLASS = '-mx-10 grid gap-1 md:mx-0 md:grid-cols-2 md:gap-5 lg:grid-cols-3';
 const SKELETON_COUNT = 9;
 
 function toLabelMap(options: CatalogFilters['contentTypes']) {
@@ -55,7 +65,7 @@ export function ParticipantsCatalogSkeleton() {
       <div className={CONTENT_CLASS}>
         <div className={GRID_CLASS}>
           {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-            <Skeleton key={index} className="aspect-square" />
+            <Skeleton key={index} className="h-80 md:aspect-square md:h-auto" />
           ))}
         </div>
       </div>
@@ -113,7 +123,7 @@ export function ParticipantsCatalog({
         {listQuery.isLoading ? (
           <div className={GRID_CLASS}>
             {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-              <Skeleton key={index} className="aspect-square" />
+              <Skeleton key={index} className="h-80 md:aspect-square md:h-auto" />
             ))}
           </div>
         ) : (

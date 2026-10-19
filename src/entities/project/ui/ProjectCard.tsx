@@ -11,6 +11,7 @@ type ProjectCardProps = {
   href?: string;
   contentTypeLabel: string;
   genreLabels: string[];
+  minutesLabel: string;
   className?: string;
 };
 
@@ -19,21 +20,21 @@ export function ProjectCard({
   href,
   contentTypeLabel,
   genreLabels,
+  minutesLabel,
   className,
 }: ProjectCardProps) {
   const meta = [contentTypeLabel, ...genreLabels, project.ageRating].filter(Boolean).join(', ');
+  const duration = project.lengthMinutes ? `${project.lengthMinutes} ${minutesLabel}` : null;
 
   return (
-    <article
-      className={cn('group relative flex flex-col bg-black p-6 text-white md:p-10', className)}
-    >
+    <article className={cn('group relative flex flex-col bg-black p-10 text-white', className)}>
       <div className="relative aspect-[3/4] w-full overflow-hidden">
         {project.poster ? (
           <Image
             src={project.poster.url}
             alt={project.poster.alt || project.title}
             fill
-            sizes="(max-width: 768px) 100vw, 240px"
+            sizes="(max-width: 768px) 310px, 240px"
             className="object-cover"
           />
         ) : (
@@ -52,14 +53,18 @@ export function ProjectCard({
           </Link>
         </h3>
         <p className="typo-text-7">{meta}</p>
-        <p className="typo-text-7">
+        <p className="typo-text-7 max-md:-mt-1">
           {project.country} ({project.year})
         </p>
       </div>
 
       <div className="mt-auto flex items-end justify-between gap-4 pt-4">
         {project.screening ? (
-          <ScreeningFlag screening={project.screening} className="-mb-5 -ml-6 md:-ml-10" />
+          <ScreeningFlag
+            screening={project.screening}
+            duration={duration}
+            className="-mb-5 -ml-10 max-md:-mb-4"
+          />
         ) : (
           <span />
         )}
