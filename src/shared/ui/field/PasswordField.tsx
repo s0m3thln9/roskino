@@ -21,7 +21,7 @@ export function PasswordField({
   const [visible, setVisible] = useState(defaultVisible);
 
   return (
-    <div className={cn(fieldVariants({ error }), 'h-15', className)}>
+    <div className={cn(fieldVariants({ error }), 'h-12 md:h-15', className)}>
       <input
         type={visible ? 'text' : 'password'}
         aria-invalid={error || undefined}

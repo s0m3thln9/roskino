@@ -19,6 +19,7 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
 
   const banner = banners[active] ?? banners[0]!;
   const isExternal = banner.href.startsWith('http');
+  const getLabel = (index: number) => `${slideLabelPrefix} ${index + 1}`;
 
   const content = (
     <Image
@@ -57,8 +58,16 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
         count={banners.length}
         activeIndex={active}
         onSelect={setActive}
-        getLabel={(index) => `${slideLabelPrefix} ${index + 1}`}
-        className="absolute top-10 right-4 bottom-10 md:right-10 lg:right-[163px]"
+        getLabel={getLabel}
+        className="absolute top-10 right-10 bottom-10 max-md:hidden lg:right-[163px]"
+      />
+      <SlideIndicator
+        count={banners.length}
+        activeIndex={active}
+        onSelect={setActive}
+        getLabel={getLabel}
+        orientation="horizontal"
+        className="absolute inset-x-4 bottom-2 justify-center md:hidden"
       />
     </section>
   );

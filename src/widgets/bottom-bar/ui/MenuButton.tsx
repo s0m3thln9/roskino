@@ -50,7 +50,7 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
         aria-label={menuLabel}
         className={cn(
           barButtonClassName,
-          'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass hover:bg-dark-grey aria-expanded:bg-dark-grey',
+          'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass hover:bg-dark-grey aria-expanded:bg-dark-grey max-md:w-20',
         )}
       >
         <Icon name="menu" className="size-6" />

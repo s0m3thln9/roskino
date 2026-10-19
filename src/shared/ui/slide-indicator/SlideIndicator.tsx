@@ -18,11 +18,13 @@ export function SlideIndicator({
   orientation = 'vertical',
   className,
 }: SlideIndicatorProps) {
+  const isVertical = orientation === 'vertical';
+
   return (
     <div
       className={cn(
         'z-10 flex text-white',
-        orientation === 'vertical' ? 'flex-col items-end justify-between' : 'items-center gap-3',
+        isVertical ? 'flex-col items-end justify-between' : 'items-center gap-4',
         className,
       )}
     >
@@ -36,13 +38,21 @@ export function SlideIndicator({
             aria-label={getLabel(index)}
             aria-current={isActive ? 'true' : undefined}
             onClick={() => onSelect(index)}
-            className={cn(
-              'group flex',
-              orientation === 'vertical' ? 'w-25 justify-end py-3' : 'px-1 py-3',
-            )}
+            className={cn('group flex', isVertical ? 'w-25 justify-end py-3' : 'py-3')}
           >
-            <Icon name={base} className="group-hover:hidden" />
-            <Icon name={`${base}-hover`} className="hidden group-hover:inline-block" />
+            {isVertical ? (
+              <>
+                <Icon name={base} className="group-hover:hidden" />
+                <Icon name={`${base}-hover`} className="hidden group-hover:inline-block" />
+              </>
+            ) : (
+              <span
+                className={cn(
+                  'block h-2 rounded-full bg-current transition-[width,opacity]',
+                  isActive ? 'w-12.5' : 'w-2 group-hover:opacity-70',
+                )}
+              />
+            )}
           </button>
         );
       })}

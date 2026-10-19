@@ -15,7 +15,7 @@ export function SearchField({ onClear, clearLabel, className, value, ...props }:
   return (
     <div
       className={cn(
-        'flex h-10 w-full items-center gap-3 border-b border-white/30 text-white',
+        'flex h-10 w-full items-center gap-3 rounded-full bg-dark-grey px-4 text-white md:rounded-none md:border-b md:border-white/30 md:bg-transparent md:px-0',
         className,
       )}
     >

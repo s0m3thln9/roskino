@@ -11,8 +11,8 @@ type PersonProps = {
 
 export function Person({ name, position, email, photoUrl, className }: PersonProps) {
   return (
-    <div className={cn('flex items-start gap-5 md:gap-8', className)}>
-      <div className="relative size-16 shrink-0 overflow-hidden rounded-full bg-current md:size-20">
+    <div className={cn('flex flex-col items-start gap-5 md:flex-row md:gap-8', className)}>
+      <div className="relative size-20 shrink-0 overflow-hidden rounded-full bg-current">
         {photoUrl && <Image src={photoUrl} alt="" fill sizes="80px" className="object-cover" />}
       </div>
       <div className="flex min-w-0 flex-col gap-1">

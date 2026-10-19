@@ -16,7 +16,14 @@ export const roundButtonVariants = cva(
         false: '',
       },
     },
-    compoundVariants: [{ variant: 'ghost', active: true, className: 'bg-apricot' }],
+    compoundVariants: [
+      { variant: 'ghost', active: true, className: 'bg-apricot' },
+      {
+        variant: 'muted',
+        active: true,
+        className: 'bg-dark-grey text-white hover:bg-dark-grey active:bg-dark-grey',
+      },
+    ],
     defaultVariants: { variant: 'muted', active: false },
   },
 );

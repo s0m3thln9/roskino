@@ -55,6 +55,15 @@ export function UiKitInteractive() {
         />
       </div>
       <div className="bg-black p-4">
+        <SlideIndicator
+          count={10}
+          activeIndex={slide}
+          onSelect={setSlide}
+          getLabel={(index) => `Slide ${index + 1}`}
+          orientation="horizontal"
+        />
+      </div>
+      <div className="bg-black p-4">
         <Button onClick={() => setOpen(true)}>Open modal</Button>
       </div>
       <Modal open={open} onClose={() => setOpen(false)} closeLabel="Close">

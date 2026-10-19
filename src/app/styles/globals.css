@@ -63,8 +63,8 @@
 @utility typo-headline-1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
   text-transform: uppercase;
   hyphens: auto;
 
@@ -81,13 +81,14 @@
 
 @utility typo-headline-2 {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
   text-transform: uppercase;
   hyphens: auto;
 
   @variant md {
+    font-weight: 400;
     font-size: 3rem;
     line-height: 3.75rem;
   }
@@ -166,6 +167,12 @@
   line-height: 1.5rem;
 }
 
+@utility typo-text-8 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
 @utility typo-numbers {
   font-weight: 500;
   font-size: 1.25rem;
@@ -205,7 +212,7 @@
 }
 
 @utility page-gutter {
-  padding-inline: 1rem;
+  padding-inline: 1.25rem;
 
   @variant md {
     padding-inline: 2rem;

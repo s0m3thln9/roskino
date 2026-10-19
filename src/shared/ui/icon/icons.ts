@@ -4,6 +4,7 @@ export const ICONS = {
   arrow: [16, 16],
   search: [16, 16],
   reset: [16, 16],
+  filter: [16, 16],
   show: [24, 24],
   hide: [24, 24],
   phone: [16, 16],

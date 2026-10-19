@@ -119,6 +119,7 @@ export async function UiKitPage({ params }: UiKitPageProps) {
             <p className="typo-text-3">Text 3</p>
             <p className="typo-text-4">Text 4</p>
             <p className="typo-text-5">Text 5</p>
+            <p className="typo-text-8">Text 8 (mobile)</p>
             <p className="typo-numbers">Numbers 1234567890</p>
             <p className="typo-button">Button</p>
             <a href="#" className="typo-link-1">
@@ -201,6 +202,12 @@ export async function UiKitPage({ params }: UiKitPageProps) {
           <div className="flex flex-col gap-4 bg-white p-4">
             <RoundButton label="Reset" variant="muted">
               <Icon name="reset" />
+            </RoundButton>
+            <RoundButton label="Filters" variant="muted">
+              <Icon name="filter" />
+            </RoundButton>
+            <RoundButton label="Filters" variant="muted" active>
+              <Icon name="filter" />
             </RoundButton>
             <RoundButton label="Back" variant="muted">
               <Icon name="arrow" />

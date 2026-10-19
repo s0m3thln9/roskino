@@ -11,10 +11,10 @@ export async function Footer({ locale }: { locale: Locale }) {
   const { organization, socials, map } = settings;
 
   return (
-    <footer className="bg-black page-gutter pt-10 pb-35 text-white md:pt-25 md:pb-40">
-      <div className="mx-auto flex max-w-page flex-col gap-10">
-        <div className="flex items-start justify-between gap-6">
-          <Logo variant="roskino" className="h-6 w-[110px] md:h-7 md:w-[129px]" />
+    <footer className="bg-black page-gutter pt-24 pb-35 text-white md:pt-25 md:pb-40">
+      <div className="mx-auto flex max-w-page flex-col gap-12.5 md:gap-10">
+        <div className="flex items-center justify-between gap-6 md:items-start">
+          <Logo variant="roskino" />
           <ul className="flex items-center gap-5">
             {socials.map((social) => (
               <li key={social.type}>
@@ -33,7 +33,7 @@ export async function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <div className="flex min-w-[270px] flex-col gap-6">
+          <div className="flex min-w-[270px] flex-col gap-7.5 md:gap-6">
             <div className="flex flex-col gap-5">
               <address className="typo-text-2 not-italic">
                 {organization.addressLines.map((line) => (
@@ -55,7 +55,7 @@ export async function Footer({ locale }: { locale: Locale }) {
               <p>
                 {t('ogrn')}: {organization.ogrn}
               </p>
-              <p className="typo-text-1 text-xl">{organization.copyright}</p>
+              <p className="md:typo-text-1 md:text-xl">{organization.copyright}</p>
             </div>
           </div>
 
@@ -65,7 +65,7 @@ export async function Footer({ locale }: { locale: Locale }) {
               alt={map.image.alt}
               width={map.image.width ?? 954}
               height={map.image.height ?? 269}
-              className="h-[220px] w-full object-cover md:h-[269px]"
+              className="h-[269px] w-full object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <Icon name="pin" className="text-black" />
