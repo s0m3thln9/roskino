@@ -60,7 +60,7 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
       <nav
         hidden={!open}
         aria-label={menuLabel}
-        className="absolute right-0 bottom-full mb-2.5 w-72.5 rounded-md bg-dark-grey py-1"
+        className="absolute bottom-full mb-2.5 w-72.5 rounded-md bg-dark-grey py-1 max-md:left-0 max-md:mb-1 max-md:max-w-[calc(50vw+6rem)] md:right-0"
       >
         <ul>
           {items.map((item) => {
