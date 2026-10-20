@@ -24,6 +24,7 @@ export {
 } from './errors';
 export { apiUnauthorized, sessionTerminated } from './events';
 export {
+  adaptiveImageSchema,
   emptyParamsSchema,
   imageSchema,
   langParamsSchema,
@@ -32,11 +33,14 @@ export {
   paginatedSchema,
   paginationParamsSchema,
   personSchema,
+  videoFilesSchema,
   videoSchema,
+  type AdaptiveImageAsset,
   type ImageAsset,
   type Paginated,
   type Person,
   type VideoAsset,
+  type VideoFiles,
 } from './schemas';
 export { SNIPPETS, type SnippetName } from './snippets';
 export { API_TAGS, authRequest, baseApi, bffRequest } from './baseApi';

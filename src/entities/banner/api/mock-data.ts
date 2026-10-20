@@ -2,7 +2,12 @@ import type { Localized } from '@/shared/lib';
 import type { Banner } from '../model/schema';
 
 const images = [
-  { url: '/mocks/media/banner-1.jpg', width: 1400, height: 1022 },
+  {
+    url: '/mocks/media/banner-1.jpg',
+    width: 1400,
+    height: 1022,
+    mobile: { url: '/mocks/media/news-1.jpg', alt: '', width: 853, height: 1280 },
+  },
   { url: '/mocks/media/gallery-2.png', width: 1600, height: 900 },
   { url: '/mocks/media/news-1.jpg', width: 853, height: 1280 },
   { url: '/mocks/media/gallery-1.jpg', width: 862, height: 1280 },

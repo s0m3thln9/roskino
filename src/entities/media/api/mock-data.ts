@@ -32,12 +32,20 @@ export const mediaMock: MediaItem[] = [
       alt: 'Видеообзор кинорынка',
       width: 1600,
       height: 900,
+      mobile: { url: '/mocks/media/gallery-1.jpg', alt: '', width: 862, height: 1280 },
     },
     video: {
       url: 'https://www.w3schools.com/html/mov_bbb.mp4',
       poster: { url: '/mocks/media/gallery-2.png', alt: '', width: 1600, height: 900 },
       title: 'Видеообзор кинорынка',
       duration: '0:10',
+      sources: {
+        desktop: {
+          mp4: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          ogv: 'https://www.w3schools.com/html/mov_bbb.ogg',
+        },
+        mobile: { mp4: 'https://www.w3schools.com/html/movie.mp4' },
+      },
     },
   },
   {

@@ -1,3 +1,4 @@
+export { AdaptiveImage } from './adaptive-image';
 export { Button, buttonVariants, type ButtonVariants } from './button';
 export { Carousel } from './carousel';
 export { catalogLayout, FiltersSkeleton } from './catalog-layout';
@@ -17,3 +18,4 @@ export { RoundButton, roundButtonVariants, type RoundButtonVariants } from './ro
 export { Skeleton, SkeletonGrid } from './skeleton';
 export { SlideIndicator } from './slide-indicator';
 export { Tag } from './tag';
+export { Video } from './video';

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { imageSchema, localeSchema, videoSchema } from '@/shared/api';
+import { adaptiveImageSchema, imageSchema, localeSchema, videoSchema } from '@/shared/api';
 
 export const mediaTypeSchema = z.enum(['photo', 'video']);
 
@@ -8,14 +8,14 @@ export const mediaItemSchema = z.discriminatedUnion('type', [
     id: z.string(),
     type: z.literal('photo'),
     year: z.number().int(),
-    image: imageSchema,
+    image: adaptiveImageSchema,
     caption: z.string().optional(),
   }),
   z.object({
     id: z.string(),
     type: z.literal('video'),
     year: z.number().int(),
-    image: imageSchema,
+    image: adaptiveImageSchema,
     video: videoSchema,
     caption: z.string().optional(),
   }),

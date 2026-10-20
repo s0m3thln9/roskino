@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import {
+  adaptiveImageSchema,
   imageSchema,
   localeSchema,
   paginatedSchema,
@@ -36,7 +37,7 @@ export const newsBlockSchema = z.discriminatedUnion('type', [
 
 export const newsItemSchema = newsPreviewSchema.extend({
   blocks: z.array(newsBlockSchema),
-  photos: z.array(imageSchema).default([]),
+  photos: z.array(adaptiveImageSchema).default([]),
   videos: z.array(videoSchema).default([]),
   credits: z.array(z.string()).default([]),
 });

@@ -1,0 +1,1 @@
+export { AdaptiveImage } from './AdaptiveImage';

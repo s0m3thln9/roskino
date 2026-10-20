@@ -6,7 +6,7 @@ import type { MediaItem, MediaType } from '@/entities/media';
 import { useSearchParams } from 'next/navigation';
 import { Link, usePathname } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Icon, PlayButton, RoundButton } from '@/shared/ui';
+import { Icon, PlayButton, RoundButton, Video } from '@/shared/ui';
 
 type MediaGalleryProps = {
   title: string;
@@ -130,17 +130,12 @@ export function MediaGallery({
             >
               {item.type === 'video' ? (
                 playingId === item.id ? (
-                  <video
-                    src={item.video.url}
-                    controls
-                    autoPlay
-                    className="size-full object-cover"
-                  />
+                  <Video video={item.video} controls autoPlay className="size-full object-cover" />
                 ) : (
                   <>
                     {item.video.poster && (
                       <Image
-                        src={item.video.poster.url}
+                        src={(item.video.poster.mobile ?? item.video.poster).url}
                         alt={item.video.poster.alt}
                         fill
                         sizes="340px"
@@ -154,7 +149,7 @@ export function MediaGallery({
                 )
               ) : (
                 <Image
-                  src={item.image.url}
+                  src={(item.image.mobile ?? item.image).url}
                   alt={item.image.alt}
                   fill
                   sizes="340px"
@@ -174,9 +169,9 @@ export function MediaGallery({
             <div className="relative aspect-[1277/682] w-[88.7%] shrink-0 overflow-hidden bg-black">
               {active.type === 'video' ? (
                 playingId === active.id ? (
-                  <video
+                  <Video
                     key={active.id}
-                    src={active.video.url}
+                    video={active.video}
                     controls
                     autoPlay
                     className="size-full object-cover"

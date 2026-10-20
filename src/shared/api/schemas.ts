@@ -15,11 +15,31 @@ export const imageSchema = z.object({
 
 export type ImageAsset = z.infer<typeof imageSchema>;
 
+export const adaptiveImageSchema = imageSchema.extend({
+  mobile: imageSchema.optional(),
+});
+
+export type AdaptiveImageAsset = z.infer<typeof adaptiveImageSchema>;
+
+export const videoFilesSchema = z.object({
+  mp4: z.string().min(1).optional(),
+  webm: z.string().min(1).optional(),
+  ogv: z.string().min(1).optional(),
+});
+
+export type VideoFiles = z.infer<typeof videoFilesSchema>;
+
 export const videoSchema = z.object({
   url: z.string().min(1),
-  poster: imageSchema.nullable().default(null),
+  poster: adaptiveImageSchema.nullable().default(null),
   title: z.string().optional(),
   duration: z.string().optional(),
+  sources: z
+    .object({
+      desktop: videoFilesSchema.optional(),
+      mobile: videoFilesSchema.optional(),
+    })
+    .optional(),
 });
 
 export type VideoAsset = z.infer<typeof videoSchema>;

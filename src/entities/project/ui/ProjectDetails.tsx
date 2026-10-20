@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Carousel, Icon, InfoRow, Person, PlayButton } from '@/shared/ui';
+import { Carousel, Icon, InfoRow, Person, PlayButton, Video } from '@/shared/ui';
 import type { Project } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
 
@@ -93,7 +93,7 @@ export function ProjectDetails({
           </div>
           <div className="relative -mx-10 aspect-video overflow-hidden bg-black md:mx-0 md:w-full">
             {showTrailer ? (
-              <video src={project.trailer.url} controls autoPlay className="size-full" />
+              <Video video={project.trailer} controls autoPlay className="size-full" />
             ) : (
               <>
                 {project.trailer.poster && (

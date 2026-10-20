@@ -1,11 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 import type { Banner } from '@/entities/banner';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { SlideIndicator } from '@/shared/ui';
+import { AdaptiveImage, SlideIndicator } from '@/shared/ui';
 
 type BannerCarouselProps = {
   banners: Banner[];
@@ -22,12 +21,14 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
   const getLabel = (index: number) => `${slideLabelPrefix} ${index + 1}`;
 
   const content = (
-    <Image
-      src={banner.image.url}
+    <AdaptiveImage
+      key={banner.id}
+      image={banner.image}
       alt={banner.image.alt || banner.title}
       fill
       sizes="100vw"
-      priority={active === 0}
+      loading={active === 0 ? 'eager' : undefined}
+      fetchPriority={active === 0 ? 'high' : undefined}
       className="object-cover"
     />
   );

@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import type { ImageAsset, VideoAsset } from '@/shared/api';
+import type { AdaptiveImageAsset, VideoAsset } from '@/shared/api';
 import { cn } from '@/shared/lib';
-import { Icon, RoundButton } from '@/shared/ui';
+import { Icon, RoundButton, Video } from '@/shared/ui';
 
 type ArticleGalleryProps = {
-  photos: ImageAsset[];
+  photos: AdaptiveImageAsset[];
   videos: VideoAsset[];
   labels: { photo: string; video: string; previous: string; next: string };
   className?: string;
@@ -64,7 +64,13 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
                 key={`${item.url}-${itemIndex}`}
                 className="relative aspect-[354/200] w-[calc(100vw-2.25rem)] shrink-0 snap-start overflow-hidden bg-black"
               >
-                <Image src={item.url} alt={item.alt} fill sizes="340px" className="object-cover" />
+                <Image
+                  src={(item.mobile ?? item).url}
+                  alt={item.alt}
+                  fill
+                  sizes="340px"
+                  className="object-cover"
+                />
               </li>
             ))
           : videos.map((item, itemIndex) => (
@@ -72,9 +78,9 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
                 key={`${item.url}-${itemIndex}`}
                 className="relative aspect-[354/200] w-[calc(100vw-2.25rem)] shrink-0 snap-start overflow-hidden bg-black"
               >
-                <video
-                  src={item.url}
-                  poster={item.poster?.url}
+                <Video
+                  video={item}
+                  poster={(item.poster?.mobile ?? item.poster)?.url}
                   controls
                   className="size-full object-cover"
                 />
@@ -94,7 +100,13 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
             />
           )}
           {tab === 'video' && video && (
-            <video src={video.url} poster={video.poster?.url} controls className="size-full" />
+            <Video
+              key={index}
+              video={video}
+              poster={video.poster?.url}
+              controls
+              className="size-full"
+            />
           )}
         </div>
 
