@@ -4,6 +4,7 @@ import { AUTH_HEADER_NAME, formatAuthHeader } from '../config';
 import type { SnippetContract, SnippetParams, SnippetResponse } from '../contract';
 import { ApiError } from '../errors';
 import { normalizeHttpError, serverHttp } from './http.server';
+import { formatPath, lenientParse } from './lenientParse.server';
 import { getMockHandler, mockDelay } from './mocks.server';
 import { clearSession, getSessionToken } from './session.server';
 
@@ -68,7 +69,15 @@ export async function executeSnippet(
     ? await requestMock(contract, parsedParams.data, token)
     : await requestBackend(contract, parsedParams.data, token);
 
-  const parsedResponse = contract.response.safeParse(raw);
+  const { result: parsedResponse, issues } = lenientParse(contract.response, raw);
+  if (parsedResponse.success && issues.length > 0) {
+    const details = issues.map(
+      (issue) => `\n  ${formatPath(issue.path) || '(root)'}: ${issue.message}`,
+    );
+    console.warn(
+      `[api] "${contract.name}" response does not match the contract, invalid parts were dropped:${details.join('')}`,
+    );
+  }
   if (!parsedResponse.success) {
     throw new ApiError(
       502,

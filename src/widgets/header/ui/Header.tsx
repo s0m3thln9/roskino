@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { getSiteSettings } from '@/entities/site-settings/server';
 import { LocaleSwitch } from '@/features/switch-locale';
+import { withFallback } from '@/shared/api/server';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
@@ -14,10 +15,11 @@ type HeaderProps = {
 
 export async function Header({ tone = 'light', showLogo = true }: HeaderProps) {
   const locale = await getLocale();
-  const [{ accreditation }, t] = await Promise.all([
-    getSiteSettings(locale),
+  const [settings, t] = await Promise.all([
+    withFallback(getSiteSettings(locale), null),
     getTranslations('Navigation'),
   ]);
+  const accreditation = settings?.accreditation;
 
   return (
     <header

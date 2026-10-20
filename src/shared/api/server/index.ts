@@ -11,3 +11,4 @@ export {
   type MockHandlerEntry,
 } from './mocks.server';
 export { clearSession, getSessionToken, hasSession, setSessionToken } from './session.server';
+export { withFallback } from './withFallback.server';
