@@ -21,7 +21,10 @@
     "menuButton": "Menu"
   },
   "NotFound": {
-    "title": "Page not found",
+    "title": "Error",
+    "description": "Congratulations, you have found a splice. Our support team is already working on restoring the service.",
+    "hint": "You can reload the page or go back to the home page",
+    "reload": "Reload page",
     "backHome": "Back to home"
   },
   "Edition2026": {

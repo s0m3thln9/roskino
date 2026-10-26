@@ -11,9 +11,14 @@ import { Logo } from '@/shared/ui';
 type HeaderProps = {
   tone?: 'light' | 'dark';
   showLogo?: boolean;
+  showAccreditation?: boolean;
 };
 
-export async function Header({ tone = 'light', showLogo = true }: HeaderProps) {
+export async function Header({
+  tone = 'light',
+  showLogo = true,
+  showAccreditation = true,
+}: HeaderProps) {
   const locale = await getLocale();
   const [settings, t] = await Promise.all([
     withFallback(getSiteSettings(locale), null),
@@ -43,7 +48,7 @@ export async function Header({ tone = 'light', showLogo = true }: HeaderProps) {
         <span />
       )}
       <div className="flex items-center gap-4 md:gap-2.5">
-        {accreditation && (
+        {showAccreditation && accreditation && (
           <a
             href={accreditation.url}
             target="_blank"
