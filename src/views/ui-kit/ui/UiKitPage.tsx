@@ -198,6 +198,10 @@ export async function UiKitPage({ params }: UiKitPageProps) {
             <Button variant="primary">Text</Button>
             <Button variant="secondary">Text</Button>
           </div>
+          <div className="flex flex-col gap-4 bg-white p-4">
+            <Button variant="dark">Text</Button>
+            <Button variant="dark-outline">Text</Button>
+          </div>
           <PlayButton label="Play" />
           <div className="flex flex-col gap-4 bg-white p-4">
             <RoundButton label="Reset" variant="muted">
