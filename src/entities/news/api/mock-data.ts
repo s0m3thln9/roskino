@@ -150,7 +150,7 @@ const body: Localized<NewsItem['blocks']> = {
   ru: [
     {
       type: 'paragraph',
-      text: 'Российский международный кинорынок — ключевая площадка для презентации российского аудиовизуального контента международным дистрибьюторам. В этом году программа расширена: к показам и презентациям добавились индивидуальные встречи с байерами.',
+      text: '**Российский международный кинорынок** — ключевая площадка для презентации российского аудиовизуального контента международным дистрибьюторам. В этом году программа расширена: к показам и презентациям добавились индивидуальные встречи с байерами.',
     },
     {
       type: 'quote',
@@ -195,7 +195,7 @@ const body: Localized<NewsItem['blocks']> = {
   en: [
     {
       type: 'paragraph',
-      text: 'The Russian International Content Market is the key platform for presenting Russian audiovisual content to international distributors. This year the program is extended: one-to-one meetings with buyers are added to screenings and presentations.',
+      text: 'The **Russian International Content Market** is the key platform for presenting Russian audiovisual content to international distributors. This year the program is extended: one-to-one meetings with buyers are added to screenings and presentations.',
     },
     {
       type: 'quote',

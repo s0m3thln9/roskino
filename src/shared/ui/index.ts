@@ -14,6 +14,7 @@ export { Modal } from './modal';
 export { Pagination, type PaginationLabels } from './pagination';
 export { Person } from './person';
 export { PlayButton } from './play-button';
+export { RichText } from './rich-text';
 export { RoundButton, roundButtonVariants, type RoundButtonVariants } from './round-button';
 export { Skeleton, SkeletonGrid } from './skeleton';
 export { SlideIndicator } from './slide-indicator';

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { cn } from '@/shared/lib';
+import { RichText } from '@/shared/ui';
 import type { NewsItem } from '../model/schema';
 import { QuoteSlider } from './QuoteSlider';
 
@@ -78,7 +79,7 @@ export function NewsArticle({
                     news.blocks[index - 1]?.type === 'paragraph' && '-mt-7',
                   )}
                 >
-                  {block.text}
+                  <RichText text={block.text} />
                 </p>
               );
             }
@@ -87,7 +88,7 @@ export function NewsArticle({
                 <section key={index} className="flex flex-col gap-6">
                   {block.title && <SubHeading className="typo-text-5">{block.title}</SubHeading>}
                   <p className="-mx-10 bg-gradient-news px-10 pt-5 pb-6 typo-text-5 md:mx-0 md:perforated-edge">
-                    {block.text}
+                    <RichText text={block.text} />
                   </p>
                 </section>
               );
