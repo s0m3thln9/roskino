@@ -8,7 +8,7 @@
     "news": "Новости",
     "partners": "Партнеры",
     "archive": "Архив",
-    "market": "My market",
+    "market": "Мой кабинет",
     "participants": "Participants",
     "projects": "Projects",
     "program": "Program",
@@ -18,7 +18,7 @@
     "ogrn": "ОГРН",
     "welcome": "Добро пожаловать,",
     "signOut": "Выйти",
-    "menuButton": "Menu"
+    "menuButton": "Меню"
   },
   "NotFound": {
     "title": "Страница не найдена",
