@@ -23,6 +23,7 @@ export async function BottomBar() {
         labels={labels}
         buttonLabel={t('menuButton')}
         menuLabel={t('menu')}
+        compact={Boolean(user)}
       />
       {user ? (
         <UserPanel

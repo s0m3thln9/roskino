@@ -12,9 +12,16 @@ type MenuButtonProps = {
   labels: Record<string, string>;
   buttonLabel: string;
   menuLabel: string;
+  compact?: boolean;
 };
 
-export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButtonProps) {
+export function MenuButton({
+  items,
+  labels,
+  buttonLabel,
+  menuLabel,
+  compact = false,
+}: MenuButtonProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,7 +57,8 @@ export function MenuButton({ items, labels, buttonLabel, menuLabel }: MenuButton
         aria-label={menuLabel}
         className={cn(
           barButtonClassName,
-          'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass hover:bg-dark-grey aria-expanded:bg-dark-grey max-md:w-20',
+          'bg-[rgba(48,51,70,0.25)] backdrop-blur-glass hover:bg-dark-grey aria-expanded:bg-dark-grey',
+          compact && 'max-md:w-20',
         )}
       >
         <Icon name="menu" className="size-6" />
