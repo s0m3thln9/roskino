@@ -1,16 +1,17 @@
 import Image from 'next/image';
 import type { User } from '@/entities/session';
-import { LogoutButton } from '@/features/logout';
+import { LogoutButton, type LogoutLabels } from '@/features/logout';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { Icon } from '@/shared/ui';
 
 type UserPanelProps = {
   user: User;
-  labels: { welcome: string; signOut: string; market: string };
+  labels: { welcome: string; market: string };
+  logoutLabels: LogoutLabels;
 };
 
-export function UserPanel({ user, labels }: UserPanelProps) {
+export function UserPanel({ user, labels, logoutLabels }: UserPanelProps) {
   return (
     <div className="flex h-20 w-[min(25.125rem,calc(100vw-5.25rem))] min-w-0 overflow-hidden rounded-md bg-dark-grey/75 text-white backdrop-blur-glass md:w-[min(25.125rem,calc(100vw-9.125rem))]">
       <Link
@@ -34,7 +35,7 @@ export function UserPanel({ user, labels }: UserPanelProps) {
         <span className="truncate typo-text-7 text-white/50">{labels.welcome}</span>
         <span className="truncate typo-text-5">{user.name}</span>
         <LogoutButton
-          label={labels.signOut}
+          labels={logoutLabels}
           className="absolute inset-0 flex items-center justify-center bg-dark-grey typo-text-5 opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100"
         />
       </div>

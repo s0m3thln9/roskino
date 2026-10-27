@@ -1,2 +1,2 @@
 export { logoutApi, useLogoutMutation } from './api/logoutApi';
-export { LogoutButton } from './ui/LogoutButton';
+export { LogoutButton, type LogoutLabels } from './ui/LogoutButton';

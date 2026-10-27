@@ -146,5 +146,11 @@
     "recoverError": "Could not send the request. Please, try again later",
     "sentTitle": "Thank you for contacting us.",
     "sentText": "Within next 15 minutes you will receive an email with detailed sign-in instructions"
+  },
+  "Logout": {
+    "message": "You are signing out from My Market space",
+    "cancel": "Cancel",
+    "confirm": "Continue",
+    "close": "Close"
   }
 }

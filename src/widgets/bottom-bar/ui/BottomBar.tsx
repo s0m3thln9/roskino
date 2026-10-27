@@ -8,9 +8,10 @@ import { MenuButton } from './MenuButton';
 import { UserPanel } from './UserPanel';
 
 export async function BottomBar() {
-  const [user, t] = await Promise.all([
+  const [user, t, tLogout] = await Promise.all([
     getCurrentUser().catch(() => null),
     getTranslations('Navigation'),
+    getTranslations('Logout'),
   ]);
   const items = NAV_ITEMS.filter((item) => item.key !== 'archive' || featureFlags.archive);
   const labels = Object.fromEntries(items.map((item) => [item.key, t(item.key)]));
@@ -26,7 +27,14 @@ export async function BottomBar() {
       {user ? (
         <UserPanel
           user={user}
-          labels={{ welcome: t('welcome'), signOut: t('signOut'), market: t('market') }}
+          labels={{ welcome: t('welcome'), market: t('market') }}
+          logoutLabels={{
+            signOut: t('signOut'),
+            message: tLogout('message'),
+            cancel: tLogout('cancel'),
+            confirm: tLogout('confirm'),
+            close: tLogout('close'),
+          }}
         />
       ) : (
         <MarketLoginButton label={t('market')} authLabels={await getAuthLabels()} />
