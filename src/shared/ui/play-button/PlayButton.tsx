@@ -12,11 +12,8 @@ export function PlayButton({ label, className, type = 'button', ...props }: Play
       className={cn('group relative inline-flex size-20 text-white', className)}
       {...props}
     >
-      <Icon name="play" className="group-hover:hidden group-active:hidden" />
-      <Icon
-        name="play-hover"
-        className="hidden group-hover:inline-block group-active:inline-block"
-      />
+      <Icon name="play" className="group-hover:hidden" />
+      <Icon name="play-hover" className="hidden group-hover:inline-block" />
     </button>
   );
 }

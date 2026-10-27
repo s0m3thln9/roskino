@@ -83,11 +83,8 @@ function FilterSheet({
             aria-label={closeLabel}
             className="group inline-flex"
           >
-            <Icon name="close" className="size-8 group-hover:hidden group-active:hidden" />
-            <Icon
-              name="close-hover"
-              className="hidden size-8 group-hover:inline-block group-active:inline-block"
-            />
+            <Icon name="close" className="size-8 group-hover:hidden" />
+            <Icon name="close-hover" className="hidden size-8 group-hover:inline-block" />
           </button>
         </div>
         <div className="flex-1 overflow-y-auto overscroll-contain px-10 pt-8 pb-16">

@@ -53,7 +53,7 @@ export async function Header({
             href={accreditation.url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-10 items-center rounded-pill bg-[rgba(48,51,70,0.25)] px-5 typo-text-7 whitespace-nowrap text-white backdrop-blur-glass transition-colors hover:bg-dark-grey active:bg-dark-grey"
+            className="inline-flex h-10 items-center rounded-pill bg-[rgba(48,51,70,0.25)] px-5 typo-text-7 whitespace-nowrap text-white backdrop-blur-glass transition-colors hover:bg-dark-grey"
           >
             <span className="md:hidden">{accreditation.shortLabel ?? accreditation.label}</span>
             <span className="max-md:hidden">{accreditation.label}</span>

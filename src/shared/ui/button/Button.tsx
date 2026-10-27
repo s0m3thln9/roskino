@@ -7,12 +7,10 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-white text-black hover:bg-peach active:bg-peach',
-        secondary:
-          'border-2 border-white text-white hover:border-peach hover:text-peach active:border-peach active:text-peach',
-        dark: 'bg-black text-white hover:bg-peach active:bg-peach',
-        'dark-outline':
-          'border-2 border-black text-black hover:border-peach hover:text-peach active:border-peach active:text-peach',
+        primary: 'bg-white text-black hover:bg-peach',
+        secondary: 'border-2 border-white text-white hover:border-peach hover:text-peach',
+        dark: 'bg-black text-white hover:bg-peach',
+        'dark-outline': 'border-2 border-black text-black hover:border-peach hover:text-peach',
       },
       width: {
         auto: '',

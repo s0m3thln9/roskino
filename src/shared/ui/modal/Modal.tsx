@@ -100,10 +100,10 @@ export function Modal({
             aria-label={closeLabel}
             className={cn('group absolute z-10 inline-flex', styles.close)}
           >
-            <Icon name="close" className="size-8 group-hover:hidden group-active:hidden" />
+            <Icon name="close" className="size-8 group-hover:hidden" />
             <Icon
               name="close-hover"
-              className="hidden size-8 scale-[1.026] group-hover:inline-block group-active:inline-block"
+              className="hidden size-8 scale-[1.026] group-hover:inline-block"
             />
           </button>
           {children}

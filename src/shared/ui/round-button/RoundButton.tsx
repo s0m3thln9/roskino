@@ -7,9 +7,9 @@ export const roundButtonVariants = cva(
   {
     variants: {
       variant: {
-        muted: 'bg-grey/50 text-black hover:bg-apricot active:bg-apricot',
-        glass: 'bg-white/75 text-black backdrop-blur-glass hover:bg-white active:bg-white',
-        ghost: 'bg-transparent text-black hover:bg-apricot active:bg-apricot',
+        muted: 'bg-grey/50 text-black hover:bg-apricot',
+        glass: 'bg-white/75 text-black backdrop-blur-glass hover:bg-white',
+        ghost: 'bg-transparent text-black hover:bg-apricot',
       },
       active: {
         true: '',
@@ -21,7 +21,7 @@ export const roundButtonVariants = cva(
       {
         variant: 'muted',
         active: true,
-        className: 'bg-dark-grey text-white hover:bg-dark-grey active:bg-dark-grey',
+        className: 'bg-dark-grey text-white hover:bg-dark-grey',
       },
     ],
     defaultVariants: { variant: 'muted', active: false },
