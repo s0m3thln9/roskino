@@ -25,6 +25,7 @@ type FilterPanelProps = {
   chips: FilterChip[];
   canReset: boolean;
   onReset: () => void;
+  onChipClear: (key: string) => void;
   labels: FilterPanelLabels;
   children: ReactNode;
   className?: string;
@@ -108,6 +109,7 @@ export function FilterPanel({
   chips,
   canReset,
   onReset,
+  onChipClear,
   labels,
   children,
   className,
@@ -144,8 +146,9 @@ export function FilterPanel({
           <button
             key={chip.key}
             type="button"
-            aria-haspopup="dialog"
-            onClick={() => setOpen(true)}
+            aria-pressed={chip.active}
+            aria-haspopup={chip.active ? undefined : 'dialog'}
+            onClick={() => (chip.active ? onChipClear(chip.key) : setOpen(true))}
             className={cn(
               'inline-flex h-10 shrink-0 items-center gap-4 rounded-pill px-6 typo-text-7 whitespace-nowrap transition-colors',
               chip.active

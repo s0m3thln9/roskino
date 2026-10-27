@@ -42,6 +42,7 @@ export function ProjectsFilter({ filters, labels, className }: ProjectsFilterPro
       ]}
       canReset={!url.isEmpty}
       onReset={url.reset}
+      onChipClear={(key) => url.setSingle(key, null)}
       labels={labels.filterPanel}
       className={className}
     >

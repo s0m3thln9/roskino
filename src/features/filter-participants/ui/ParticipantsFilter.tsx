@@ -45,6 +45,7 @@ export function ParticipantsFilter({ filters, labels, className }: ParticipantsF
       ]}
       canReset={!url.isEmpty}
       onReset={url.reset}
+      onChipClear={(key) => url.setSingle(key, null)}
       labels={labels.filterPanel}
       className={className}
     >

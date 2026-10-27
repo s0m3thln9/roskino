@@ -144,6 +144,7 @@ export function ProgramBoard({ labels, className }: { labels: ProgramLabels; cla
           })}
           canReset={!url.isEmpty}
           onReset={url.reset}
+          onChipClear={(key) => url.setSingle(key, null)}
           labels={labels.filterPanel}
           className={catalogLayout.filters}
         >
