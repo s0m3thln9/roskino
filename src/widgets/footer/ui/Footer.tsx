@@ -14,8 +14,8 @@ export async function Footer({ locale }: { locale: Locale }) {
   ]);
 
   return (
-    <footer className="bg-black page-gutter pt-24 pb-35 text-white md:pt-25 md:pb-40">
-      <div className="mx-auto flex max-w-page flex-col gap-12.5 md:gap-10">
+    <footer className="bg-black page-gutter pt-24 pb-15 text-white md:pt-25">
+      <div className="mx-auto flex max-w-page flex-col gap-12.5 md:gap-10 lg:gap-17.5">
         <div className="flex items-center justify-between gap-6 md:items-start">
           <Logo variant="roskino" />
           <ul className="flex items-center gap-5">
@@ -62,7 +62,9 @@ export async function Footer({ locale }: { locale: Locale }) {
                 <p>
                   {t('ogrn')}: {settings.organization.ogrn}
                 </p>
-                <p className="md:typo-text-1 md:text-xl">{settings.organization.copyright}</p>
+                <p className="whitespace-pre-line md:typo-text-1 md:text-xl md:leading-6">
+                  {settings.organization.copyright.replace(/(\d{4}[,.])\s+/, '$1\n')}
+                </p>
               </div>
             </div>
 
