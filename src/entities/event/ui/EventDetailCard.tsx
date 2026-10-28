@@ -18,10 +18,12 @@ export function EventDetailCard({
     >
       <Icon name={detail.icon} className="h-12 w-24" />
       <div className="flex flex-col typo-title">
-        <span className="typo-text-3 font-normal opacity-50 max-md:leading-8">{detail.label}</span>
-        {detail.lines.map((line) => (
+        <span className="font-sans typo-text-3 font-normal opacity-50 max-md:leading-8">
+          {detail.label}
+        </span>
+        {detail.lines.map((line, index) => (
           <span key={line} className="uppercase">
-            {line}
+            {index < detail.lines.length - 1 ? `${line};` : line}
           </span>
         ))}
       </div>
