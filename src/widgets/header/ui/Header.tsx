@@ -34,7 +34,7 @@ export async function Header({
       )}
     >
       {showLogo ? (
-        <Link href={ROUTES.about} aria-label={t('home')} className="max-md:ml-2.5">
+        <Link href={ROUTES.about} aria-label={t('home')}>
           <Logo
             variant={locale === 'en' ? 'ricm-en' : 'ricm'}
             className={
