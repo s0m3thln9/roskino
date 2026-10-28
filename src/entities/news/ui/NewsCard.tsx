@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { ROUTES } from '@/shared/config';
-import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { Icon } from '@/shared/ui';
 import type { NewsPreview } from '../model/schema';
+import { NewsCardText } from './NewsCardText';
 
 type NewsCardProps = {
   news: NewsPreview;
@@ -33,20 +33,13 @@ export function NewsCard({ news, dateLabel, className }: NewsCardProps) {
       )}
 
       <div className="flex flex-1 flex-col gap-4 px-10 py-6 md:p-7.5">
-        <h3 className="typo-title uppercase">
-          <Link href={ROUTES.newsItem(news.slug)} className="before:absolute before:inset-0">
-            {news.title}
-          </Link>
-        </h3>
-        <p
-          className={cn(
-            'flex-1 typo-text-3 text-black',
-            news.cover ? 'line-clamp-5' : 'line-clamp-10',
-          )}
-        >
-          {news.excerpt}
-        </p>
-        <div className="flex items-center justify-between gap-4">
+        <NewsCardText
+          href={ROUTES.newsItem(news.slug)}
+          title={news.title}
+          excerpt={news.excerpt}
+          totalLines={news.cover ? 8 : 13}
+        />
+        <div className="mt-auto flex items-center justify-between gap-4">
           <span className="typo-text-3 text-black/50">{dateLabel}</span>
           <Icon
             name="open"
