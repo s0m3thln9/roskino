@@ -1,5 +1,6 @@
 import 'server-only';
 import { serverEnv } from '@/shared/config/server';
+import { bindShortWordsDeep } from '@/shared/lib';
 import { AUTH_HEADER_NAME, formatAuthHeader } from '../config';
 import type { SnippetContract, SnippetParams, SnippetResponse } from '../contract';
 import { ApiError } from '../errors';
@@ -86,7 +87,7 @@ export async function executeSnippet(
     );
   }
 
-  return parsedResponse.data;
+  return bindShortWordsDeep(parsedResponse.data);
 }
 
 export async function callSnippet<C extends SnippetContract>(
