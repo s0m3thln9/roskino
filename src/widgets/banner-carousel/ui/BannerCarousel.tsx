@@ -57,7 +57,7 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
         activeIndex={active}
         onSelect={setActive}
         getLabel={getLabel}
-        className="absolute top-10 right-10 bottom-10 max-md:hidden lg:right-[163px]"
+        className="absolute right-10 bottom-10 max-md:hidden lg:right-[163px]"
       />
       <SlideIndicator
         count={banners.length}
