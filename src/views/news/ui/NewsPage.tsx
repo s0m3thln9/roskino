@@ -39,6 +39,8 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
   const featured =
     page === 1 && list.items[0] ? await getNewsItem(locale, list.items[0].slug) : null;
   const formatDate = (iso: string) => format.dateTime(new Date(iso), 'short');
+  const cards = featured ? list.items.slice(1) : list.items;
+  const showList = cards.length > 0 || list.totalPages > 1;
 
   return (
     <>
@@ -69,38 +71,44 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           </div>
         )}
 
-        <section className="bg-black pt-10 pb-25 md:py-25 lg:pb-35">
-          <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter max-md:px-10">
-            <div className="mx-auto flex w-full max-w-text flex-col gap-10">
-              <div className="flex items-center justify-between gap-4 text-white">
-                <h2 className="uppercase max-md:typo-headline-1 md:typo-title">{t('listTitle')}</h2>
-                <Icon name="search" aria-hidden />
+        {showList && (
+          <section className="bg-black pt-10 pb-25 md:py-25 lg:pb-35">
+            <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter max-md:px-10">
+              <div className="mx-auto flex w-full max-w-text flex-col gap-10">
+                <div className="flex items-center justify-between gap-4 text-white">
+                  <h2 className="uppercase max-md:typo-headline-1 md:typo-title">
+                    {t('listTitle')}
+                  </h2>
+                  <Icon name="search" aria-hidden />
+                </div>
+
+                <ul className="-mx-10 grid gap-3 md:mx-0 md:grid-cols-2 md:gap-5">
+                  {cards.map((item) => (
+                    <li key={item.id} className="contents">
+                      <NewsCard news={item} dateLabel={formatDate(item.publishedAt)} />
+                    </li>
+                  ))}
+                </ul>
+
+                <Pagination
+                  page={list.page}
+                  totalPages={list.totalPages}
+                  buildHref={(value) =>
+                    value === 1 ? ROUTES.news : `${ROUTES.news}?page=${value}`
+                  }
+                  labels={{
+                    nav: t('paginationNav'),
+                    previous: t('previous'),
+                    next: t('next'),
+                    page: (value) => `${t('page')} ${value}`,
+                  }}
+                  tone="dark"
+                  className="self-center"
+                />
               </div>
-
-              <ul className="-mx-10 grid gap-3 md:mx-0 md:grid-cols-2 md:gap-5">
-                {list.items.map((item) => (
-                  <li key={item.id} className="contents">
-                    <NewsCard news={item} dateLabel={formatDate(item.publishedAt)} />
-                  </li>
-                ))}
-              </ul>
-
-              <Pagination
-                page={list.page}
-                totalPages={list.totalPages}
-                buildHref={(value) => (value === 1 ? ROUTES.news : `${ROUTES.news}?page=${value}`)}
-                labels={{
-                  nav: t('paginationNav'),
-                  previous: t('previous'),
-                  next: t('next'),
-                  page: (value) => `${t('page')} ${value}`,
-                }}
-                tone="dark"
-                className="self-center"
-              />
             </div>
-          </div>
-        </section>
+          </section>
+        )}
       </main>
     </>
   );
