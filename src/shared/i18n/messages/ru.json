@@ -57,6 +57,7 @@
     "filterContentType": "Filter by project type:",
     "filterGenre": "Filter by content type:",
     "reset": "Reset filters",
+    "resetButton": "Reset",
     "clear": "Clear",
     "loading": "Loading…",
     "empty": "Nothing found",

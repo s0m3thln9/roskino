@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { cn, lockDocumentScroll } from '@/shared/lib';
 import { Button } from '../button';
 import { Icon } from '../icon';
@@ -18,6 +18,7 @@ export type FilterPanelLabels = {
   open: string;
   apply: string;
   reset: string;
+  resetButton: string;
   close: string;
 };
 
@@ -35,19 +36,43 @@ function FilterSheet({
   open,
   title,
   applyLabel,
+  resetLabel,
   closeLabel,
+  canReset,
+  onReset,
   onClose,
   children,
 }: {
   open: boolean;
   title: string;
   applyLabel: string;
+  resetLabel: string;
   closeLabel: string;
+  canReset: boolean;
+  onReset: () => void;
   onClose: () => void;
   children: ReactNode;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [hasMore, setHasMore] = useState(false);
   const titleId = useId();
+
+  const updateHasMore = useCallback(() => {
+    const element = scrollRef.current;
+    if (!element) return;
+    setHasMore(element.scrollHeight - element.scrollTop - element.clientHeight > 1);
+  }, []);
+
+  useEffect(() => {
+    const element = scrollRef.current;
+    if (!open || !element) return;
+    updateHasMore();
+    const observer = new ResizeObserver(updateHasMore);
+    observer.observe(element);
+    if (element.firstElementChild) observer.observe(element.firstElementChild);
+    return () => observer.disconnect();
+  }, [open, updateHasMore]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -74,29 +99,39 @@ function FilterSheet({
       className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-black/60 p-0 backdrop:bg-transparent"
     >
       <div className="absolute inset-x-0 top-25 bottom-0 flex flex-col overflow-hidden rounded-t-pill bg-apricot text-black">
-        <div className="flex items-start justify-between gap-6 px-10 pt-10">
+        <div className="flex items-start justify-between gap-6 px-10 pt-10 pb-7">
           <h2 id={titleId} className="typo-title uppercase">
             {title}
           </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label={closeLabel}
-            className="group inline-flex"
-          >
-            <Icon name="close" className="size-8 group-hover:hidden" />
-            <Icon name="close-hover" className="hidden size-8 group-hover:inline-block" />
+          <button type="button" onClick={onClose} aria-label={closeLabel} className="inline-flex">
+            <Icon name="close" className="size-8" />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto overscroll-contain px-10 pt-8 pb-16">
+        <div
+          ref={scrollRef}
+          onScroll={updateHasMore}
+          className="flex-1 overflow-y-auto overscroll-contain px-10 pb-5"
+        >
           {open && children}
         </div>
-        <div className="relative px-5 py-5">
+        <div className="relative grid grid-cols-2 gap-1 px-5 py-5">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-full h-16 bg-linear-to-b from-peach/0 to-peach/20"
+            className={cn(
+              'pointer-events-none absolute inset-x-0 bottom-full h-16 bg-linear-to-b from-peach/0 to-peach/20 transition-opacity',
+              !hasMore && 'opacity-0',
+            )}
           />
-          <Button width="full" onClick={onClose}>
+          <Button
+            variant="dark-outline"
+            width="full"
+            disabled={!canReset}
+            onClick={onReset}
+            className="border-dark-grey text-dark-grey"
+          >
+            {resetLabel}
+          </Button>
+          <Button variant="dark" width="full" onClick={onClose} className="bg-dark-grey">
             {applyLabel}
           </Button>
         </div>
@@ -166,7 +201,10 @@ export function FilterPanel({
         open={open}
         title={labels.title}
         applyLabel={labels.apply}
+        resetLabel={labels.resetButton}
         closeLabel={labels.close}
+        canReset={canReset}
+        onReset={onReset}
         onClose={() => setOpen(false)}
       >
         <div className="flex flex-col gap-10">{children}</div>

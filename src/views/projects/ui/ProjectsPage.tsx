@@ -27,6 +27,7 @@ async function buildLabels(): Promise<ProjectsCatalogLabels> {
       open: t('filterOpen'),
       apply: t('apply'),
       reset: t('reset'),
+      resetButton: t('resetButton'),
       close: t('close'),
     },
     shortLegends: { contentType: t('legendContentType'), genre: t('legendGenre') },

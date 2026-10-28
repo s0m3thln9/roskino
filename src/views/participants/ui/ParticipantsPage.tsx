@@ -28,6 +28,7 @@ export async function buildCatalogLabels(): Promise<CatalogLabels> {
       open: t('filterOpen'),
       apply: t('apply'),
       reset: t('reset'),
+      resetButton: t('resetButton'),
       close: t('close'),
     },
     shortLegends: {

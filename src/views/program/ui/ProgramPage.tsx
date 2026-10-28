@@ -24,6 +24,7 @@ async function buildLabels(): Promise<ProgramLabels> {
       open: t('filterOpen'),
       apply: t('apply'),
       reset: t('reset'),
+      resetButton: t('resetButton'),
       close: t('close'),
     },
     shortLegends: {
