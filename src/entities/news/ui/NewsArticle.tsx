@@ -86,7 +86,9 @@ export function NewsArticle({
             if (block.type === 'highlight') {
               return (
                 <section key={index} className="flex flex-col gap-6 text-dark-grey">
-                  {block.title && <SubHeading className="typo-text-5">{block.title}</SubHeading>}
+                  {block.title && (
+                    <SubHeading className="typo-subtitle text-black">{block.title}</SubHeading>
+                  )}
                   <p className="-mx-10 bg-gradient-news px-10 pt-5 pb-6 typo-text-5 md:mx-0 md:perforated-edge">
                     <RichText text={block.text} />
                   </p>
