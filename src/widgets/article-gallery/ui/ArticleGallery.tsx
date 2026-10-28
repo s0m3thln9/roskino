@@ -30,7 +30,7 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
 
   return (
     <section className={cn('flex flex-col gap-6 md:gap-4', className)}>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5 md:gap-8">
         {photos.length > 0 && (
           <button
             type="button"

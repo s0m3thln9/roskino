@@ -68,7 +68,7 @@ export function MediaGallery({
       <h2 className="mb-10 px-5 typo-headline-2 md:mb-0 md:px-0">{title}</h2>
 
       <div className="flex flex-wrap items-center justify-between gap-6 max-md:px-5">
-        <ul className="flex items-center gap-8">
+        <ul className="flex items-center gap-5 md:gap-8">
           {(['photo', 'video'] as const).map((value) => (
             <li key={value}>
               <button
