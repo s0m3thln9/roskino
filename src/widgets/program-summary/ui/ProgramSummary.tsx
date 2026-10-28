@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   PROGRAM_CATEGORY_BORDER,
   type ProgramSummary as ProgramSummaryData,
@@ -31,11 +31,38 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
   );
   const formatTime = (iso: string) => timeFormatter.format(new Date(iso));
   const [activeDay, setActiveDay] = useState(0);
+  const roomsRef = useRef<HTMLDivElement>(null);
+  const [scrollEdges, setScrollEdges] = useState({ start: true, end: true });
+
+  const updateScrollEdges = useCallback(() => {
+    const element = roomsRef.current;
+    if (!element) return;
+    setScrollEdges({
+      start: element.scrollLeft <= 1,
+      end: element.scrollLeft + element.clientWidth >= element.scrollWidth - 1,
+    });
+  }, []);
+
+  useEffect(() => {
+    const element = roomsRef.current;
+    if (!element) return;
+    element.scrollTo({ left: 0 });
+    updateScrollEdges();
+    const observer = new ResizeObserver(updateScrollEdges);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [activeDay, updateScrollEdges]);
+
+  const scrollRooms = (direction: 1 | -1) => {
+    const element = roomsRef.current;
+    const [first, second] = Array.from(element?.children ?? []) as HTMLElement[];
+    if (!element || !first) return;
+    const step = second ? second.offsetLeft - first.offsetLeft : first.offsetWidth;
+    element.scrollBy({ left: direction * step, behavior: 'smooth' });
+  };
 
   const day = summary.days[activeDay] ?? summary.days[0];
   if (!day) return null;
-
-  const lastDay = summary.days.length - 1;
 
   return (
     <section
@@ -50,7 +77,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
         className="pointer-events-none absolute top-[93px] right-[calc((100%-100vw)/2)] hidden lg:block"
       />
 
-      <h2 className="relative mb-7.5 typo-headline-2 md:mb-0">{title}</h2>
+      <h2 className="relative mb-7.5 typo-headline-2 md:mb-5">{title}</h2>
 
       <div className="relative flex items-center justify-between gap-6">
         <ul className="flex items-center gap-8">
@@ -74,23 +101,27 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
           <RoundButton
             label={labels.previous}
             variant="glass"
-            disabled={activeDay === 0}
-            onClick={() => setActiveDay((index) => Math.max(0, index - 1))}
+            disabled={scrollEdges.start}
+            onClick={() => scrollRooms(-1)}
           >
             <Icon name="arrow-back" />
           </RoundButton>
           <RoundButton
             label={labels.next}
             variant="glass"
-            disabled={activeDay === lastDay}
-            onClick={() => setActiveDay((index) => Math.min(lastDay, index + 1))}
+            disabled={scrollEdges.end}
+            onClick={() => scrollRooms(1)}
           >
             <Icon name="arrow-forward" />
           </RoundButton>
         </div>
       </div>
 
-      <div className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-[8.375rem]">
+      <div
+        ref={roomsRef}
+        onScroll={updateScrollEdges}
+        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-[8.375rem]"
+      >
         {day.rooms.map((room, roomIndex) => (
           <div
             key={room.name}
