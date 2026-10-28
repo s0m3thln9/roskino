@@ -115,7 +115,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
 
               <EventAbout about={event.about} className="px-5 md:px-0" />
 
-              <div className="grid gap-25 md:grid-cols-3 md:gap-5">
+              <div className="grid gap-25 md:grid-cols-3 md:gap-x-5 md:gap-y-0">
                 {event.highlights.map((highlight) => (
                   <EventHighlightCard key={highlight.caption} highlight={highlight} />
                 ))}
