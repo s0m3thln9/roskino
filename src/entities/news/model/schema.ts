@@ -9,6 +9,7 @@ import {
 } from '@/shared/api';
 
 export const NEWS_PAGE_SIZE = 6;
+export const NEWS_LOCALE = 'ru' as const;
 
 export const newsPreviewSchema = z.object({
   id: z.string(),

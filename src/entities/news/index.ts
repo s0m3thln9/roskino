@@ -1,5 +1,6 @@
 export { getNewsContract, getNewsItemContract } from './api/contracts';
 export {
+  NEWS_LOCALE,
   NEWS_PAGE_SIZE,
   newsItemSchema,
   newsPreviewSchema,

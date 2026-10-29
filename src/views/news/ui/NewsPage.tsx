@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { NewsArticle, NewsCard } from '@/entities/news';
+import { NEWS_LOCALE, NewsArticle, NewsCard } from '@/entities/news';
 import { getNews, getNewsItem } from '@/entities/news/server';
 import { ROUTES } from '@/shared/config';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
@@ -28,7 +28,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
   const page = Math.max(1, Number(pageParam) || 1);
 
   const [list, t, nav, format] = await Promise.all([
-    getNews(locale, page),
+    getNews(NEWS_LOCALE, page),
     getTranslations('News'),
     getTranslations('Navigation'),
     getFormatter({ locale }),
@@ -37,7 +37,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
   if (page > list.totalPages) notFound();
 
   const featured =
-    page === 1 && list.items[0] ? await getNewsItem(locale, list.items[0].slug) : null;
+    page === 1 && list.items[0] ? await getNewsItem(NEWS_LOCALE, list.items[0].slug) : null;
   const formatDate = (iso: string) => format.dateTime(new Date(iso), 'short');
   const cards = featured ? list.items.slice(1) : list.items;
   const showList = cards.length > 0 || list.totalPages > 1;

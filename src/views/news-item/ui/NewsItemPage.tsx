@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { NewsArticle } from '@/entities/news';
+import { NEWS_LOCALE, NewsArticle } from '@/entities/news';
 import { getNewsItem } from '@/entities/news/server';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
@@ -16,8 +16,7 @@ type NewsItemPageProps = {
 
 export async function generateNewsItemMetadata({ params }: NewsItemPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const locale = await resolveLocale(params);
-  const news = await getNewsItem(locale, slug);
+  const news = await getNewsItem(NEWS_LOCALE, slug);
   if (!news) return {};
   return {
     title: news.title,
@@ -35,7 +34,7 @@ export async function generateNewsItemMetadata({ params }: NewsItemPageProps): P
 export async function NewsItemPage({ params }: NewsItemPageProps) {
   const { slug } = await params;
   const locale = await resolveLocale(params);
-  const news = await getNewsItem(locale, slug);
+  const news = await getNewsItem(NEWS_LOCALE, slug);
   if (!news) notFound();
 
   const [t, format] = await Promise.all([getTranslations('News'), getFormatter({ locale })]);
