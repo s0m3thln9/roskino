@@ -120,12 +120,12 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
       <div
         ref={roomsRef}
         onScroll={updateScrollEdges}
-        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-[8.375rem]"
+        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:gap-25"
       >
         {day.rooms.map((room, roomIndex) => (
           <div
             key={room.name}
-            className="flex w-full shrink-0 snap-start flex-col gap-4 md:w-80 md:gap-6"
+            className="flex w-full shrink-0 snap-start flex-col gap-4 md:w-[354px] md:gap-6"
           >
             <div className="flex flex-col">
               <div aria-hidden className="flex gap-2 md:hidden">
