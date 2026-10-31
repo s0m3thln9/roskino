@@ -56,6 +56,7 @@ function FilterSheet({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [hasMore, setHasMore] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
 
   const updateHasMore = useCallback(() => {
@@ -81,7 +82,10 @@ function FilterSheet({
       if (dialog.open) dialog.close();
       return;
     }
-    if (!dialog.open) dialog.showModal();
+    if (!dialog.open) {
+      dialog.showModal();
+      panelRef.current?.focus({ preventScroll: true });
+    }
     return lockDocumentScroll();
   }, [open]);
 
@@ -98,7 +102,11 @@ function FilterSheet({
       }}
       className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-black/60 p-0 backdrop:bg-transparent"
     >
-      <div className="absolute inset-x-0 top-25 bottom-0 flex flex-col overflow-hidden rounded-t-pill bg-apricot text-black">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        className="absolute inset-x-0 top-25 bottom-0 flex flex-col overflow-hidden rounded-t-pill bg-apricot text-black outline-none"
+      >
         <div className="flex items-start justify-between gap-6 px-10 pt-10 pb-7">
           <h2 id={titleId} className="typo-title uppercase">
             {title}
