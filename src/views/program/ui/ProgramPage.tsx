@@ -64,7 +64,7 @@ export async function ProgramPage({ params }: ProgramPageProps) {
   ]);
 
   return (
-    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20 max-md:px-10 max-md:pb-25">
+    <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-24 max-md:px-10 md:pb-[146px]">
       <h1 className="mt-8 mb-17 typo-headline-1 md:mt-5 md:mb-12 lg:mb-25 lg:pl-[14.125rem]">
         <Hyphenated text={nav('program')} />
       </h1>
