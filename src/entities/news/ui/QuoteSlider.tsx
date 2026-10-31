@@ -78,7 +78,7 @@ export function QuoteSlider({ quotes, labels }: QuoteSliderProps) {
                 aria-hidden={multiple && quoteIndex !== index ? true : undefined}
                 className="flex w-full shrink-0 snap-start flex-col gap-5"
               >
-                <blockquote className="text-xl leading-10 font-semibold text-red italic md:text-2xl md:text-black">
+                <blockquote className="text-2xl leading-10 font-semibold text-red italic md:text-black">
                   {quote.text}
                 </blockquote>
                 <div className="flex flex-col">
