@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { cn } from '@/shared/lib';
-import { Icon, Person, Tag } from '@/shared/ui';
+import { Hyphenated, Icon, Person, Tag } from '@/shared/ui';
 import type { Participant } from '../model/schema';
 
 const SEPARATOR_CLASS = '-mr-10 border-t-2 border-dotted border-peach/50 md:hidden';
@@ -50,7 +50,9 @@ export function ParticipantDetails({
 
           <div className="flex flex-col gap-4">
             <div className="flex flex-col">
-              <h2 className="typo-title uppercase">{participant.name}</h2>
+              <h2 className="typo-title uppercase">
+                <Hyphenated text={participant.name} />
+              </h2>
               {participant.website && (
                 <a
                   href={participant.website}

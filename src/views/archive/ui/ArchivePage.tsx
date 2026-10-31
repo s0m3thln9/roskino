@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { getArchive } from '@/entities/media/server';
 import { featureFlags } from '@/shared/config/server';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
+import { Hyphenated } from '@/shared/ui';
 import { Header } from '@/widgets/header';
 
 type ArchivePageProps = {
@@ -29,7 +30,9 @@ export async function ArchivePage({ params }: ArchivePageProps) {
       <Header tone="dark" />
       <main className="flex-1 bg-grey pt-30 pb-20 md:pt-40 md:pb-30">
         <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter md:gap-15">
-          <h1 className="typo-headline-2">{t('archive')}</h1>
+          <h1 className="typo-headline-2">
+            <Hyphenated text={t('archive')} />
+          </h1>
 
           <ul className="flex flex-col gap-1">
             {editions.map((edition) => (
@@ -49,7 +52,9 @@ export async function ArchivePage({ params }: ArchivePageProps) {
                   </div>
                 )}
                 <div className="flex min-w-0 flex-1 flex-col gap-4">
-                  <h2 className="typo-title uppercase">{edition.title}</h2>
+                  <h2 className="typo-title uppercase">
+                    <Hyphenated text={edition.title} />
+                  </h2>
                   <p className="typo-text-3 text-black/50">{edition.dates}</p>
                   <p className="typo-text-4">{edition.summary}</p>
                 </div>

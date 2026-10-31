@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
+import { Hyphenated } from '@/shared/ui';
 import type { ProjectPreview } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
 
@@ -38,7 +39,7 @@ export function ProjectPosterCard({
       <div className="flex flex-col gap-1">
         <h4 className="typo-title">
           <Link href={ROUTES.project(project.id)} className="before:absolute before:inset-0">
-            {project.title}
+            <Hyphenated text={project.title} />
           </Link>
         </h4>
         <p className="typo-text-7">{meta}</p>

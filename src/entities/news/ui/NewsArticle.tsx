@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { cn } from '@/shared/lib';
-import { RichText } from '@/shared/ui';
+import { Hyphenated, RichText } from '@/shared/ui';
 import type { NewsItem } from '../model/schema';
 import { QuoteSlider } from './QuoteSlider';
 
@@ -66,7 +66,9 @@ export function NewsArticle({
           </div>
         )}
 
-        <Heading className="typo-headline-1 lg:col-start-2">{news.title}</Heading>
+        <Heading className="typo-headline-1 lg:col-start-2">
+          <Hyphenated text={news.title} />
+        </Heading>
 
         <div className="flex flex-col gap-15 md:mt-5 lg:col-start-2">
           {news.blocks.map((block, index) => {

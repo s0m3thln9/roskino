@@ -6,7 +6,7 @@ import type { MediaItem, MediaType } from '@/entities/media';
 import { useSearchParams } from 'next/navigation';
 import { Link, usePathname } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Icon, PlayButton, RoundButton, Video } from '@/shared/ui';
+import { Hyphenated, Icon, PlayButton, RoundButton, Video } from '@/shared/ui';
 
 type MediaGalleryProps = {
   title: string;
@@ -65,7 +65,9 @@ export function MediaGallery({
 
   return (
     <section className={cn('flex flex-col gap-5 text-white md:gap-10', className)}>
-      <h2 className="mb-10 px-5 typo-headline-2 max-md:text-[2.25rem] md:mb-0 md:px-0">{title}</h2>
+      <h2 className="mb-10 px-5 typo-headline-2 max-md:text-[2.25rem] md:mb-0 md:px-0">
+        <Hyphenated text={title} />
+      </h2>
 
       <div className="flex flex-wrap items-center justify-between gap-6 max-md:px-5">
         <ul className="flex items-center gap-5 md:gap-8">

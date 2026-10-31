@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Icon } from '@/shared/ui';
+import { Hyphenated, Icon } from '@/shared/ui';
 import type { ProjectPreview } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
 
@@ -49,7 +49,7 @@ export function ProjectCard({
             scroll={false}
             className="before:absolute before:inset-0"
           >
-            {project.title}
+            <Hyphenated text={project.title} />
           </Link>
         </h3>
         <p className="typo-text-7">{meta}</p>

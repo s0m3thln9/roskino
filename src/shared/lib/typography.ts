@@ -14,6 +14,27 @@ const MACHINE_KEYS = new Set([
   'email',
 ]);
 
+const SOFT_HYPHEN = String.fromCharCode(0xad);
+const LETTER = '[а-яё]';
+const VOWEL = '[аеёиоуыэюя]';
+const CONSONANT = '[бвгджзклмнпрстфхцчшщ]';
+const SIGN = '[йъь]';
+const SYLLABLE_BREAKS = [
+  `(${SIGN})(${LETTER}${LETTER})`,
+  `(${VOWEL})(${VOWEL}${LETTER})`,
+  `(${VOWEL}${CONSONANT})(${CONSONANT}${VOWEL})`,
+  `(${CONSONANT}${VOWEL})(${CONSONANT}${VOWEL})`,
+  `(${VOWEL}${CONSONANT})(${CONSONANT}${CONSONANT}${VOWEL})`,
+  `(${VOWEL}${CONSONANT}${CONSONANT})(${CONSONANT}${CONSONANT}${VOWEL})`,
+].map((pattern) => new RegExp(pattern, 'giu'));
+
+export function insertSoftHyphens(word: string): string {
+  return SYLLABLE_BREAKS.reduce(
+    (result, pattern) => result.replace(pattern, `$1${SOFT_HYPHEN}$2`),
+    word,
+  );
+}
+
 export function bindShortWords(text: string): string {
   return text.replace(SHORT_WORD, `$1${NBSP}`).replace(DASH, `${NBSP}$1`);
 }

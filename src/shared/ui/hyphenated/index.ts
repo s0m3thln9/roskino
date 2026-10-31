@@ -1,0 +1,1 @@
+export { Hyphenated } from './Hyphenated';

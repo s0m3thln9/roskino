@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Carousel, Icon, InfoRow, Person, PlayButton, Video } from '@/shared/ui';
+import { Carousel, Hyphenated, Icon, InfoRow, Person, PlayButton, Video } from '@/shared/ui';
 import type { Project } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
 
@@ -62,7 +62,9 @@ export function ProjectDetails({
 
   return (
     <div className={cn('flex flex-col gap-10 text-white', className)}>
-      <h2 className="mt-12 typo-headline-1 max-md:order-1 md:mt-10 md:pr-14">{project.title}</h2>
+      <h2 className="mt-12 typo-headline-1 max-md:order-1 md:mt-10 md:pr-14">
+        <Hyphenated text={project.title} />
+      </h2>
 
       <div className="max-md:order-1 max-md:contents md:flex md:flex-row md:items-start md:justify-between md:gap-6">
         <Person

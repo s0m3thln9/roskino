@@ -5,7 +5,7 @@ import { NEWS_LOCALE, NewsArticle, NewsCard } from '@/entities/news';
 import { getNews, getNewsItem } from '@/entities/news/server';
 import { ROUTES } from '@/shared/config';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
-import { Icon, Pagination } from '@/shared/ui';
+import { Hyphenated, Icon, Pagination } from '@/shared/ui';
 import { ArticleGallery } from '@/widgets/article-gallery';
 import { Header } from '@/widgets/header';
 
@@ -67,7 +67,9 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           />
         ) : (
           <div className="mx-auto w-full max-w-page page-gutter pt-30">
-            <h1 className="typo-headline-1">{nav('news')}</h1>
+            <h1 className="typo-headline-1">
+              <Hyphenated text={nav('news')} />
+            </h1>
           </div>
         )}
 

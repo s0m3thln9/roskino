@@ -8,7 +8,7 @@ import {
   type ProgramSummary as ProgramSummaryData,
 } from '@/entities/program-event';
 import { cn } from '@/shared/lib';
-import { buttonVariants, Icon, RoundButton } from '@/shared/ui';
+import { buttonVariants, Hyphenated, Icon, RoundButton } from '@/shared/ui';
 
 type ProgramSummaryProps = {
   summary: ProgramSummaryData;
@@ -95,7 +95,9 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
         className="pointer-events-none absolute top-[93px] right-[calc((100%-100vw)/2)] hidden lg:block"
       />
 
-      <h2 className="relative mb-7.5 typo-headline-2 md:mb-5">{title}</h2>
+      <h2 className="relative mb-7.5 typo-headline-2 md:mb-5">
+        <Hyphenated text={title} />
+      </h2>
 
       <div className="relative flex items-center justify-between gap-6">
         <ul className="flex items-center gap-8">

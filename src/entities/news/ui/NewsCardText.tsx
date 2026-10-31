@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Link } from '@/shared/i18n';
+import { Hyphenated } from '@/shared/ui';
 
 const DEFAULT_TITLE_LINES = 3;
 
@@ -40,7 +41,7 @@ export function NewsCardText({ href, title, excerpt, totalLines }: NewsCardTextP
         style={{ '--title-lines': totalLines } as CSSProperties}
       >
         <Link href={href} className="before:absolute before:inset-0">
-          {title}
+          <Hyphenated text={title} />
         </Link>
       </h3>
       <p

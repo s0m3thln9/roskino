@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
+import { Hyphenated } from '@/shared/ui';
 import {
   ProjectsCatalog,
   ProjectsCatalogSkeleton,
@@ -73,7 +74,7 @@ export async function ProjectsPage({ params }: ProjectsPageProps) {
   return (
     <main className="mx-auto w-full max-w-page flex-1 page-gutter pb-20 max-md:px-10 max-md:pb-25">
       <h1 className="mt-8 mb-17 typo-headline-1 md:mt-5 md:mb-12 lg:mb-25 lg:pl-[14.125rem]">
-        {nav('projects')}
+        <Hyphenated text={nav('projects')} />
       </h1>
       <Suspense fallback={<ProjectsCatalogSkeleton />}>
         <ProjectsCatalog labels={labels} selectedId={id} />

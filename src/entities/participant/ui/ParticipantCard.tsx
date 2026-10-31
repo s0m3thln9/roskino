@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
-import { Icon } from '@/shared/ui';
+import { Hyphenated, Icon } from '@/shared/ui';
 import type { ParticipantPreview } from '../model/schema';
 
 type ParticipantCardProps = {
@@ -41,7 +41,7 @@ export function ParticipantCard({ participant, href, className }: ParticipantCar
             scroll={false}
             className="before:absolute before:inset-0"
           >
-            {participant.name}
+            <Hyphenated text={participant.name} />
           </Link>
         </h3>
         {participant.websiteLabel && (

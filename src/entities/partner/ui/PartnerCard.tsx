@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { cn } from '@/shared/lib';
-import { Icon } from '@/shared/ui';
+import { Hyphenated, Icon } from '@/shared/ui';
 import type { Partner } from '../model/schema';
 
 export function PartnerCard({ partner, className }: { partner: Partner; className?: string }) {
@@ -28,7 +28,9 @@ export function PartnerCard({ partner, className }: { partner: Partner; classNam
 
       <div className="flex min-w-0 flex-1 flex-col gap-10 text-black md:gap-7.5">
         <div className="flex flex-col gap-3 md:gap-2">
-          <h3 className="max-w-[32rem] typo-title uppercase">{partner.name}</h3>
+          <h3 className="max-w-[32rem] typo-title uppercase">
+            <Hyphenated text={partner.name} />
+          </h3>
           <a
             href={partner.website}
             target="_blank"
