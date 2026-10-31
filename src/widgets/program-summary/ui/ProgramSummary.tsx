@@ -140,7 +140,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
       <div
         ref={roomsRef}
         onScroll={updateScrollEdges}
-        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:grid md:auto-cols-[354px] md:gap-x-25 md:gap-y-7.5"
+        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:grid md:max-w-[808px] md:auto-cols-[354px] md:gap-x-25 md:gap-y-7.5"
       >
         {day.rooms.map((room, roomIndex) => {
           const seen = new Map<string, number>();
