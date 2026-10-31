@@ -65,7 +65,7 @@ export function MediaGallery({
 
   return (
     <section className={cn('flex flex-col gap-5 text-white md:gap-10', className)}>
-      <h2 className="mb-10 px-5 typo-headline-2 md:mb-0 md:px-0">{title}</h2>
+      <h2 className="mb-10 px-5 typo-headline-2 max-md:text-[2.25rem] md:mb-0 md:px-0">{title}</h2>
 
       <div className="flex flex-wrap items-center justify-between gap-6 max-md:px-5">
         <ul className="flex items-center gap-5 md:gap-8">
@@ -77,7 +77,7 @@ export function MediaGallery({
                 aria-pressed={type === value}
                 className={cn(
                   'typo-text-3 transition-opacity md:typo-title md:uppercase',
-                  type === value ? 'text-red' : 'opacity-50 hover:opacity-80',
+                  type === value ? 'text-red max-md:font-medium' : 'opacity-50 hover:opacity-80',
                 )}
               >
                 {labels[value]}

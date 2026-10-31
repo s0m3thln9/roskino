@@ -37,7 +37,7 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
             onClick={() => switchTab('photo')}
             className={cn(
               'typo-text-3 transition-opacity',
-              tab === 'photo' ? 'text-red' : 'opacity-50',
+              tab === 'photo' ? 'text-red max-md:font-medium' : 'opacity-50',
             )}
           >
             {labels.photo}
@@ -49,7 +49,7 @@ export function ArticleGallery({ photos, videos, labels, className }: ArticleGal
             onClick={() => switchTab('video')}
             className={cn(
               'typo-text-3 transition-opacity',
-              tab === 'video' ? 'text-red' : 'opacity-50',
+              tab === 'video' ? 'text-red max-md:font-medium' : 'opacity-50',
             )}
           >
             {labels.video}
