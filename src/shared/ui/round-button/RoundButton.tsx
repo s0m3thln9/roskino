@@ -40,6 +40,7 @@ export function RoundButton({
   className,
   type = 'button',
   children,
+  onMouseDown,
   ...props
 }: RoundButtonProps) {
   return (
@@ -48,6 +49,10 @@ export function RoundButton({
       aria-label={label}
       title={label}
       className={cn(roundButtonVariants({ variant, active }), className)}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        onMouseDown?.(event);
+      }}
       {...props}
     >
       {children}
