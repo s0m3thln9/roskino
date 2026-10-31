@@ -31,7 +31,7 @@ export async function PartnersPage({ params }: PartnersPageProps) {
               key={group.type}
               className="mx-auto flex w-full max-w-wide flex-col gap-15 md:gap-10 lg:gap-25"
             >
-              <h2 className="typo-headline-2 md:max-w-190">
+              <h2 className="typo-headline-2 md:max-w-190 md:font-medium">
                 <Hyphenated text={group.title} />
               </h2>
               <div className="-mx-10 flex flex-col gap-1 md:mx-0">
