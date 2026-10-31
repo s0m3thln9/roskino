@@ -3,8 +3,8 @@ import type { PartnerGroup } from '../model/schema';
 
 const logos = {
   minkult: { url: '/mocks/partners/minkult.svg', alt: '', width: 207, height: 171 },
-  fondKino: { url: '/mocks/partners/fond-kino.png', alt: '', width: 1253, height: 473 },
-  gazprom: { url: '/mocks/partners/gazprom-media.png', alt: '', width: 4096, height: 1333 },
+  fondKino: { url: '/mocks/partners/fond-kino.png', alt: '', width: 207, height: 78 },
+  gazprom: { url: '/mocks/partners/gazprom-media.png', alt: '', width: 207, height: 67 },
   nmg: { url: '/mocks/partners/nmg.svg', alt: '', width: 207, height: 131 },
 };
 

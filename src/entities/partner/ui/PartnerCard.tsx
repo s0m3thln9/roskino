@@ -19,7 +19,7 @@ export function PartnerCard({ partner, className }: { partner: Partner; classNam
             width={partner.logo.width ?? 150}
             height={partner.logo.height ?? 150}
             unoptimized={partner.logo.url.endsWith('.svg')}
-            className="h-auto max-h-65 w-full object-contain md:max-h-[220px] md:max-w-[257px]"
+            className="h-auto max-h-65 max-w-full object-contain md:max-h-[220px]"
           />
         ) : (
           <Icon name="company-logo-placeholder" className="size-[150px] text-black" />
