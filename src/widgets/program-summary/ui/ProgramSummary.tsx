@@ -11,8 +11,6 @@ import { cn } from '@/shared/lib';
 import { buttonVariants, Hyphenated, Icon, RoundButton } from '@/shared/ui';
 
 const SCHEDULE_GAP_MS = 30 * 60 * 1000;
-const HATCHED_BACKGROUND =
-  'bg-[repeating-linear-gradient(-45deg,transparent_0_6px,rgba(255,255,255,0.25)_6px_7px)]';
 
 type ProgramSummaryProps = {
   summary: ProgramSummaryData;
@@ -202,7 +200,10 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                       <div
                         aria-hidden
                         style={{ gridColumn: roomIndex + 1, gridRow: slot * 2 + 2 }}
-                        className={cn('h-22', HATCHED_BACKGROUND, slot === 0 && 'md:mt-6')}
+                        className={cn(
+                          'h-22 bg-[url(/images/schedule-gap.svg)]',
+                          slot === 0 && 'md:mt-6',
+                        )}
                       />
                     )}
                     <div
