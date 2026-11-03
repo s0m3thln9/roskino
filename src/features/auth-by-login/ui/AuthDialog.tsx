@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useId, useState } from 'react';
 import { cn } from '@/shared/lib';
-import { Modal } from '@/shared/ui';
+import { Button, Modal } from '@/shared/ui';
 import type { AuthLabels } from '../model/labels';
 import { LoginForm } from './LoginForm';
 import { RecoverAccessForm } from './RecoverAccessForm';
@@ -75,22 +75,28 @@ export function AuthDialog({ open, labels, onClose, onAuthenticated }: AuthDialo
       )}
 
       {step.type === 'welcome' && (
-        <div className="flex flex-col items-center pt-8 text-center md:py-7.5">
+        <div className="flex flex-col items-center pt-8 text-center md:pt-7.5">
           <SuccessBadge />
           <p className="mt-12 typo-text-3 md:mt-10">{labels.welcomeBack}</p>
           <p id={titleId} className="mt-1 typo-title uppercase">
             {step.name}
           </p>
+          <Button width="full" onClick={handleClose} className="mt-12">
+            {labels.letsGo}
+          </Button>
         </div>
       )}
 
       {step.type === 'sent' && (
-        <div className="flex flex-col items-center pt-8 text-center md:py-7.5">
+        <div className="flex flex-col items-center pt-8 text-center md:pt-7.5">
           <SuccessBadge />
           <p id={titleId} className="mt-12 typo-text-3 md:mt-10">
             {labels.sentTitle}
           </p>
           <p className="mt-2.5 max-w-80 text-base md:text-sm">{labels.sentText}</p>
+          <Button width="full" onClick={handleClose} className="mt-12">
+            {labels.ok}
+          </Button>
         </div>
       )}
     </Modal>

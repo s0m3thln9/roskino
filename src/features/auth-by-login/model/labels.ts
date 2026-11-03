@@ -25,6 +25,8 @@ export type AuthLabels = {
   recoverError: string;
   sentTitle: string;
   sentText: string;
+  letsGo: string;
+  ok: string;
 };
 
 export const AUTH_LABEL_KEYS = [
@@ -54,4 +56,6 @@ export const AUTH_LABEL_KEYS = [
   'recoverError',
   'sentTitle',
   'sentText',
+  'letsGo',
+  'ok',
 ] as const satisfies readonly (keyof AuthLabels)[];
