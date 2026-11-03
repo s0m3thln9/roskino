@@ -68,40 +68,14 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
   const day = summary.days[activeDay] ?? summary.days[0];
   if (!day) return null;
 
-  const slotCounts = new Map<string, number>();
-  day.rooms.forEach((room) => {
-    const seen = new Map<string, number>();
-    room.events.forEach((event) => {
-      const count = (seen.get(event.startsAt) ?? 0) + 1;
-      seen.set(event.startsAt, count);
-      slotCounts.set(event.startsAt, Math.max(slotCounts.get(event.startsAt) ?? 0, count));
-    });
-  });
-  const slotIndexes = new Map<string, number>();
-  [...slotCounts.keys()].sort().forEach((startsAt) => {
-    for (let index = 0; index < (slotCounts.get(startsAt) ?? 0); index += 1) {
-      slotIndexes.set(`${startsAt}#${index}`, slotIndexes.size);
-    }
-  });
-
   const dayStart = Math.min(
     ...day.rooms.flatMap((room) => room.events.map((event) => Date.parse(event.startsAt))),
   );
-  const roomItems = day.rooms.map((room) => {
-    const seen = new Map<string, number>();
-    return room.events.map((event, index) => {
-      const occurrence = seen.get(event.startsAt) ?? 0;
-      seen.set(event.startsAt, occurrence + 1);
+  const roomItems = day.rooms.map((room) =>
+    room.events.map((event, index) => {
       const previousEnd = index === 0 ? dayStart : Date.parse(room.events[index - 1]!.endsAt);
-      return {
-        event,
-        slot: slotIndexes.get(`${event.startsAt}#${occurrence}`) ?? 0,
-        hasGap: Date.parse(event.startsAt) - previousEnd > SCHEDULE_GAP_MS,
-      };
-    });
-  });
-  const gapSlots = new Set(
-    roomItems.flatMap((items) => items.filter((item) => item.hasGap).map((item) => item.slot)),
+      return { event, hasGap: Date.parse(event.startsAt) - previousEnd > SCHEDULE_GAP_MS };
+    }),
   );
 
   return (
@@ -162,19 +136,15 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
       <div
         ref={roomsRef}
         onScroll={updateScrollEdges}
-        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:grid md:max-w-[808px] md:auto-cols-[354px] md:gap-x-25 md:gap-y-0"
+        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:max-w-[808px] md:gap-25"
       >
         {day.rooms.map((room, roomIndex) => {
           return (
             <div
               key={room.name}
-              className="flex w-full shrink-0 snap-start flex-col gap-4 md:contents"
+              className="flex w-full shrink-0 snap-start flex-col gap-4 md:w-[354px] md:gap-6"
             >
-              <div
-                data-room-header
-                style={{ gridColumn: roomIndex + 1, gridRow: 1 }}
-                className="flex flex-col md:snap-start"
-              >
+              <div data-room-header className="flex flex-col">
                 <div aria-hidden className="flex gap-2 md:hidden">
                   {day.rooms.map((item, index) => (
                     <span
@@ -190,29 +160,16 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                   {room.name}
                 </h3>
               </div>
-              <ul className="flex flex-col md:contents">
-                {roomItems[roomIndex]!.map(({ event, slot, hasGap }, index) => (
+              <ul className="flex flex-col">
+                {roomItems[roomIndex]!.map(({ event, hasGap }, index) => (
                   <li
                     key={event.id}
-                    className={cn('flex flex-col md:contents', index > 0 && !hasGap && 'pt-7.5')}
+                    className={cn('flex flex-col', index > 0 && !hasGap && 'pt-7.5')}
                   >
                     {hasGap && (
-                      <div
-                        aria-hidden
-                        style={{ gridColumn: roomIndex + 1, gridRow: slot * 2 + 2 }}
-                        className={cn(
-                          'h-22 bg-[url(/images/schedule-gap.svg)]',
-                          slot === 0 && 'md:mt-6',
-                        )}
-                      />
+                      <div aria-hidden className="h-22 bg-[url(/images/schedule-gap.svg)]" />
                     )}
-                    <div
-                      style={{ gridColumn: roomIndex + 1, gridRow: slot * 2 + 3 }}
-                      className={cn(
-                        'flex flex-col gap-6 md:gap-7.5',
-                        !gapSlots.has(slot) && (slot === 0 ? 'md:pt-6' : 'md:pt-7.5'),
-                      )}
-                    >
+                    <div className="flex flex-col gap-6 md:gap-7.5">
                       <div
                         className={cn(
                           'flex flex-col gap-1 border-l-10 py-3 pl-7.5',
