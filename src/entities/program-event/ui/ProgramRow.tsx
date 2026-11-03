@@ -19,8 +19,7 @@ type ProgramRowProps = {
   children?: ReactNode;
 };
 
-const HATCHED_BACKGROUND =
-  'bg-[repeating-linear-gradient(-45deg,transparent_0_6px,rgba(0,0,0,0.08)_6px_7px)]';
+const HATCHED_BACKGROUND = 'bg-[url(/images/schedule-gap-dark.svg)]';
 
 export function ProgramRow({
   event,
