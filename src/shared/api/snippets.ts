@@ -6,6 +6,7 @@ export const SNIPPETS = [
   'getProgramSummary',
   'getNews',
   'getNewsItem',
+  'searchNews',
   'getPartners',
   'getArchive',
   'login',

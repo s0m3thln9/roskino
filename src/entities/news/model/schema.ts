@@ -10,6 +10,7 @@ import {
 
 export const NEWS_PAGE_SIZE = 6;
 export const NEWS_LOCALE = 'ru' as const;
+export const NEWS_SEARCH_LIMIT = 10;
 
 export const newsPreviewSchema = z.object({
   id: z.string(),
@@ -53,10 +54,27 @@ export const getNewsItemParamsSchema = z.object({
   lang: localeSchema,
 });
 
+export const searchNewsParamsSchema = z.object({
+  lang: localeSchema,
+  query: z.string().trim().min(1).max(100),
+  limit: z.coerce.number().int().min(1).max(20).default(NEWS_SEARCH_LIMIT),
+});
+
 export const newsListSchema = paginatedSchema(newsPreviewSchema);
+
+export const newsSearchResultSchema = newsPreviewSchema.pick({
+  id: true,
+  slug: true,
+  title: true,
+  publishedAt: true,
+});
+
+export const newsSearchSchema = z.object({ items: z.array(newsSearchResultSchema) });
 
 export type NewsPreview = z.infer<typeof newsPreviewSchema>;
 export type NewsQuote = z.infer<typeof newsQuoteSchema>;
 export type NewsBlock = z.infer<typeof newsBlockSchema>;
 export type NewsItem = z.infer<typeof newsItemSchema>;
 export type NewsList = z.infer<typeof newsListSchema>;
+export type NewsSearchResult = z.infer<typeof newsSearchResultSchema>;
+export type SearchNewsParams = z.input<typeof searchNewsParamsSchema>;

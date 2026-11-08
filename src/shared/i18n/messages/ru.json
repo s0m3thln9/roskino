@@ -50,7 +50,11 @@
     "previous": "Назад",
     "next": "Вперёд",
     "page": "Страница",
-    "paginationNav": "Навигация по страницам новостей"
+    "paginationNav": "Навигация по страницам новостей",
+    "searchLabel": "Поиск по новостям",
+    "searchPlaceholder": "Введите слово или дату",
+    "searchClear": "Очистить",
+    "searchEmpty": "Ничего не найдено"
   },
   "Market": {
     "filterOrigin": "Filter by category:",

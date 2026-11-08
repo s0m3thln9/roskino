@@ -50,7 +50,11 @@
     "previous": "Previous",
     "next": "Next",
     "page": "Page",
-    "paginationNav": "News pagination"
+    "paginationNav": "News pagination",
+    "searchLabel": "Search news",
+    "searchPlaceholder": "Type any letter or date",
+    "searchClear": "Clear",
+    "searchEmpty": "Nothing found"
   },
   "Market": {
     "filterOrigin": "Filter by category:",

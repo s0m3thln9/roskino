@@ -1,5 +1,6 @@
 import 'server-only';
 import { NextResponse, type NextRequest } from 'next/server';
+import { searchNewsContract } from '@/entities/news';
 import { getParticipantContract, getParticipantsContract } from '@/entities/participant';
 import { getProgramContract, getProgramEventContract } from '@/entities/program-event';
 import { getFiltersContract, getProjectContract, getProjectsContract } from '@/entities/project';
@@ -19,6 +20,7 @@ const BFF_WHITELIST: readonly SnippetContract[] = [
   getProjectContract,
   getProgramContract,
   getProgramEventContract,
+  searchNewsContract,
 ];
 
 const contractsByName = new Map<string, SnippetContract>(

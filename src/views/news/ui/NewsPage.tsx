@@ -3,9 +3,10 @@ import { getFormatter, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { NEWS_LOCALE, NewsArticle, NewsCard } from '@/entities/news';
 import { getNews, getNewsItem } from '@/entities/news/server';
+import { NewsSearch } from '@/features/search-news';
 import { ROUTES } from '@/shared/config';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
-import { Hyphenated, Icon, Pagination } from '@/shared/ui';
+import { Hyphenated, Pagination } from '@/shared/ui';
 import { ArticleGallery } from '@/widgets/article-gallery';
 import { Header } from '@/widgets/header';
 
@@ -79,11 +80,19 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           <section className="bg-black pt-10 pb-25 md:py-25 lg:pb-35">
             <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter max-md:px-10">
               <div className="mx-auto flex w-full max-w-text flex-col gap-10">
-                <div className="flex items-center justify-between gap-4 text-white">
+                <div className="relative z-10 flex flex-col gap-6 text-white md:flex-row md:items-center md:justify-between md:gap-10">
                   <h2 className="uppercase max-md:typo-headline-1 md:typo-title">
                     {t('listTitle')}
                   </h2>
-                  <Icon name="search" aria-hidden />
+                  <NewsSearch
+                    labels={{
+                      label: t('searchLabel'),
+                      placeholder: t('searchPlaceholder'),
+                      clear: t('searchClear'),
+                      empty: t('searchEmpty'),
+                    }}
+                    className="md:max-w-175 md:flex-1"
+                  />
                 </div>
 
                 <ul className="-mx-10 grid gap-3 md:mx-0 md:grid-cols-2 md:gap-5">

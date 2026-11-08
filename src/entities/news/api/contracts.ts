@@ -4,6 +4,8 @@ import {
   getNewsParamsSchema,
   newsItemSchema,
   newsListSchema,
+  newsSearchSchema,
+  searchNewsParamsSchema,
 } from '../model/schema';
 
 export const getNewsContract = defineSnippet({
@@ -17,5 +19,12 @@ export const getNewsItemContract = defineSnippet({
   name: 'getNewsItem',
   params: getNewsItemParamsSchema,
   response: newsItemSchema,
+  auth: false,
+});
+
+export const searchNewsContract = defineSnippet({
+  name: 'searchNews',
+  params: searchNewsParamsSchema,
+  response: newsSearchSchema,
   auth: false,
 });
