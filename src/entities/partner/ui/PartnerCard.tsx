@@ -7,7 +7,7 @@ export function PartnerCard({ partner, className }: { partner: Partner; classNam
   return (
     <article
       className={cn(
-        'flex flex-col gap-15 bg-white p-10 md:flex-row md:items-start md:gap-10',
+        'flex flex-col gap-12 bg-white px-10 py-12 md:flex-row md:items-start md:gap-10 md:p-10',
         className,
       )}
     >
@@ -26,8 +26,8 @@ export function PartnerCard({ partner, className }: { partner: Partner; classNam
         )}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-10 text-black md:gap-7.5">
-        <div className="flex flex-col gap-3 md:gap-2">
+      <div className="flex min-w-0 flex-1 flex-col gap-6 text-black md:gap-7.5">
+        <div className="flex flex-col gap-2">
           <h3 className="max-w-[32rem] typo-title uppercase">
             <Hyphenated text={partner.name} />
           </h3>
