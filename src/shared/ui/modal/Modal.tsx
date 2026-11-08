@@ -33,6 +33,7 @@ type ModalProps = {
   labelledBy?: string;
   children: ReactNode;
   className?: string;
+  wrapperClassName?: string;
   overlayClassName?: string;
 };
 
@@ -44,6 +45,7 @@ export function Modal({
   labelledBy,
   children,
   className,
+  wrapperClassName,
   overlayClassName,
 }: ModalProps) {
   const styles = variantClassNames[variant];
@@ -86,7 +88,7 @@ export function Modal({
       )}
     >
       <div
-        className={cn('flex min-h-full justify-center', styles.wrapper)}
+        className={cn('flex min-h-full justify-center', styles.wrapper, wrapperClassName)}
         onClick={handleBackdropClick}
       >
         <div

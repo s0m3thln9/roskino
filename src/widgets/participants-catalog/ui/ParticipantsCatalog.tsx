@@ -168,6 +168,8 @@ export function ParticipantsCatalog({
         onClose={() => router.push(withQuery(ROUTES.participants), { scroll: false })}
         closeLabel={labels.close}
         overlayClassName="bg-dark-grey/75"
+        wrapperClassName={catalogLayout.modalWrapper}
+        className={catalogLayout.modalPanel}
       >
         {detailsQuery.isLoading && <ParticipantDetailsSkeleton />}
         {detailsQuery.data && (

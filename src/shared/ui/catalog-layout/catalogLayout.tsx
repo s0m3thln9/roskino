@@ -5,6 +5,8 @@ export const catalogLayout = {
   root: 'flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16',
   filters: 'lg:w-[162px] lg:shrink-0',
   content: 'flex min-w-0 flex-1 flex-col gap-10',
+  modalWrapper: 'lg:mx-auto lg:max-w-page lg:justify-start lg:page-gutter',
+  modalPanel: 'lg:ml-[14.125rem]',
 } as const;
 
 const FILTER_GROUPS = [2, 4, 8];

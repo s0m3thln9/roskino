@@ -182,7 +182,8 @@ export function ProjectsCatalog({
         onClose={() => router.push(withQuery(ROUTES.projects), { scroll: false })}
         closeLabel={labels.close}
         overlayClassName="bg-white/75"
-        className="bg-black text-white"
+        wrapperClassName={catalogLayout.modalWrapper}
+        className={cn(catalogLayout.modalPanel, 'bg-black text-white')}
       >
         {detailsQuery.isLoading && (
           <div aria-hidden className="flex flex-col gap-10 lg:flex-row">
