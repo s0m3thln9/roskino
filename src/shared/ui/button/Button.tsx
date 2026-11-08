@@ -8,9 +8,11 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'bg-white text-black hover:bg-peach',
-        secondary: 'border-2 border-white text-white hover:border-peach hover:text-peach',
+        secondary:
+          'border-2 border-white text-white hover:border-peach hover:text-peach disabled:border-white/50 disabled:text-white/50 disabled:opacity-100',
         dark: 'bg-black text-white hover:bg-peach',
-        'dark-outline': 'border-2 border-black text-black hover:border-peach hover:text-peach',
+        'dark-outline':
+          'border-2 border-black text-black hover:border-peach hover:text-peach disabled:border-black/20 disabled:text-black/20 disabled:opacity-100',
       },
       width: {
         auto: '',
