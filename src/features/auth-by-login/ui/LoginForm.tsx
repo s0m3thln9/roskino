@@ -42,7 +42,7 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
       <h2 id={titleId} className="pr-12 typo-title uppercase">
         {labels.title}
       </h2>
-      <p className="mt-5 typo-text-4">{labels.intro}</p>
+      <p className="mt-5 typo-text-4 md:max-w-[433px]">{labels.intro}</p>
 
       <div className="mt-10 flex flex-col gap-3 md:gap-7.5">
         <PasswordField
@@ -88,7 +88,7 @@ export function LoginForm({ titleId, labels, onSuccess, onCancel, onForgot }: Lo
       <button
         type="button"
         onClick={onForgot}
-        className="mt-8 self-center text-base underline decoration-from-font underline-offset-2 hover:opacity-70 md:mt-7.5 md:text-sm"
+        className="mt-8 self-center text-base underline decoration-from-font underline-offset-2 hover:opacity-70 md:mt-9 md:text-sm"
       >
         {labels.forgot}
       </button>

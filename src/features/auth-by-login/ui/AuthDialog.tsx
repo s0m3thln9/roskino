@@ -51,7 +51,6 @@ export function AuthDialog({ open, labels, onClose, onAuthenticated }: AuthDialo
       labelledBy={titleId}
       className={cn(
         (step.type === 'login' || step.type === 'recover') && 'flex flex-col',
-        step.type === 'login' && 'md:min-h-160',
         step.type === 'recover' && 'md:min-h-170',
       )}
     >
