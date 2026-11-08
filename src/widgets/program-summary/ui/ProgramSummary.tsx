@@ -39,9 +39,21 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
   const updateScrollEdges = useCallback(() => {
     const element = roomsRef.current;
     if (!element) return;
+    const left = element.scrollLeft;
+    const right = left + element.clientWidth;
+    const rooms = Array.from(element.children) as HTMLElement[];
+    const visibleHeight = Math.max(
+      0,
+      ...rooms
+        .filter(
+          (room) => room.offsetLeft < right - 1 && room.offsetLeft + room.offsetWidth > left + 1,
+        )
+        .map((room) => room.offsetHeight),
+    );
+    element.style.height = `${visibleHeight + parseFloat(getComputedStyle(element).paddingBottom)}px`;
     setScrollEdges({
-      start: element.scrollLeft <= 1,
-      end: element.scrollLeft + element.clientWidth >= element.scrollWidth - 1,
+      start: left <= 1,
+      end: right >= element.scrollWidth - 1,
     });
   }, []);
 
@@ -52,6 +64,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
     updateScrollEdges();
     const observer = new ResizeObserver(updateScrollEdges);
     observer.observe(element);
+    Array.from(element.children).forEach((room) => observer.observe(room));
     return () => observer.disconnect();
   }, [activeDay, updateScrollEdges]);
 
@@ -91,7 +104,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
         className="pointer-events-none absolute top-[93px] right-[calc((100%-100vw)/2)] hidden lg:block"
       />
 
-      <h2 className="relative mb-7.5 typo-headline-2 md:mb-5">
+      <h2 className="relative mb-7.5 typo-headline-2 md:mb-5 md:font-medium">
         <Hyphenated text={title} />
       </h2>
 
@@ -136,7 +149,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
       <div
         ref={roomsRef}
         onScroll={updateScrollEdges}
-        className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-5 overflow-x-auto pb-2 md:max-w-[808px] md:gap-25"
+        className="relative flex snap-x snap-mandatory [scrollbar-width:none] items-start gap-5 overflow-x-auto overflow-y-hidden pb-2 md:max-w-[808px] md:gap-25"
       >
         {day.rooms.map((room, roomIndex) => {
           return (

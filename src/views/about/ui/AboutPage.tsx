@@ -127,7 +127,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
         <BannerCarousel banners={banners} slideLabelPrefix={t('bannerSlide')} />
 
         <section className="overflow-hidden bg-black pt-30 pb-15 md:pt-20 md:pb-20 lg:pt-37.5 lg:pb-25">
-          <div className="mx-auto flex max-w-page flex-col gap-28 page-gutter md:gap-25 lg:max-w-[calc(var(--container-wide)+6.25rem)] lg:gap-50">
+          <div className="mx-auto flex max-w-page flex-col gap-28 page-gutter md:gap-25 lg:max-w-[calc(var(--container-wide)+6.25rem)] lg:gap-40">
             {program && (
               <ProgramSummary
                 summary={program}
