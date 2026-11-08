@@ -34,7 +34,7 @@ export const siteSettingsMock: Localized<SiteSettings> = {
   en: {
     organization: {
       name: 'ROSKINO JSC',
-      addressLines: ['ROSKINO JSC', '14 Kalashny Lane,', 'Moscow, 125009, Russia'],
+      addressLines: ['JSC ROSKINO', '14 Kalashny Ln, Moscow,', '125009, Russia'],
       phone: '+7 495 6905009',
       email: 'info@roskino.org',
       ogrn: '1047703026161',
