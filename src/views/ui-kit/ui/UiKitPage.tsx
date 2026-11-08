@@ -50,8 +50,8 @@ const GRADIENTS = [
   {
     className: 'bg-gradient-main text-white',
     stops: [
-      { name: 'Sea Wave Blue', hex: 'HEX: 006B80' },
-      { name: 'Strawberry Pink', hex: 'HEX: E08585' },
+      { name: 'Midnight Blue', hex: 'HEX: 00204D' },
+      { name: 'Indian Red', hex: 'HEX: E05050' },
     ],
   },
   {
@@ -94,7 +94,7 @@ const COLOUR_GROUPS = [
   },
   {
     title: 'Accent',
-    swatches: [{ name: 'Red', hex: 'HEX: E53400', className: 'bg-red text-white' }],
+    swatches: [{ name: 'Scarlet Red', hex: 'HEX: F20D0D', className: 'bg-red text-white' }],
   },
 ];
 

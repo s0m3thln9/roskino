@@ -15,7 +15,7 @@
   --color-error: #ffb2b2;
   --color-mango: #f2b90d;
   --color-peach: #ff794d;
-  --color-red: #e53400;
+  --color-red: #f20d0d;
   --color-orchid: #ed5eed;
   --color-turquoise: #17b0cf;
   --color-lilac: #9f80ff;
@@ -48,7 +48,7 @@
 }
 
 @utility bg-gradient-main {
-  background-image: linear-gradient(to bottom, #006b80, #e07a7a);
+  background-image: linear-gradient(to bottom, #00204d, #e05050);
 }
 
 @utility bg-gradient-news {

@@ -59,7 +59,7 @@ export function QuoteSlider({ quotes, labels }: QuoteSliderProps) {
       <div className="flex items-start justify-between gap-6 lg:contents">
         <Icon
           name="quote"
-          className="h-16 w-24 shrink-0 text-peach lg:absolute lg:top-2 lg:right-[calc(100%+1.25rem)]"
+          className="h-16 w-24 shrink-0 text-red lg:absolute lg:top-2 lg:right-[calc(100%+1.25rem)]"
         />
         {multiple && <div className="flex gap-3 lg:hidden">{arrows('')}</div>}
       </div>

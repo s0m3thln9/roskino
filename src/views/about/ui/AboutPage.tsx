@@ -54,7 +54,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
       <main className="flex-1">
         <section
           className={cn(
-            'relative isolate h-150 overflow-hidden bg-[#006b80] pt-60 md:h-auto md:pt-40 md:pb-20 lg:h-215 lg:pb-0',
+            'relative isolate h-150 overflow-hidden bg-[#00204d] pt-60 md:h-auto md:pt-40 md:pb-20 lg:h-215 lg:pb-0',
             locale === 'ru' ? 'lg:pt-57.5' : 'lg:pt-50',
           )}
         >
@@ -68,7 +68,7 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
           />
           <div
             aria-hidden
-            className="absolute inset-0 -z-10 bg-[radial-gradient(147.22%_37.95%_at_50%_100%,#006b80_0%,rgb(0_107_128/0.5)_49.52%,rgb(0_107_128/0)_100%),linear-gradient(180deg,rgb(0_107_128/0)_83.27%,#006b80_100%)]"
+            className="absolute inset-0 -z-10 bg-[radial-gradient(147.22%_37.95%_at_50%_100%,#00204d_0%,rgb(0_32_77/0.5)_49.52%,rgb(0_32_77/0)_100%),linear-gradient(180deg,rgb(0_32_77/0)_83.27%,#00204d_100%)]"
           />
           <div className="mx-auto max-w-page page-gutter lg:max-w-[calc(var(--container-wide)+6.25rem)]">
             {event && <h1 className="sr-only">{event.title}</h1>}
