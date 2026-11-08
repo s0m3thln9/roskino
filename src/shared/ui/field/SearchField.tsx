@@ -15,7 +15,7 @@ export function SearchField({ onClear, clearLabel, className, value, ...props }:
   return (
     <div
       className={cn(
-        'flex h-10 w-full items-center gap-3 rounded-full bg-dark-grey/75 px-4 backdrop-blur-glass text-white md:rounded-none md:border-b md:border-white/30 md:bg-transparent md:px-0 md:backdrop-blur-none',
+        'flex h-10 w-full items-center gap-4 rounded-full bg-dark-grey/75 pr-3 pl-4 text-white backdrop-blur-glass md:h-auto md:gap-5 md:rounded-none md:border-b md:border-white/50 md:bg-transparent md:pr-3 md:pb-3 md:pl-0 md:backdrop-blur-none',
         className,
       )}
     >
@@ -23,7 +23,7 @@ export function SearchField({ onClear, clearLabel, className, value, ...props }:
       <input
         type="search"
         value={value}
-        className="h-full min-w-0 flex-1 bg-transparent text-sm caret-turquoise outline-none placeholder:text-white/50 [&::-webkit-search-cancel-button]:hidden"
+        className="h-full min-w-0 flex-1 bg-transparent text-base leading-5 font-medium caret-turquoise outline-none placeholder:text-white/50 md:h-5 [&::-webkit-search-cancel-button]:hidden"
         {...props}
       />
       {onClear && hasValue && (

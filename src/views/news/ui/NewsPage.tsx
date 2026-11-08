@@ -80,7 +80,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
           <section className="bg-black pt-10 pb-25 md:py-25 lg:pb-35">
             <div className="mx-auto flex max-w-page flex-col gap-10 page-gutter max-md:px-10">
               <div className="mx-auto flex w-full max-w-text flex-col gap-10">
-                <div className="relative z-10 flex flex-col gap-6 text-white md:flex-row md:items-center md:justify-between md:gap-10">
+                <div className="relative z-10 flex flex-col gap-6 text-white max-md:mb-5 md:flex-row md:items-start md:justify-between md:gap-10">
                   <h2 className="uppercase max-md:typo-headline-1 md:typo-title">
                     {t('listTitle')}
                   </h2>
@@ -91,7 +91,7 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
                       clear: t('searchClear'),
                       empty: t('searchEmpty'),
                     }}
-                    className="md:max-w-175 md:flex-1"
+                    className="md:mt-1 md:max-w-175 md:flex-1"
                   />
                 </div>
 

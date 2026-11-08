@@ -257,3 +257,8 @@
     transition: background-color 0s 86400s;
   }
 }
+
+@utility divider-dashed {
+  height: 1px;
+  background-image: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 4px);
+}

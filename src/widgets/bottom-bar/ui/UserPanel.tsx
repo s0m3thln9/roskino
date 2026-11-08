@@ -59,7 +59,7 @@ export function UserPanel({ user, labels, logoutLabels }: UserPanelProps) {
         hidden={!open}
         className="absolute bottom-full left-0 w-72.5 max-w-full pb-2 max-md:pb-1"
       >
-        <nav aria-label={labels.market} className="rounded-md bg-dark-grey py-1">
+        <nav aria-label={labels.market} className="rounded-md bg-dark-grey pt-1">
           <ul>
             {MARKET_NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -70,25 +70,22 @@ export function UserPanel({ user, labels, logoutLabels }: UserPanelProps) {
                     aria-current={active ? 'page' : undefined}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      'flex h-15 items-center gap-6 pr-6 pl-7 text-white transition-opacity hover:opacity-100',
-                      active ? 'opacity-100' : 'opacity-50',
+                      'flex h-15 items-center gap-5 px-7 transition-colors hover:text-white',
+                      active ? 'text-white' : 'text-white/50',
                     )}
                   >
-                    <span className="typo-subtitle leading-6 whitespace-nowrap">
-                      {labels[item.key]}
-                    </span>
+                    <span className="typo-subtitle whitespace-nowrap">{labels[item.key]}</span>
                     {active && <Icon name="check-checked" className="ml-auto size-3" />}
                   </Link>
                 </li>
               );
             })}
           </ul>
-          <div className="mt-1 border-t border-dashed border-white/40 pt-1">
-            <LogoutButton
-              labels={logoutLabels}
-              className="flex h-14 w-full items-center pr-6 pl-7 typo-text-3 text-white opacity-50 transition-opacity hover:opacity-100"
-            />
-          </div>
+          <div aria-hidden className="mt-3 divider-dashed text-white/50" />
+          <LogoutButton
+            labels={logoutLabels}
+            className="flex h-15 w-full items-center px-7 typo-text-3 text-white/50 hover:text-white"
+          />
         </nav>
       </div>
 

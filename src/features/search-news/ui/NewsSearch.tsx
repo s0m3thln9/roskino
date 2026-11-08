@@ -79,31 +79,31 @@ export function NewsSearch({
       {expanded && (
         <div
           id={listId}
-          className="absolute inset-x-0 top-full z-10 mt-2 overflow-hidden rounded-[1.25rem] bg-dark-grey/75 backdrop-blur-glass md:mt-0 md:rounded-t-none md:rounded-b-xl"
+          className="absolute inset-x-0 top-full z-10 mt-2 overflow-hidden rounded-b-pill bg-dark-grey/75 pt-1 pb-2 text-base leading-5 font-medium text-white/50 backdrop-blur-glass md:mt-0 md:rounded-b-md md:pb-1"
         >
           {items.length > 0 ? (
             <ul>
-              {items.map((item) => (
-                <li
-                  key={item.id}
-                  className="border-t border-dashed border-white/40 first:border-t-0 max-md:nth-[n+6]:hidden"
-                >
+              {items.map((item, index) => (
+                <li key={item.id} className="max-md:nth-[n+6]:hidden">
+                  {index > 0 && <div aria-hidden className="mt-1.25 mb-1.5 divider-dashed" />}
                   <Link
                     href={ROUTES.newsItem(item.slug)}
                     onClick={() => setOpen(false)}
-                    className="flex h-13 items-center gap-5 pr-4 pl-5 typo-text-7 text-white/50 transition-colors outline-none hover:text-white focus-visible:text-white md:gap-10"
+                    className="flex h-10 items-center gap-3 pr-4 pl-5 transition-colors outline-none hover:text-white focus-visible:text-white md:gap-10"
                   >
-                    <span className="min-w-0 flex-1 truncate">{item.title}</span>
-                    <time dateTime={item.publishedAt} className="max-md:hidden">
-                      {format.dateTime(new Date(item.publishedAt), 'short')}
-                    </time>
+                    <span className="flex min-w-0 flex-1 items-center justify-between gap-2.5">
+                      <span className="truncate">{item.title}</span>
+                      <time dateTime={item.publishedAt} className="shrink-0 max-md:hidden">
+                        {format.dateTime(new Date(item.publishedAt), 'short')}
+                      </time>
+                    </span>
                     <Icon name="open" />
                   </Link>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="flex h-13 items-center px-5 typo-text-7 text-white/50">{labels.empty}</p>
+            <p className="flex h-10 items-center px-5">{labels.empty}</p>
           )}
         </div>
       )}
