@@ -52,18 +52,20 @@ export async function NewsPage({ params, searchParams }: NewsPageProps) {
             dateLabel={formatDate(featured.publishedAt)}
             labels={{ previous: t('previous'), next: t('next') }}
             gallerySlot={
-              <ArticleGallery
-                photos={featured.photos}
-                videos={featured.videos}
-                labels={{
-                  photo: t('photo'),
-                  video: t('video'),
-                  previous: t('previous'),
-                  next: t('next'),
-                }}
-              />
+              featured.photos.length > 0 || featured.videos.length > 0 ? (
+                <ArticleGallery
+                  photos={featured.photos}
+                  videos={featured.videos}
+                  labels={{
+                    photo: t('photo'),
+                    video: t('video'),
+                    previous: t('previous'),
+                    next: t('next'),
+                  }}
+                />
+              ) : undefined
             }
-            className="pb-25 md:pb-20 lg:pb-37.5"
+            className="pb-25 md:pb-37.5"
           />
         ) : (
           <div className="mx-auto w-full max-w-page page-gutter pt-30">

@@ -42,7 +42,7 @@ export async function NewsItemPage({ params }: NewsItemPageProps) {
   return (
     <>
       <Header tone={news.cover ? 'light' : 'dark'} />
-      <main className="flex-1 pb-25 md:pb-20">
+      <main className="flex-1 pb-25 md:pb-37.5">
         <NewsArticle
           news={news}
           dateLabel={format.dateTime(new Date(news.publishedAt), 'short')}
@@ -62,16 +62,18 @@ export async function NewsItemPage({ params }: NewsItemPageProps) {
             </Link>
           }
           gallerySlot={
-            <ArticleGallery
-              photos={news.photos}
-              videos={news.videos}
-              labels={{
-                photo: t('photo'),
-                video: t('video'),
-                previous: t('previous'),
-                next: t('next'),
-              }}
-            />
+            news.photos.length > 0 || news.videos.length > 0 ? (
+              <ArticleGallery
+                photos={news.photos}
+                videos={news.videos}
+                labels={{
+                  photo: t('photo'),
+                  video: t('video'),
+                  previous: t('previous'),
+                  next: t('next'),
+                }}
+              />
+            ) : undefined
           }
         />
       </main>
