@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { getBanners } from '@/entities/banner/server';
@@ -10,10 +9,10 @@ import { mediaTypeSchema } from '@/entities/media';
 import { getProgramSummary } from '@/entities/program-event/server';
 import { withFallback } from '@/shared/api/server';
 import { featureFlags } from '@/shared/config/server';
-import { cn } from '@/shared/lib';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
 import { BannerCarousel } from '@/widgets/banner-carousel';
 import { Header } from '@/widgets/header';
+import { KeyVisual } from '@/widgets/key-visual';
 import { MediaGallery } from '@/widgets/media-gallery';
 import { ProgramSummary } from '@/widgets/program-summary';
 
@@ -52,56 +51,13 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
     <>
       <Header tone="dark" showLogo={false} />
       <main className="flex-1">
-        <section
-          className={cn(
-            'relative isolate h-150 overflow-hidden bg-[#00204d] pt-60 md:h-auto md:pt-40 md:pb-20 lg:h-215 lg:pb-0',
-            locale === 'ru' ? 'lg:pt-57.5' : 'lg:pt-50',
-          )}
-        >
-          <Image
-            src="/images/kv.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="-z-10 object-cover"
-          />
+        <section className="relative isolate aspect-[1080/1920] w-full overflow-hidden bg-[#00204d] md:aspect-video">
+          <KeyVisual className="-z-10" />
           <div
             aria-hidden
-            className="absolute inset-0 -z-10 bg-[radial-gradient(147.22%_37.95%_at_50%_100%,#00204d_0%,rgb(0_32_77/0.5)_49.52%,rgb(0_32_77/0)_100%),linear-gradient(180deg,rgb(0_32_77/0)_83.27%,#00204d_100%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(0_32_77/0)_81.51%,#00204d_100%)] md:bg-[linear-gradient(180deg,rgb(0_32_77/0)_81.51%,rgb(0_32_77/0.5)_93.07%,#00204d_100%)]"
           />
-          <div className="mx-auto max-w-page page-gutter lg:max-w-[calc(var(--container-wide)+6.25rem)]">
-            {event && <h1 className="sr-only">{event.title}</h1>}
-            {locale === 'ru' ? (
-              <>
-                <Image
-                  src="/images/kv-typo-ru-mobile.svg"
-                  alt=""
-                  width={350}
-                  height={95}
-                  priority
-                  className="h-auto w-full mix-blend-hard-light md:hidden"
-                />
-                <Image
-                  src="/images/kv-typo-ru.svg"
-                  alt=""
-                  width={1114}
-                  height={302}
-                  priority
-                  className="h-auto w-full max-w-wide mix-blend-hard-light max-md:hidden"
-                />
-              </>
-            ) : (
-              <Image
-                src="/images/kv-typo.svg"
-                alt=""
-                width={890}
-                height={377}
-                priority
-                className="h-auto w-full max-w-222.5 mix-blend-hard-light"
-              />
-            )}
-          </div>
+          {event && <h1 className="sr-only">{event.title}</h1>}
         </section>
 
         {event && (
