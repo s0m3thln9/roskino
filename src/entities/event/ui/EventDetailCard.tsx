@@ -19,9 +19,9 @@ export function EventDetailCard({
       <Icon name={detail.icon} className="h-12 w-24" />
       <div className="flex flex-col typo-title">
         <span className="font-sans typo-text-3 text-white/50">{detail.label}</span>
-        {detail.lines.map((line, index) => (
+        {detail.lines.map((line) => (
           <span key={line} className="uppercase">
-            {index < detail.lines.length - 1 ? `${line};` : line}
+            {line}
           </span>
         ))}
       </div>
