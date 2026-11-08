@@ -13,20 +13,20 @@ export async function NotFoundPage() {
   return (
     <>
       <main className="relative isolate flex-1 overflow-hidden bg-error page-gutter pt-65 pb-25 text-black lg:pb-37.5">
-        <Header tone="dark" showAccreditation={false} />
+        <Header tone="light" showAccreditation={false} />
         <picture>
           <source
             media={MEDIA_QUERIES.lg}
             srcSet="/images/404-ribbon.svg"
-            width={1057}
-            height={708}
+            width={690}
+            height={431}
           />
           <img
             src="/images/404-ribbon-mobile.svg"
             alt=""
-            width={371}
-            height={504}
-            className="pointer-events-none absolute top-0 left-0 -z-10 h-auto w-[371px] lg:w-[1057px]"
+            width={390}
+            height={221}
+            className="pointer-events-none absolute top-0 left-0 -z-10 h-auto w-[390px] lg:w-[690px]"
           />
         </picture>
         <div className="mx-auto w-full max-w-page">
