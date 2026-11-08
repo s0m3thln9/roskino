@@ -64,8 +64,8 @@ export function MediaGallery({
   const nextYear = years[yearIndex - 1];
 
   return (
-    <section className={cn('flex flex-col gap-5 text-white md:gap-10', className)}>
-      <h2 className="mb-10 px-5 typo-headline-2 max-md:text-[2.25rem] md:mb-5 md:px-0 md:font-medium">
+    <section className={cn('flex flex-col gap-5 text-white md:gap-7', className)}>
+      <h2 className="mb-10 px-5 typo-headline-2 max-md:text-[2.25rem] md:mb-8 md:px-0 md:font-medium">
         <Hyphenated text={title} />
       </h2>
 
