@@ -91,7 +91,7 @@ export function FilterOption({
       <span className="flex pt-1.5 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-turquoise lg:pt-1">
         <OptionMark type={type} checked={checked} dimmed={dimmed && !checked} />
       </span>
-      <span className="flex-1">{label}</span>
+      <span className="flex-1 lg:whitespace-nowrap">{label}</span>
       {checked && (
         <span
           className="flex pt-1.5 opacity-0 transition-opacity group-hover:opacity-100 lg:pt-1"
