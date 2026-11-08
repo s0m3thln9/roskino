@@ -91,7 +91,7 @@ export function NewsArticle({
                   {block.title && (
                     <SubHeading className="typo-subtitle text-black">{block.title}</SubHeading>
                   )}
-                  <p className="-mx-10 bg-gradient-news px-10 pt-5 pb-6 typo-text-5 md:mx-0 md:perforated-edge">
+                  <p className="-mx-10 bg-gradient-news px-10 pt-5 pb-6 typo-text-5 text-black md:mx-0 md:perforated-edge">
                     <RichText text={block.text} />
                   </p>
                 </section>

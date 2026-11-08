@@ -55,7 +55,7 @@ export function QuoteSlider({ quotes, labels }: QuoteSliderProps) {
   );
 
   return (
-    <figure className="relative flex flex-col gap-5">
+    <figure className="relative flex flex-col gap-5 lg:my-3">
       <div className="flex items-start justify-between gap-6 lg:contents">
         <Icon
           name="quote"
@@ -78,13 +78,15 @@ export function QuoteSlider({ quotes, labels }: QuoteSliderProps) {
                 aria-hidden={multiple && quoteIndex !== index ? true : undefined}
                 className="flex w-full shrink-0 snap-start flex-col gap-5"
               >
-                <blockquote className="text-2xl leading-10 font-semibold text-red italic md:text-black">
+                <blockquote className="text-2xl leading-10 font-semibold text-red italic md:text-dark-grey">
                   {quote.text}
                 </blockquote>
                 <div className="flex flex-col">
-                  <span className="typo-text-5 md:text-red">{quote.author}</span>
+                  <span className="typo-text-5 md:font-medium md:text-red">{quote.author}</span>
                   {quote.position && (
-                    <span className="typo-text-3 opacity-50">{quote.position}</span>
+                    <span className="typo-text-3 opacity-50 md:text-dark-grey/75 md:opacity-100">
+                      {quote.position}
+                    </span>
                   )}
                 </div>
               </li>
