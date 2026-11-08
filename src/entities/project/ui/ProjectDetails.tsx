@@ -66,7 +66,7 @@ export function ProjectDetails({
         <Hyphenated text={project.title} />
       </h2>
 
-      <div className="max-md:order-1 max-md:contents md:flex md:flex-row md:items-start md:justify-between md:gap-6">
+      <div className="max-md:order-1 max-md:contents md:mt-2 md:flex md:flex-row md:items-start md:justify-between md:gap-6">
         <Person
           name={project.representative.name}
           position={project.representative.position}
@@ -79,6 +79,10 @@ export function ProjectDetails({
         )}
       </div>
 
+      {!project.trailer && (
+        <hr className="border-t border-dotted border-white/50 max-md:hidden md:my-5" />
+      )}
+
       {project.screening && (
         <ScreeningFlag
           screening={project.screening}
@@ -88,7 +92,7 @@ export function ProjectDetails({
       )}
 
       {project.trailer && (
-        <section className="flex flex-col gap-5 max-md:order-2 md:gap-3">
+        <section className="flex flex-col gap-5 max-md:order-2 md:mt-5">
           <div className="flex items-center gap-5 typo-text-6 md:typo-text-1">
             <span>{labels.mainTrailer}</span>
             {project.trailer.duration && <span>{project.trailer.duration}</span>}
@@ -153,7 +157,7 @@ export function ProjectDetails({
       <hr className="-mr-10 border-t-2 border-dotted border-peach/50 max-md:order-7 max-md:mt-5 max-md:-mb-2 md:hidden" />
       <hr className="-mr-10 border-t-2 border-dotted border-peach/50 max-md:order-10 md:hidden" />
 
-      <section className="flex max-w-[660px] flex-col gap-2 max-md:order-5">
+      <section className="flex max-w-[660px] flex-col gap-2 max-md:order-5 md:mt-2">
         <h3 className="typo-text-3 md:typo-button">{labels.description}</h3>
         <p className="typo-text-6">{project.description}</p>
       </section>

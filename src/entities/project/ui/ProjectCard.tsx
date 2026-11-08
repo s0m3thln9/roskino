@@ -27,7 +27,12 @@ export function ProjectCard({
   const duration = project.lengthMinutes ? `${project.lengthMinutes} ${minutesLabel}` : null;
 
   return (
-    <article className={cn('group relative flex flex-col bg-black p-10 text-white', className)}>
+    <article
+      className={cn(
+        'group relative flex flex-col bg-black p-10 text-white lg:min-h-153',
+        className,
+      )}
+    >
       <div className="relative aspect-[3/4] w-full overflow-hidden">
         {project.poster ? (
           <Image
@@ -58,7 +63,7 @@ export function ProjectCard({
         </p>
       </div>
 
-      <div className="mt-auto flex items-end justify-between gap-4 pt-4">
+      <div className="mt-auto flex items-end justify-between gap-4 pt-5">
         {project.screening ? (
           <ScreeningFlag
             screening={project.screening}
