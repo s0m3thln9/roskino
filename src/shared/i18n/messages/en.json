@@ -118,7 +118,8 @@
       "business": "Business meetings",
       "public-talk": "Public talk",
       "break": "Break"
-    }
+    },
+    "emptyProgram": "No events found"
   },
   "Auth": {
     "title": "Authorisation",

@@ -37,7 +37,7 @@ async function buildLabels(): Promise<ProgramLabels> {
     reset: t('reset'),
     clear: t('clear'),
     loading: t('loading'),
-    empty: t('empty'),
+    empty: t('emptyProgram'),
     error: t('error'),
     expand: t('expandEvent'),
     participants: t('participants'),

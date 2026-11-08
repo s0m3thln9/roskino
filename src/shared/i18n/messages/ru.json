@@ -8,7 +8,7 @@
     "news": "Новости",
     "partners": "Партнеры",
     "archive": "Архив",
-    "market": "Мой кабинет",
+    "market": "My market",
     "participants": "Participants",
     "projects": "Projects",
     "program": "Program",
@@ -118,7 +118,8 @@
       "business": "Business meetings",
       "public-talk": "Public talk",
       "break": "Break"
-    }
+    },
+    "emptyProgram": "No events found"
   },
   "Auth": {
     "title": "Authorisation",
