@@ -21,7 +21,7 @@ export const ICONS = {
   news: [24, 24],
   menu: [24, 24],
   'my-market': [24, 24],
-  partners: [20, 20],
+  partners: [24, 24],
   check: [12, 12],
   'check-checked': [12.4142, 12],
   radio: [12, 12],
