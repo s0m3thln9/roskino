@@ -30,12 +30,12 @@ export async function NotFoundPage() {
           />
         </picture>
         <div className="mx-auto w-full max-w-page">
-          <div className="flex flex-col lg:ml-[calc(50%+0.625rem)] lg:max-w-108">
-            <h1 className="flex flex-col gap-1 px-5 font-display font-medium uppercase md:px-0">
-              <span className="text-[5rem] leading-none">404</span>
-              <span className="text-2xl leading-7.5">{`//${t('title')}`}</span>
+          <div className="flex flex-col lg:ml-[calc(50%+0.625rem)] lg:max-w-[433px]">
+            <h1 className="flex flex-col px-5 font-display font-medium uppercase md:px-0">
+              <span className="text-[4rem] leading-20">404</span>
+              <span className="text-2xl leading-8">{`//${t('title')}`}</span>
             </h1>
-            <div className="mt-9 flex max-w-95 flex-col gap-6 px-5 typo-text-2 md:px-0">
+            <div className="mt-10 flex flex-col gap-5 px-5 typo-text-2 md:px-0">
               <p>{t('description')}</p>
               <p>{t('hint')}</p>
             </div>

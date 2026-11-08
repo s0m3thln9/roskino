@@ -30,7 +30,7 @@ export function NewsArticle({
   return (
     <article className={cn('flex flex-col overflow-x-clip', className)}>
       {news.cover && (
-        <div className="relative h-120 w-full overflow-hidden md:h-[520px] lg:h-[800px]">
+        <div className="relative h-120 w-full overflow-hidden md:h-[520px] lg:aspect-video lg:h-auto">
           <Image
             src={news.cover.url}
             alt={news.cover.alt}
@@ -45,7 +45,7 @@ export function NewsArticle({
       <div
         className={cn(
           'mx-auto flex w-full max-w-page flex-col gap-10 page-gutter max-md:px-10 lg:grid lg:grid-cols-[1fr_minmax(0,55.375rem)_1fr] lg:gap-x-0',
-          news.cover ? 'pt-12.5 md:pt-20' : 'pt-30 md:pt-40',
+          news.cover ? 'pt-12.5 md:pt-20 lg:pt-17.5' : 'pt-30 md:pt-40',
         )}
       >
         {(backSlot || allNewsSlot) && (
