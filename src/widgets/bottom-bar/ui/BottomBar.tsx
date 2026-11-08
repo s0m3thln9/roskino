@@ -28,7 +28,13 @@ export async function BottomBar() {
       {user ? (
         <UserPanel
           user={user}
-          labels={{ welcome: t('welcome'), market: t('market') }}
+          labels={{
+            welcome: t('welcome'),
+            market: t('market'),
+            participants: t('participants'),
+            projects: t('projects'),
+            program: t('program'),
+          }}
           logoutLabels={{
             signOut: t('signOut'),
             message: tLogout('message'),
