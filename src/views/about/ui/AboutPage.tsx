@@ -61,8 +61,8 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
         </section>
 
         {event && (
-          <section className="bg-gradient-main pt-25 pb-40 text-white md:pt-15 md:pb-20 lg:pt-30 lg:pb-50">
-            <div className="mx-auto flex max-w-page flex-col gap-40 page-gutter md:gap-15 lg:max-w-[calc(var(--container-wide)+6.25rem)] lg:gap-50">
+          <section className="bg-gradient-main pt-[7px] pb-40 text-white md:pt-15 md:pb-20 lg:pt-42.5 lg:pb-50">
+            <div className="mx-auto flex max-w-page flex-col gap-40 page-gutter md:gap-15 lg:max-w-[calc(var(--container-wide)+6.25rem)] lg:gap-40">
               <div className="grid gap-25 md:grid-cols-3 md:gap-5">
                 {event.details.map((detail) => (
                   <EventDetailCard key={detail.label} detail={detail} />

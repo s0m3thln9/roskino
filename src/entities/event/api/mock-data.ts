@@ -9,11 +9,11 @@ export const eventMock: Localized<MarketEvent> = {
     endDate: '2026-12-03',
     heroImage: null,
     details: [
-      { icon: 'place', label: 'Место проведения:', lines: ['Москва'] },
-      { icon: 'dates', label: 'Даты проведения:', lines: ['1-3 декабря 2026'] },
+      { icon: 'place', label: 'Место:', lines: ['Москва'] },
+      { icon: 'dates', label: 'Даты:', lines: ['1-3 декабря 2026'] },
       {
         icon: 'venue',
-        label: 'Площадки проведения:',
+        label: 'Площадки:',
         lines: ['Кинотеатр «Москва»', 'НЦ «Россия»'],
       },
     ],

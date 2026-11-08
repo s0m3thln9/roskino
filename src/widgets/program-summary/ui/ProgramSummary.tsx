@@ -182,7 +182,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                     {hasGap && (
                       <div aria-hidden className="h-22 bg-[url(/images/schedule-gap.svg)]" />
                     )}
-                    <div className="flex flex-col gap-6 md:gap-7.5">
+                    <div className={cn('flex flex-col gap-5', event.registrationUrl && 'md:pb-5')}>
                       <div
                         className={cn(
                           'flex flex-col gap-1 border-l-10 py-3 pl-7.5',
@@ -199,10 +199,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                           href={event.registrationUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className={cn(
-                            buttonVariants({ variant: 'secondary', width: 'full' }),
-                            'typo-text-1',
-                          )}
+                          className={buttonVariants({ variant: 'secondary', width: 'full' })}
                         >
                           {labels.register}
                         </a>

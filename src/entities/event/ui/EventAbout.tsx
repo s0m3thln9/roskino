@@ -9,7 +9,7 @@ export function EventAbout({
   className?: string;
 }) {
   return (
-    <div className={cn('flex max-w-[48rem] flex-col gap-6 typo-text-4', className)}>
+    <div className={cn('flex max-w-[774px] flex-col gap-6 typo-text-4 md:gap-3', className)}>
       {about.map((paragraph, paragraphIndex) => (
         <p key={paragraphIndex}>
           {paragraph.map((segment, index) =>
