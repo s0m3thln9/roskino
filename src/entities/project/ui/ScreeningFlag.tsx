@@ -12,8 +12,8 @@ type ScreeningFlagProps = {
   className?: string;
 };
 
-const FLAG_CLIP =
-  '[clip-path:polygon(0_0,100%_1rem,calc(100%-1.75rem)_calc(50%+0.5rem),100%_100%,0_calc(100%-1rem))]';
+const FLAG_BACKGROUND =
+  'bg-[url(/images/screening-flag-card.svg)] bg-size-[100%_100%] bg-no-repeat';
 
 export function ScreeningFlag({
   screening,
@@ -28,18 +28,14 @@ export function ScreeningFlag({
     return (
       <div
         className={cn(
-          'relative flex pt-4 pr-12 pb-4 pl-10 typo-text-1 leading-5 text-white max-md:font-normal',
+          'pointer-events-none relative flex pt-4 pr-12 pb-4 pl-10 typo-text-1 leading-5 text-white max-md:font-normal md:h-22.5 md:pt-3 md:pb-0',
           detailed && 'max-md:pt-3 max-md:leading-6',
           className,
         )}
       >
         <span
           aria-hidden
-          className={cn(
-            'absolute inset-y-0 left-0 bg-red md:w-full',
-            detailed ? 'w-40' : 'w-37.5',
-            FLAG_CLIP,
-          )}
+          className={cn('absolute inset-y-0 left-0', detailed ? 'w-40' : 'w-37.5', FLAG_BACKGROUND)}
         />
         <span className="relative flex flex-col whitespace-nowrap md:hidden">
           {duration && <span>{duration}</span>}

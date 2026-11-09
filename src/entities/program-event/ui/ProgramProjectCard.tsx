@@ -113,7 +113,7 @@ export function ProgramProjectCard({
         )}
         <Icon
           name="open"
-          className="transition-transform group-focus-within:translate-x-1 group-hover:translate-x-1"
+          className="pointer-events-none transition-transform group-focus-within:translate-x-1 group-hover:translate-x-1"
         />
       </div>
     </article>

@@ -57,10 +57,12 @@ export function ProjectCard({
             <Hyphenated text={project.title} />
           </Link>
         </h3>
-        <p className="typo-text-7">{meta}</p>
-        <p className="typo-text-7 max-md:-mt-1">
-          {project.country} ({project.year})
-        </p>
+        <div className="flex flex-col typo-text-1">
+          <p>{meta}</p>
+          <p>
+            {project.country} ({project.year})
+          </p>
+        </div>
       </div>
 
       <div className="mt-auto flex items-end justify-between gap-4 pt-5">
@@ -75,7 +77,7 @@ export function ProjectCard({
         )}
         <Icon
           name="open"
-          className="transition-transform group-focus-within:translate-x-1 group-hover:translate-x-1"
+          className="pointer-events-none -mb-1 transition-transform group-focus-within:translate-x-1 group-hover:translate-x-1"
         />
       </div>
     </article>
