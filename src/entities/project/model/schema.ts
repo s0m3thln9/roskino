@@ -12,17 +12,7 @@ export const PROJECTS_PAGE_SIZE = 15;
 export const CONTENT_TYPES = ['animation', 'feature-film', 'series', 'documentary'] as const;
 export const contentTypeSchema = z.enum(CONTENT_TYPES);
 
-export const GENRES = [
-  'action',
-  'adventure',
-  'comedy',
-  'drama',
-  'fantasy',
-  'musical',
-  'romance',
-  'sci-fi',
-] as const;
-export const genreSchema = z.enum(GENRES);
+export const genreSchema = z.string().trim().min(1).max(64);
 
 export const filterOptionSchema = z.object({
   value: z.string(),

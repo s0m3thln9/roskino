@@ -8,7 +8,6 @@ export {
 } from './api/projectApi';
 export {
   CONTENT_TYPES,
-  GENRES,
   PROJECTS_PAGE_SIZE,
   catalogFiltersSchema,
   contentTypeSchema,

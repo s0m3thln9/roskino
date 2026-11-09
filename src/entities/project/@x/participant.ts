@@ -1,6 +1,5 @@
 export {
   CONTENT_TYPES,
-  GENRES,
   contentTypeSchema,
   genreSchema,
   projectPreviewSchema,
