@@ -16,8 +16,7 @@ type ProgramProjectCardProps = {
   className?: string;
 };
 
-const RIBBON_CLIP =
-  '[clip-path:polygon(0_1rem,100%_0,100%_calc(100%-1rem),0_100%,1.75rem_calc(50%+0.5rem))]';
+const DURATION_CLASS = 'font-display text-[1.5rem] leading-8 font-medium uppercase';
 
 function ScreeningRibbon({
   screening,
@@ -29,13 +28,8 @@ function ScreeningRibbon({
   const { time, day } = useScreeningDate(screening);
 
   return (
-    <div
-      className={cn(
-        'absolute top-6 right-0 z-10 flex flex-col items-end bg-red py-5 pr-10 pl-14 text-right text-white max-md:hidden',
-        RIBBON_CLIP,
-      )}
-    >
-      {duration && <span className="font-display typo-subtitle uppercase">{duration}</span>}
+    <div className="absolute top-5 right-0 z-10 flex h-[135px] min-w-[259px] flex-col items-end bg-[url(/images/screening-flag.svg)] bg-size-[100%_100%] bg-no-repeat pt-5 pr-10 pl-16 text-right text-white max-md:hidden">
+      {duration && <span className={DURATION_CLASS}>{duration}</span>}
       <span className="typo-text-7">
         {time}, {day}
       </span>
@@ -59,7 +53,7 @@ export function ProgramProjectCard({
   return (
     <article
       className={cn(
-        'group relative flex flex-col gap-6 bg-black p-10 text-white md:flex-row md:gap-5',
+        'group relative flex flex-col gap-6 bg-black p-10 text-white md:flex-row md:gap-10',
         className,
       )}
     >
@@ -75,11 +69,11 @@ export function ProgramProjectCard({
         )}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-6 md:gap-5">
+      <div className="flex min-w-0 flex-1 flex-col gap-6 md:gap-0">
         <div className="flex flex-col gap-4 max-md:-mb-4 md:flex-row md:items-start md:justify-between">
           <h4
             className={cn(
-              'typo-title md:font-display md:typo-subtitle md:uppercase',
+              'typo-title md:text-[1.5rem] md:leading-8 md:uppercase',
               project.screening && 'md:pr-64',
             )}
           >
@@ -88,20 +82,18 @@ export function ProgramProjectCard({
             </Link>
           </h4>
           {!project.screening && duration && (
-            <span className="shrink-0 font-display typo-subtitle uppercase max-md:hidden">
-              {duration}
-            </span>
+            <span className={cn('shrink-0 max-md:hidden', DURATION_CLASS)}>{duration}</span>
           )}
         </div>
 
-        <div className="flex flex-col typo-text-7">
+        <div className="flex flex-col typo-text-7 md:mt-2">
           <span>{meta}</span>
           <span>
             {project.country} ({project.year})
           </span>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 md:mt-11">
           <span className="typo-text-3 md:typo-button">{labels.description}</span>
           <p className="typo-text-6 md:line-clamp-5">{project.description}</p>
         </div>
