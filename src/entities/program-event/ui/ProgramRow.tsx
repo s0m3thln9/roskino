@@ -59,12 +59,7 @@ export function ProgramRow({
         </span>
       ) : (
         <span className="flex flex-col">
-          <span
-            className={cn(
-              'mt-1 typo-text-8 md:mt-0 md:typo-text-5',
-              !event.topic && 'max-md:hidden',
-            )}
-          >
+          <span className={cn('mt-1 typo-text-8 md:mt-0', !event.topic && 'max-md:hidden')}>
             {event.topic ?? event.title}
           </span>
           <span className="typo-text-4 text-dark-grey md:typo-text-3 md:text-black">

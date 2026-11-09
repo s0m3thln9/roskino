@@ -21,7 +21,7 @@ type ProgramEventDetailsProps = {
 
 function PeopleSection({ title, people }: { title: string; people: PersonData[] }) {
   return (
-    <section className="flex flex-col gap-8 md:gap-6">
+    <section className="flex flex-col gap-8">
       <h4 className="typo-button">{title}</h4>
       <ul className="grid gap-x-10 gap-y-10 md:grid-cols-2 md:gap-y-12">
         {people.map((person) => (
@@ -66,7 +66,7 @@ export function ProgramEventDetails({
   return (
     <div
       className={cn(
-        'flex flex-col gap-15 pt-8 pr-10 pb-15 pl-10 text-black md:gap-12 md:pt-3 md:pb-12',
+        'flex flex-col gap-15 pt-5 pr-10 pb-15 pl-10 text-black md:gap-12 md:pb-12',
         className,
       )}
     >
