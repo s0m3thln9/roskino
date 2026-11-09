@@ -46,9 +46,12 @@ export function Carousel({
   }, []);
 
   useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
     updateEdges();
-    window.addEventListener('resize', updateEdges);
-    return () => window.removeEventListener('resize', updateEdges);
+    const observer = new ResizeObserver(updateEdges);
+    observer.observe(list);
+    return () => observer.disconnect();
   }, [updateEdges]);
 
   const clickToScroll = scrollOnItemClick && !withArrows;

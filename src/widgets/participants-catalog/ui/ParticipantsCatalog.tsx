@@ -182,6 +182,7 @@ export function ParticipantsCatalog({
                 <Carousel
                   labels={{ previous: labels.previous, next: labels.next }}
                   arrowsClassName="top-35"
+                  minItemsForArrows={2}
                 >
                   {detailsQuery.data.projects.map((project) => (
                     <li key={project.id} className="snap-start">
