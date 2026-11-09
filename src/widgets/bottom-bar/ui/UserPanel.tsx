@@ -8,6 +8,7 @@ import { MARKET_NAV_ITEMS } from '@/shared/config';
 import { Link, usePathname } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { Icon } from '@/shared/ui';
+import { canHover } from './styles';
 
 type UserPanelProps = {
   user: User;
@@ -20,8 +21,6 @@ type UserPanelProps = {
   };
   logoutLabels: LogoutLabels;
 };
-
-const canHover = () => window.matchMedia('(hover: hover)').matches;
 
 export function UserPanel({ user, labels, logoutLabels }: UserPanelProps) {
   const [open, setOpen] = useState(false);
@@ -57,7 +56,7 @@ export function UserPanel({ user, labels, logoutLabels }: UserPanelProps) {
       <div
         id={menuId}
         hidden={!open}
-        className="absolute bottom-full left-0 w-72.5 max-w-full pb-2 max-md:pb-1"
+        className="absolute bottom-full left-0 w-72.5 max-w-full pb-2"
       >
         <nav aria-label={labels.market} className="rounded-md bg-dark-grey pt-1">
           <ul>

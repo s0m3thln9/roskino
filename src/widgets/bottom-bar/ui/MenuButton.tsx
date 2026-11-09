@@ -5,7 +5,7 @@ import { Link, usePathname } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
 import { Icon } from '@/shared/ui';
 import type { NavItem } from '../model/nav';
-import { barButtonClassName } from './styles';
+import { barButtonClassName, canHover } from './styles';
 
 type MenuButtonProps = {
   items: NavItem[];
@@ -48,7 +48,12 @@ export function MenuButton({
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div
+      ref={containerRef}
+      className="relative"
+      onMouseEnter={() => canHover() && setOpen(true)}
+      onMouseLeave={() => canHover() && setOpen(false)}
+    >
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -65,36 +70,37 @@ export function MenuButton({
         <span className="typo-menu">{buttonLabel}</span>
       </button>
 
-      <nav
+      <div
         hidden={!open}
-        aria-label={menuLabel}
-        className="absolute bottom-full mb-2.5 w-72.5 rounded-md bg-dark-grey py-1 max-md:left-0 max-md:mb-1 max-md:max-w-[calc(50vw+6rem)] md:right-0"
+        className="absolute bottom-full w-72.5 pb-2 max-md:left-0 max-md:max-w-[calc(50vw+6rem)] md:right-0"
       >
-        <ul>
-          {items.map((item) => {
-            const active = isActive(item.href);
-            return (
-              <li key={item.key}>
-                <Link
-                  href={item.href}
-                  aria-current={active ? 'page' : undefined}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    'flex h-15 items-center gap-6 pr-6 pl-7 text-white transition-opacity hover:opacity-100',
-                    active ? 'opacity-100' : 'opacity-50',
-                  )}
-                >
-                  <Icon name={item.icon} className="size-6" />
-                  <span className="typo-subtitle leading-6 whitespace-nowrap">
-                    {labels[item.key]}
-                  </span>
-                  {active && <Icon name="check-checked" className="ml-auto size-3" />}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+        <nav aria-label={menuLabel} className="rounded-md bg-dark-grey py-1">
+          <ul>
+            {items.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <li key={item.key}>
+                  <Link
+                    href={item.href}
+                    aria-current={active ? 'page' : undefined}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      'flex h-15 items-center gap-6 pr-6 pl-7 text-white transition-opacity hover:opacity-100',
+                      active ? 'opacity-100' : 'opacity-50',
+                    )}
+                  >
+                    <Icon name={item.icon} className="size-6" />
+                    <span className="typo-subtitle leading-6 whitespace-nowrap">
+                      {labels[item.key]}
+                    </span>
+                    {active && <Icon name="check-checked" className="ml-auto size-3" />}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }
