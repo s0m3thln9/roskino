@@ -13,12 +13,13 @@ import { cn } from '@/shared/lib';
 import { Icon } from '../icon';
 import { RoundButton } from '../round-button';
 
-const MIN_ITEMS_FOR_ARROWS = 4;
+const DEFAULT_MIN_ITEMS_FOR_ARROWS = 4;
 
 type CarouselProps = {
   labels: { previous: string; next: string };
   arrowsClassName: string;
   scrollOnItemClick?: boolean;
+  minItemsForArrows?: number;
   children: ReactNode;
   className?: string;
 };
@@ -27,12 +28,13 @@ export function Carousel({
   labels,
   arrowsClassName,
   scrollOnItemClick = false,
+  minItemsForArrows = DEFAULT_MIN_ITEMS_FOR_ARROWS,
   children,
   className,
 }: CarouselProps) {
   const listRef = useRef<HTMLUListElement>(null);
   const [edges, setEdges] = useState({ start: true, end: true });
-  const withArrows = Children.count(children) >= MIN_ITEMS_FOR_ARROWS;
+  const withArrows = Children.count(children) >= minItemsForArrows;
 
   const updateEdges = useCallback(() => {
     const list = listRef.current;

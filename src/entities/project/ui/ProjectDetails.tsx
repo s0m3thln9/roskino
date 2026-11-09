@@ -169,12 +169,13 @@ export function ProjectDetails({
             labels={{ previous: labels.previous, next: labels.next }}
             arrowsClassName="top-[4.25rem] md:top-[6.875rem]"
             scrollOnItemClick
-            className="max-md:-ml-10 max-md:[&>ul]:gap-1"
+            minItemsForArrows={2}
+            className="max-md:-ml-10 max-md:[&>ul]:gap-1 md:[&>ul]:gap-2.5"
           >
             {project.stills.map((still, index) => (
               <li
                 key={`${still.url}-${index}`}
-                className="relative aspect-[354/200] w-[calc(100vw-2.25rem)] shrink-0 snap-start overflow-hidden md:aspect-video md:w-[390px]"
+                className="relative aspect-[354/200] w-[calc(100%+0.25rem)] shrink-0 snap-start overflow-hidden md:aspect-video md:w-[390px]"
               >
                 <Image
                   src={still.url}
