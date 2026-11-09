@@ -123,7 +123,9 @@
       "public-talk": "Public talk",
       "break": "Break"
     },
-    "emptyProgram": "No events found"
+    "emptyProgram": "No events found",
+    "emptyProjects": "No project found",
+    "emptyParticipants": "No participant found"
   },
   "Auth": {
     "title": "Authorisation",

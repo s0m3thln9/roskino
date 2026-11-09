@@ -45,7 +45,7 @@ export async function buildCatalogLabels(): Promise<CatalogLabels> {
     reset: t('reset'),
     clear: t('clear'),
     loading: t('loading'),
-    empty: t('empty'),
+    empty: t('emptyParticipants'),
     error: t('error'),
     close: t('close'),
     contentTypes: t('contentTypes'),

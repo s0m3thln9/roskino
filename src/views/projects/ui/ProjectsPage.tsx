@@ -36,7 +36,7 @@ async function buildLabels(): Promise<ProjectsCatalogLabels> {
     reset: t('reset'),
     clear: t('clear'),
     loading: t('loading'),
-    empty: t('empty'),
+    empty: t('emptyProjects'),
     error: t('error'),
     close: t('close'),
     paginationNav: t('paginationNav'),
