@@ -33,7 +33,7 @@ export function TextField({
         value={value}
         placeholder=" "
         aria-invalid={error || undefined}
-        className="peer h-full min-w-0 flex-1 bg-transparent pt-4 pr-5 pl-5 typo-text-3 caret-turquoise outline-none md:pt-5.5"
+        className="peer h-full min-w-0 flex-1 bg-transparent pt-5 pr-5 pb-1 pl-5 typo-text-3 caret-turquoise outline-none md:pt-7.25 md:pb-1.75"
         {...props}
       />
       <label
