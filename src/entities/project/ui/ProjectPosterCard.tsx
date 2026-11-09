@@ -22,9 +22,7 @@ export function ProjectPosterCard({
   const meta = [contentTypeLabel, ...genreLabels, project.ageRating].filter(Boolean).join(', ');
 
   return (
-    <article
-      className={cn('relative flex w-[210px] shrink-0 flex-col gap-4 text-black', className)}
-    >
+    <article className={cn('relative flex w-[210px] shrink-0 flex-col text-black', className)}>
       <div className="relative aspect-[3/4] w-full overflow-hidden">
         {project.poster && (
           <Image
@@ -36,18 +34,22 @@ export function ProjectPosterCard({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="mt-6 flex flex-col gap-1">
         <h4 className="typo-title">
           <Link href={ROUTES.project(project.id)} className="before:absolute before:inset-0">
             <Hyphenated text={project.title} />
           </Link>
         </h4>
-        <p className="typo-text-7">{meta}</p>
-        <p className="typo-text-7">
-          {project.country} ({project.year})
-        </p>
+        <div className="flex flex-col typo-text-1">
+          <p>{meta}</p>
+          <p>
+            {project.country} ({project.year})
+          </p>
+        </div>
       </div>
-      {project.screening && <ScreeningFlag screening={project.screening} variant="line" />}
+      {project.screening && (
+        <ScreeningFlag screening={project.screening} variant="line" className="mt-4" />
+      )}
     </article>
   );
 }
