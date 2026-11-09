@@ -51,7 +51,9 @@ export function MarketNav({ labels, className }: MarketNavProps) {
             onTouchStart={() => prefetch(item.key)}
             className={cn(
               'shrink-0 typo-text-3 transition-colors',
-              active ? 'text-red' : 'text-black/50 underline decoration-from-font hover:text-black',
+              active
+                ? 'font-medium text-red'
+                : 'text-black/50 underline decoration-from-font hover:text-black',
             )}
           >
             {labels[item.key]}
