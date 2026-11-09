@@ -58,7 +58,7 @@ export function ParticipantDetails({
                   href={participant.website}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-fit typo-link-2 hover:opacity-70"
+                  className="-mt-0.5 w-fit typo-link-2 hover:opacity-70"
                 >
                   {participant.websiteLabel ?? participant.website}
                 </a>
