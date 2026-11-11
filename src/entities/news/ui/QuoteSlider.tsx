@@ -82,7 +82,7 @@ export function QuoteSlider({ quotes, labels }: QuoteSliderProps) {
                   {quote.text}
                 </blockquote>
                 <div className="flex flex-col">
-                  <span className="typo-text-5 md:font-medium md:text-red">{quote.author}</span>
+                  <span className="typo-text-5 font-medium md:text-red">{quote.author}</span>
                   {quote.position && (
                     <span className="typo-text-3 opacity-50 md:text-dark-grey/75 md:opacity-100">
                       {quote.position}
