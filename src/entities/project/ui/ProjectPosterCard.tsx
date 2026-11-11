@@ -48,7 +48,7 @@ export function ProjectPosterCard({
         </div>
       </div>
       {project.screening && (
-        <ScreeningFlag screening={project.screening} variant="line" className="mt-4" />
+        <ScreeningFlag screening={project.screening} variant="line" className="mt-5" />
       )}
     </article>
   );
