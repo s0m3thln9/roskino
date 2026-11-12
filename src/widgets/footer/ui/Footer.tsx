@@ -2,10 +2,14 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { getSiteSettings } from '@/entities/site-settings/server';
 import { withFallback } from '@/shared/api/server';
+import { serverEnv } from '@/shared/config/server';
 import type { Locale } from '@/shared/i18n';
 import { ContactLink, Icon, Logo, roundButtonVariants } from '@/shared/ui';
+import { FooterMap } from './FooterMap';
 
 const SOCIAL_ICONS = { telegram: 'social-telegram', max: 'social-max' } as const;
+
+const MAP_LANGS: Record<Locale, string> = { ru: 'ru_RU', en: 'en_US' };
 
 export async function Footer({ locale }: { locale: Locale }) {
   const [settings, t] = await Promise.all([
@@ -79,6 +83,16 @@ export async function Footer({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 flex items-center justify-center">
                 <Icon name="pin" className="text-black" />
               </div>
+              {serverEnv.YANDEX_MAPS_API_KEY && (
+                <FooterMap
+                  apiKey={serverEnv.YANDEX_MAPS_API_KEY}
+                  lang={MAP_LANGS[locale]}
+                  lat={settings.map.coordinates.lat}
+                  lng={settings.map.coordinates.lng}
+                  zoom={settings.map.zoom}
+                  className="absolute inset-0"
+                />
+              )}
               <a
                 href={settings.map.directionsUrl}
                 target="_blank"
