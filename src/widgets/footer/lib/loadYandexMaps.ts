@@ -14,7 +14,11 @@ type Ymaps3 = {
   ready: Promise<void>;
   YMap: new (
     element: HTMLElement,
-    props: { location: { center: LngLat; zoom: number }; behaviors: YMapBehavior[] },
+    props: {
+      location: { center: LngLat; zoom: number };
+      behaviors: YMapBehavior[];
+      distributionPosition: 'top left' | 'top right' | 'bottom left' | 'bottom right';
+    },
   ) => YMapInstance;
   YMapDefaultSchemeLayer: new (props: object) => YMapEntity;
   YMapDefaultFeaturesLayer: new (props: object) => YMapEntity;

@@ -38,6 +38,7 @@ export function FooterMap({ apiKey, lang, lat, lng, zoom, className }: FooterMap
         map = new ymaps3.YMap(container, {
           location: { center: [lng, lat], zoom },
           behaviors: idleBehaviors,
+          distributionPosition: 'top left',
         });
         map.addChild(new ymaps3.YMapDefaultSchemeLayer({}));
         map.addChild(new ymaps3.YMapDefaultFeaturesLayer({}));
