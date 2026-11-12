@@ -66,7 +66,7 @@ export function FooterMap({ apiKey, lang, lat, lng, zoom, className }: FooterMap
     <div
       ref={containerRef}
       className={cn(
-        'text-black transition-opacity',
+        'isolate text-black transition-opacity',
         ready ? 'opacity-100' : 'pointer-events-none opacity-0',
         className,
       )}
