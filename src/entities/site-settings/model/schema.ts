@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { imageSchema } from '@/shared/api';
 
-export const DEFAULT_MAP_COORDINATES = { lat: 55.756342, lng: 37.600973 };
+export const DEFAULT_MAP_COORDINATES = { lat: 55.756244, lng: 37.601155 };
 export const DEFAULT_MAP_ZOOM = 16;
 
 export const socialLinkSchema = z.object({

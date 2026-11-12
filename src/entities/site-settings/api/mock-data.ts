@@ -22,9 +22,9 @@ export const siteSettingsMock: Localized<SiteSettings> = {
         width: 800,
         height: 569,
       },
-      coordinates: { lat: 55.756342, lng: 37.600973 },
+      coordinates: { lat: 55.756244, lng: 37.601155 },
       zoom: 16,
-      directionsUrl: 'https://yandex.ru/maps/-/CHaJ7Z~3',
+      directionsUrl: 'https://yandex.ru/maps/?rtext=~55.756244%2C37.601155',
       directionsLabel: 'Как добраться',
     },
     accreditation: {
@@ -53,9 +53,9 @@ export const siteSettingsMock: Localized<SiteSettings> = {
         width: 800,
         height: 569,
       },
-      coordinates: { lat: 55.756342, lng: 37.600973 },
+      coordinates: { lat: 55.756244, lng: 37.601155 },
       zoom: 16,
-      directionsUrl: 'https://yandex.ru/maps/-/CHaJ7Z~3',
+      directionsUrl: 'https://yandex.ru/maps/?rtext=~55.756244%2C37.601155',
       directionsLabel: 'How to get there',
     },
     accreditation: {
