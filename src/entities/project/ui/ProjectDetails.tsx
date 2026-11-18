@@ -8,6 +8,7 @@ import { cn } from '@/shared/lib';
 import { Carousel, Hyphenated, Icon, InfoRow, Person, PlayButton, Video } from '@/shared/ui';
 import type { Project } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
+import { formatProjectDuration } from '../lib/formatProjectDuration';
 
 type ProjectDetailsProps = {
   project: Project;
@@ -48,7 +49,7 @@ export function ProjectDetails({
 
   const rows: Array<[string, string]> = [
     [labels.ageRating, project.ageRating],
-    [labels.length, project.lengthMinutes ? `${project.lengthMinutes} ${labels.minutes}` : '—'],
+    [labels.length, formatProjectDuration(project, labels.minutes) ?? '—'],
     [labels.type, contentTypeLabel],
     [labels.genre, genreLabels.join(', ')],
     [labels.productionYear, String(project.year)],

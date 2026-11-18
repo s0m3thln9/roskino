@@ -5,6 +5,7 @@ import { cn } from '@/shared/lib';
 import { Hyphenated, Icon } from '@/shared/ui';
 import type { ProjectPreview } from '../model/schema';
 import { ScreeningFlag } from './ScreeningFlag';
+import { formatProjectDuration } from '../lib/formatProjectDuration';
 
 type ProjectCardProps = {
   project: ProjectPreview;
@@ -24,7 +25,7 @@ export function ProjectCard({
   className,
 }: ProjectCardProps) {
   const meta = [contentTypeLabel, ...genreLabels, project.ageRating].filter(Boolean).join(', ');
-  const duration = project.lengthMinutes ? `${project.lengthMinutes} ${minutesLabel}` : null;
+  const duration = formatProjectDuration(project, minutesLabel);
 
   return (
     <article

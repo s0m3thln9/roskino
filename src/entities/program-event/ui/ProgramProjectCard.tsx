@@ -1,7 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { ScreeningFlag, useScreeningDate } from '@/entities/project/@x/program-event';
+import {
+  formatProjectDuration,
+  ScreeningFlag,
+  useScreeningDate,
+} from '@/entities/project/@x/program-event';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
@@ -48,7 +52,7 @@ export function ProgramProjectCard({
   className,
 }: ProgramProjectCardProps) {
   const meta = [contentTypeLabel, ...genreLabels, project.ageRating].filter(Boolean).join(', ');
-  const duration = project.lengthMinutes ? `${project.lengthMinutes} ${labels.minutes}` : null;
+  const duration = formatProjectDuration(project, labels.minutes);
 
   return (
     <article

@@ -41,7 +41,8 @@ export const projectPreviewSchema = z.object({
   ageRating: z.string(),
   country: z.string(),
   year: z.number().int(),
-  lengthMinutes: z.number().int().positive().nullable().default(null),
+  lengthMinutes: z.number().positive().nullable().default(null),
+  episodes: z.number().int().positive().nullable().default(null),
   screening: screeningSchema.nullable().default(null),
 });
 

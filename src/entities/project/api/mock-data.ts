@@ -50,6 +50,7 @@ function seed(
     screening: null,
     description,
     lengthMinutes: 85,
+    episodes: null,
     releaseInRussia: 'Autumn 2027',
     status: 'Post-production',
     productionCompanies: ['SMF Animation'],
@@ -83,7 +84,8 @@ export const projectsSeed: ProjectSeed[] = [
   ),
   seed('magic-lantern', 'smf-animation', 'The Magic Lantern', 'series', ['fantasy', 'adventure'], {
     ageRating: '0+',
-    lengthMinutes: 22,
+    lengthMinutes: 3.5,
+    episodes: 26,
     releaseInRussia: 'Spring 2027',
     status: 'In production',
   }),
@@ -116,6 +118,7 @@ export const projectsSeed: ProjectSeed[] = [
   seed('last-summer', 'b-company', 'Last Summer', 'series', ['drama'], {
     ageRating: '16+',
     lengthMinutes: 48,
+    episodes: 8,
     productionCompanies: ['B Company'],
     screening: {
       startsAt: '2026-12-03T11:00:00+03:00',

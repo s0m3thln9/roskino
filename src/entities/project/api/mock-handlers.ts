@@ -36,6 +36,7 @@ function toPreview(seed: Seed): ProjectPreview {
     country: seed.country,
     year: seed.year,
     lengthMinutes: seed.lengthMinutes,
+    episodes: seed.episodes,
     screening: seed.screening,
   };
 }
