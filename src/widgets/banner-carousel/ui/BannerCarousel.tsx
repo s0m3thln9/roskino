@@ -29,26 +29,24 @@ export function BannerCarousel({ banners, slideLabelPrefix, className }: BannerC
       sizes="100vw"
       loading={active === 0 ? 'eager' : undefined}
       fetchPriority={active === 0 ? 'high' : undefined}
-      className="object-cover"
+      className="relative! block h-auto! w-full"
     />
   );
 
   return (
-    <section
-      className={cn('relative h-175 w-full overflow-hidden md:h-[520px] lg:h-[700px]', className)}
-    >
+    <section className={cn('relative w-full overflow-hidden', className)}>
       {isExternal ? (
         <a
           href={banner.href}
           target="_blank"
           rel="noreferrer"
           aria-label={banner.title}
-          className="absolute inset-0 block"
+          className="block"
         >
           {content}
         </a>
       ) : (
-        <Link href={banner.href} aria-label={banner.title} className="absolute inset-0 block">
+        <Link href={banner.href} aria-label={banner.title} className="block">
           {content}
         </Link>
       )}
