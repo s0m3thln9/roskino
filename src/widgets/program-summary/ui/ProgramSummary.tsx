@@ -187,15 +187,14 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                       <div
                         className={cn(
                           'flex flex-col gap-1 border-l-10 py-3 pl-7.5',
-                          event.topic && 'bg-white pt-4 pr-5 pb-5 text-black md:gap-2 md:py-5',
+                          event.topic && 'pt-4 pr-5 pb-5 md:gap-2 md:py-5',
                           PROGRAM_CATEGORY_BORDER[event.category],
                         )}
                       >
                         <span
                           className={cn(
-                            event.topic
-                              ? 'typo-text-4 text-black/50 md:typo-text-2'
-                              : 'typo-text-2 text-white/50',
+                            'text-white/50',
+                            event.topic ? 'typo-text-4 md:typo-text-2' : 'typo-text-2',
                           )}
                         >
                           {formatTime(event.startsAt)} - {formatTime(event.endsAt)}
@@ -203,7 +202,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                         {event.topic ? (
                           <span className="flex flex-col">
                             <span className="mt-1 typo-text-8 md:mt-0">{event.topic}</span>
-                            <span className="typo-text-4 text-dark-grey md:typo-text-3 md:text-black">
+                            <span className="typo-text-4 text-white/70 md:typo-text-3 md:text-white">
                               {t(event.category)}
                             </span>
                           </span>
