@@ -51,6 +51,7 @@ function seed(
     description,
     lengthMinutes: 85,
     episodes: null,
+    durations: [],
     releaseInRussia: 'Autumn 2027',
     status: 'Post-production',
     productionCompanies: ['SMF Animation'],
