@@ -40,7 +40,13 @@ export const projectPreviewSchema = z.object({
   genres: z.array(genreSchema),
   ageRating: z.string(),
   country: z.string(),
-  year: z.number().int(),
+  year: z.union([
+    z.number().int(),
+    z
+      .string()
+      .trim()
+      .regex(/^\d{4}(?:-\d{4})?$/),
+  ]),
   lengthMinutes: z.number().positive().nullable().default(null),
   episodes: z.number().int().positive().nullable().default(null),
   screening: screeningSchema.nullable().default(null),
