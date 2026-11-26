@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ROUTES } from '@/shared/config';
 import { Link } from '@/shared/i18n';
 import { cn } from '@/shared/lib';
@@ -47,9 +47,21 @@ export function ProjectDetails({
 }: ProjectDetailsProps) {
   const [showTrailer, setShowTrailer] = useState(false);
 
-  const rows: Array<[string, string]> = [
+  const duration = project.durations.length ? (
+    <ul>
+      {project.durations.map((entry) => (
+        <li key={entry.label}>
+          {entry.label}: {formatProjectDuration(entry, labels.minutes)}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    (formatProjectDuration(project, labels.minutes) ?? '—')
+  );
+
+  const rows: Array<[string, ReactNode]> = [
     [labels.ageRating, project.ageRating],
-    [labels.length, formatProjectDuration(project, labels.minutes) ?? '—'],
+    [labels.length, duration],
     [labels.type, contentTypeLabel],
     [labels.genre, genreLabels.join(', ')],
     [labels.productionYear, String(project.year)],

@@ -46,7 +46,14 @@ export const projectPreviewSchema = z.object({
   screening: screeningSchema.nullable().default(null),
 });
 
+const projectDurationSchema = z.object({
+  label: z.string().trim().min(1),
+  lengthMinutes: z.number().positive(),
+  episodes: z.number().int().positive().nullable().default(null),
+});
+
 export const projectSchema = projectPreviewSchema.extend({
+  durations: z.array(projectDurationSchema).default([]),
   description: z.string(),
   releaseInRussia: z.string().nullable().default(null),
   status: z.string(),
