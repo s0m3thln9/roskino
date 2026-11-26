@@ -11,6 +11,7 @@ type SummarySeed = {
   title: Localized;
   category: ProgramCategory;
   registrationUrl?: string;
+  topic?: Localized;
 };
 
 const summarySeed: SummarySeed[] = [
@@ -26,6 +27,10 @@ const summarySeed: SummarySeed[] = [
     time: ['11:00', '12:00'],
     title: { ru: 'Публичная лекция', en: 'Public talk' },
     category: 'public-talk',
+    topic: {
+      ru: 'Микродрамы: новая норма или горячий тренд?',
+      en: 'Microdramas: The new black or a hot trend?',
+    },
   },
   {
     room: { ru: 'Зал 1', en: 'Room 1' },
@@ -96,6 +101,7 @@ export function buildProgramSummary(lang: keyof Localized): ProgramSummary {
           title: seed.title[lang],
           category: seed.category,
           registrationUrl: seed.registrationUrl ?? null,
+          topic: dayIndex === 2 ? (seed.topic?.[lang] ?? null) : null,
         });
         rooms.set(name, room);
       });

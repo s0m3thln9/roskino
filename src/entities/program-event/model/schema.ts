@@ -13,14 +13,21 @@ export const PROGRAM_CATEGORIES = [
 ] as const;
 export const programCategorySchema = z.enum(PROGRAM_CATEGORIES);
 
-export const programSummaryEventSchema = z.object({
-  id: z.string(),
-  startsAt: z.iso.datetime({ offset: true }),
-  endsAt: z.iso.datetime({ offset: true }),
-  title: z.string(),
-  category: programCategorySchema,
-  registrationUrl: z.url().nullable().default(null),
-});
+export const programSummaryEventSchema = z
+  .object({
+    id: z.string(),
+    startsAt: z.iso.datetime({ offset: true }),
+    endsAt: z.iso.datetime({ offset: true }),
+    title: z.string(),
+    category: programCategorySchema,
+    programTopic: z.string().trim().nullable().optional(),
+    topic: z.string().trim().nullable().optional(),
+    registrationUrl: z.url().nullable().default(null),
+  })
+  .transform(({ programTopic, topic, ...event }) => ({
+    ...event,
+    topic: programTopic || topic || null,
+  }));
 
 export const programSummarySchema = z.object({
   days: z.array(

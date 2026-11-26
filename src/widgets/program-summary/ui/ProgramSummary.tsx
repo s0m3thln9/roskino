@@ -193,6 +193,7 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                           {formatTime(event.startsAt)} - {formatTime(event.endsAt)}
                         </span>
                         <span className="typo-text-5">{event.title}</span>
+                        {event.topic && <span className="typo-text-8">{event.topic}</span>}
                       </div>
                       {event.registrationUrl && (
                         <a
