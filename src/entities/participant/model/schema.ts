@@ -28,7 +28,7 @@ export const participantSchema = participantPreviewSchema.extend({
   about: z.string(),
   achievements: z.string().nullable().default(null),
   genres: z.array(genreSchema).default([]),
-  contact: personSchema,
+  contact: personSchema.extend({ emails: z.array(z.email()).optional() }),
   projects: z.array(projectPreviewSchema).default([]),
 });
 

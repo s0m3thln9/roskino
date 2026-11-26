@@ -11,13 +11,11 @@ export const socialLinkSchema = z.object({
 });
 
 export const siteSettingsSchema = z.object({
-  seo: z.object({ emails: z.array(z.email()).max(2) }).optional(),
   organization: z.object({
     name: z.string(),
     addressLines: z.array(z.string()),
     phone: z.string(),
-    email: z.email().optional(),
-    emails: z.array(z.email()).max(2).optional(),
+    email: z.email(),
     ogrn: z.string(),
     copyright: z.string(),
   }),

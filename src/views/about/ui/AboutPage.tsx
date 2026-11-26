@@ -7,7 +7,6 @@ import { getEvent } from '@/entities/event/server';
 import { getMedia } from '@/entities/media/server';
 import { mediaTypeSchema } from '@/entities/media';
 import { getProgramSummary } from '@/entities/program-event/server';
-import { getSiteSettings } from '@/entities/site-settings/server';
 import { withFallback } from '@/shared/api/server';
 import { featureFlags } from '@/shared/config/server';
 import { resolveLocale, type LocaleParams } from '@/shared/i18n/server';
@@ -39,31 +38,17 @@ export async function AboutPage({ params, searchParams }: AboutPageProps) {
 
   const emptyMedia = { years: [], year: mediaYear ?? 0, items: [] };
 
-  const [event, banners, program, photos, videos, t, settings] = await Promise.all([
+  const [event, banners, program, photos, videos, t] = await Promise.all([
     withFallback(getEvent(locale), null),
     withFallback(getBanners(locale), []),
     withFallback(getProgramSummary(locale), null),
     withFallback(getMedia(locale, 'photo', mediaYear), emptyMedia),
     withFallback(getMedia(locale, 'video', mediaYear), emptyMedia),
     getTranslations('About'),
-    withFallback(getSiteSettings(locale), null),
   ]);
 
   return (
     <>
-      {settings?.seo?.emails.length ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: settings.organization.name,
-              email: settings.seo.emails,
-            }).replace(/</g, '\\u003c'),
-          }}
-        />
-      ) : null}
       <Header tone="dark" showLogo={false} />
       <main className="flex-1">
         <section className="relative isolate aspect-[1080/1920] w-full overflow-hidden bg-[#00204d] md:aspect-video">

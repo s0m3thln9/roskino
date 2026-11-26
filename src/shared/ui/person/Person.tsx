@@ -5,11 +5,13 @@ type PersonProps = {
   name: string;
   position?: string;
   email?: string;
+  emails?: string[];
   photoUrl?: string | null;
   className?: string;
 };
 
-export function Person({ name, position, email, photoUrl, className }: PersonProps) {
+export function Person({ name, position, email, emails, photoUrl, className }: PersonProps) {
+  const addresses = emails ?? (email ? [email] : []);
   return (
     <div className={cn('flex flex-col items-start gap-5 md:flex-row md:gap-8', className)}>
       <div className="relative size-20 shrink-0 overflow-hidden rounded-full bg-current">
@@ -17,14 +19,18 @@ export function Person({ name, position, email, photoUrl, className }: PersonPro
       </div>
       <div className="flex min-w-0 flex-col gap-1">
         <p className="typo-button">{name}</p>
-        {(position || email) && (
+        {(position || addresses.length > 0) && (
           <div className="flex flex-col">
             {position && <p className="typo-text-7">{position}</p>}
-            {email && (
-              <a href={`mailto:${email}`} className="typo-link-2 break-all hover:opacity-70">
-                {email}
+            {addresses.map((address, index) => (
+              <a
+                key={`${address}-${index}`}
+                href={`mailto:${address}`}
+                className="typo-link-2 break-all hover:opacity-70"
+              >
+                {address}
               </a>
-            )}
+            ))}
           </div>
         )}
       </div>
