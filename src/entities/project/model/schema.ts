@@ -45,7 +45,7 @@ export const projectPreviewSchema = z.object({
     z
       .string()
       .trim()
-      .regex(/^\d{4}(?:-\d{4})?$/),
+      .regex(/^\d{4}(?:\s*[-–—]\s*\d{4})?$/),
   ]),
   lengthMinutes: z.number().positive().nullable().default(null),
   episodes: z.number().int().positive().nullable().default(null),

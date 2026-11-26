@@ -94,6 +94,7 @@ export function ParticipantDetails({
           name={participant.contact.name}
           position={participant.contact.position}
           email={participant.contact.email}
+          emails={participant.contact.emails}
           photoUrl={participant.contact.photo?.url}
           className="lg:pt-45"
         />
