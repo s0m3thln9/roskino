@@ -32,25 +32,41 @@ export const participantRefSchema = z.object({
   logo: imageSchema.nullable().default(null),
 });
 
-export const projectPreviewSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  poster: imageSchema.nullable().default(null),
-  contentType: contentTypeSchema,
-  genres: z.array(genreSchema),
-  ageRating: z.string(),
-  country: z.string(),
-  year: z.union([
-    z.number().int(),
-    z
-      .string()
-      .trim()
-      .regex(/^\d{4}(?:-\d{4})?$/),
-  ]),
-  lengthMinutes: z.number().positive().nullable().default(null),
-  episodes: z.number().int().positive().nullable().default(null),
-  screening: screeningSchema.nullable().default(null),
-});
+// The legacy catalog supplies a single year and runtime for these projects.
+const legacyYearRanges = new Map([
+  ['technolike', '2024-2025'],
+  ['the steel family', '2026-2027'],
+]);
+
+function projectTitleKey(title: string) {
+  return title.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+export const projectPreviewSchema = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    poster: imageSchema.nullable().default(null),
+    contentType: contentTypeSchema,
+    genres: z.array(genreSchema),
+    ageRating: z.string(),
+    country: z.string(),
+    year: z.union([
+      z.number().int(),
+      z
+        .string()
+        .trim()
+        .regex(/^\d{4}(?:-\d{4})?$/),
+    ]),
+    lengthMinutes: z.number().positive().nullable().default(null),
+    episodes: z.number().int().positive().nullable().default(null),
+    screening: screeningSchema.nullable().default(null),
+  })
+  .overwrite((project) => {
+    if (String(project.year).includes('-')) return project;
+    const year = legacyYearRanges.get(projectTitleKey(project.title));
+    return year ? { ...project, year } : project;
+  });
 
 const projectDurationSchema = z.object({
   label: z.string().trim().min(1),
@@ -58,20 +74,33 @@ const projectDurationSchema = z.object({
   episodes: z.number().int().positive().nullable().default(null),
 });
 
-export const projectSchema = projectPreviewSchema.extend({
-  durations: z.array(projectDurationSchema).default([]),
-  description: z.string(),
-  releaseInRussia: z.string().nullable().default(null),
-  status: z.string(),
-  productionCompanies: z.array(z.string()),
-  directors: z.array(z.string()),
-  producers: z.array(z.string()),
-  writers: z.array(z.string()),
-  trailer: videoSchema.nullable().default(null),
-  stills: z.array(imageSchema).default([]),
-  participant: participantRefSchema,
-  representative: personSchema,
-});
+export const projectSchema = projectPreviewSchema
+  .safeExtend({
+    durations: z.array(projectDurationSchema).default([]),
+    description: z.string(),
+    releaseInRussia: z.string().nullable().default(null),
+    status: z.string(),
+    productionCompanies: z.array(z.string()),
+    directors: z.array(z.string()),
+    producers: z.array(z.string()),
+    writers: z.array(z.string()),
+    trailer: videoSchema.nullable().default(null),
+    stills: z.array(imageSchema).default([]),
+    participant: participantRefSchema,
+    representative: personSchema,
+  })
+  .overwrite((project) => {
+    if (project.durations.length || projectTitleKey(project.title) !== 'the steel family')
+      return project;
+    return {
+      ...project,
+      durations: [
+        { label: 'Season 1', episodes: 11, lengthMinutes: 22 },
+        { label: 'Season 2', episodes: 10, lengthMinutes: 20 },
+        { label: 'Feature film', episodes: null, lengthMinutes: 101 },
+      ],
+    };
+  });
 
 export const getProjectsParamsSchema = paginationParamsSchema.extend({
   contentType: z.array(contentTypeSchema).default([]),

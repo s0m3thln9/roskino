@@ -59,7 +59,7 @@ export const programEventPreviewSchema = z.object({
   hasDetails: z.boolean(),
 });
 
-export const programProjectSchema = projectPreviewSchema.extend({
+export const programProjectSchema = projectPreviewSchema.safeExtend({
   description: z.string(),
 });
 
