@@ -1,8 +1,7 @@
 import type { Localized } from '@/shared/lib';
-import type { z } from 'zod';
-import type { siteSettingsSchema } from '../model/schema';
+import type { SiteSettings } from '../model/schema';
 
-export const siteSettingsMock: Localized<z.input<typeof siteSettingsSchema>> = {
+export const siteSettingsMock: Localized<SiteSettings> = {
   ru: {
     organization: {
       name: 'АО «РОСКИНО»',

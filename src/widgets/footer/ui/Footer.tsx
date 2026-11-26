@@ -17,6 +17,9 @@ export async function Footer({ locale }: { locale: Locale }) {
     getTranslations('Navigation'),
   ]);
 
+  const organization = settings?.organization;
+  const emails = organization?.emails ?? (organization?.email ? [organization.email] : []);
+
   return (
     <footer className="bg-black page-gutter pt-24 pb-15 text-white md:pt-25">
       <div className="mx-auto flex max-w-page flex-col gap-12.5 md:gap-10 lg:gap-17.5">
@@ -57,7 +60,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                   >
                     {settings.organization.phone}
                   </ContactLink>
-                  {settings.organization.emails.map((email) => (
+                  {[...new Set(emails)].map((email) => (
                     <ContactLink key={email} icon="email" href={`mailto:${email}`}>
                       {email}
                     </ContactLink>

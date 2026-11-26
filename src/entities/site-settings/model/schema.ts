@@ -10,27 +10,17 @@ export const socialLinkSchema = z.object({
   label: z.string(),
 });
 
-const emailListSchema = z.array(z.string().trim().pipe(z.email())).max(2);
-
 export const siteSettingsSchema = z.object({
-  organization: z
-    .object({
-      name: z.string(),
-      addressLines: z.array(z.string()),
-      phone: z.string(),
-      email: z
-        .string()
-        .transform((value) => value.split(/[,;\n]+/).filter((part) => part.trim()))
-        .pipe(emailListSchema)
-        .optional(),
-      emails: emailListSchema.optional(),
-      ogrn: z.string(),
-      copyright: z.string(),
-    })
-    .transform(({ email, emails, ...organization }) => ({
-      ...organization,
-      emails: [...new Set(emails?.length ? emails : email)],
-    })),
+  seo: z.object({ emails: z.array(z.email()).max(2) }).optional(),
+  organization: z.object({
+    name: z.string(),
+    addressLines: z.array(z.string()),
+    phone: z.string(),
+    email: z.email().optional(),
+    emails: z.array(z.email()).max(2).optional(),
+    ogrn: z.string(),
+    copyright: z.string(),
+  }),
   socials: z.array(socialLinkSchema),
   map: z.object({
     image: imageSchema,
