@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   PROGRAM_CATEGORY_BORDER,
@@ -21,6 +21,7 @@ type ProgramSummaryProps = {
 
 export function ProgramSummary({ summary, title, labels, className }: ProgramSummaryProps) {
   const locale = useLocale();
+  const t = useTranslations('Market.programCategories');
   const timeFormatter = useMemo(
     () =>
       new Intl.DateTimeFormat(locale, {
@@ -186,14 +187,28 @@ export function ProgramSummary({ summary, title, labels, className }: ProgramSum
                       <div
                         className={cn(
                           'flex flex-col gap-1 border-l-10 py-3 pl-7.5',
+                          event.topic && 'gap-2 py-4 pr-5',
                           PROGRAM_CATEGORY_BORDER[event.category],
                         )}
                       >
-                        <span className="typo-text-2 text-white/50">
+                        <span
+                          className={cn(
+                            'typo-text-2',
+                            event.topic ? 'text-white' : 'text-white/50',
+                          )}
+                        >
                           {formatTime(event.startsAt)} - {formatTime(event.endsAt)}
                         </span>
-                        <span className="typo-text-5">{event.title}</span>
-                        {event.topic && <span className="typo-text-8">{event.topic}</span>}
+                        {event.topic ? (
+                          <span className="flex flex-col gap-1 font-sans tracking-normal">
+                            <span className="typo-text-8 text-white">{event.topic}</span>
+                            <span className="typo-text-3 text-[#ffffffbf]">
+                              {t(event.category)}
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="typo-text-5">{event.title}</span>
+                        )}
                       </div>
                       {event.registrationUrl && (
                         <a
