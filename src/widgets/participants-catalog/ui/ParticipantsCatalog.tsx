@@ -123,7 +123,7 @@ export function ParticipantsCatalog({
         {listQuery.isLoading ? (
           <div className={GRID_CLASS}>
             {Array.from({ length: SKELETON_COUNT }, (_, index) => (
-              <Skeleton key={index} className="h-80 md:aspect-square md:h-auto" />
+              <Skeleton key={index} className="h-[420px]" />
             ))}
           </div>
         ) : (
