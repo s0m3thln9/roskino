@@ -15,7 +15,7 @@ export function ParticipantCard({ participant, href, className }: ParticipantCar
   return (
     <article
       className={cn(
-        'group relative flex h-[420px] min-w-0 flex-col items-center justify-between bg-grey/50 px-5 py-10 backdrop-blur-panel transition-colors hover:bg-white',
+        'group relative flex h-[420px] min-w-0 flex-col items-center justify-between bg-grey/50 px-5 py-10 backdrop-blur-[100px] transition-colors hover:bg-white',
         className,
       )}
     >
